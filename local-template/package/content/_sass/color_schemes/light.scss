@@ -1,0 +1,87 @@
+$color-scheme: wider !default;
+$body-background-color: $white !default;
+$body-heading-color: $grey-dk-300 !default;
+$body-text-color: $grey-dk-100 !default;
+$link-color: $red-000 !default;
+$nav-child-link-color: #fffff0 !default;
+$sidebar-color: #630303 !default;
+$base-button-color: #f7f7f7 !default;
+$btn-primary-color: $purple-100 !default;
+$code-background-color: $grey-lt-000 !default;
+$feedback-color: darken($sidebar-color, 3%) !default;
+$table-background-color: $white !default;
+$search-background-color: $white !default;
+$search-result-preview-color: $grey-dk-000 !default;
+
+@import "./vendor/OneLightJekyll/syntax";
+
+
+$content-width: 80rem;
+$search-results-width: $content-width - $nav-width !default;
+
+.side-bar {
+    z-index: 0;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $sidebar-color;
+  
+    @include mq(md) {
+      flex-flow: column nowrap;
+      position: fixed;
+      width: $nav-width-md;
+      height: 100%;
+      // border-right: $border $border-color;
+      border-right: 0px! important;
+      align-items: flex-end;
+    }
+  
+    @include mq(lg) {
+      width: calc((80% - #{$nav-width + $content-width}) / 12 + #{$nav-width});
+      min-width: $nav-width;
+    }
+
+  }
+  
+  
+.site-header {
+border-bottom: 0px !important;
+}
+
+
+
+.site-title {
+  
+  line-height: 24px !important;
+  font-size: 18px !important;    
+  padding-right: 5px! important;
+  padding-left: 15px! important;
+  margin:5px;
+
+}
+
+.site-logo {
+  
+  padding-right: 25px! important;
+  margin:5px;
+
+}
+
+
+.site-nav, .site-header, .site-footer {
+width: 20rem !important;
+}
+
+div.site-header a.site-title.lh-tight {
+font-size: 16px !important;
+line-height: 20px !important;
+}
+
+.site-header .site-logo {
+  margin-right: 15px; /* Adjust this value as needed */
+}
+
+
+.site-logo {
+width: 20% !important;
+}
+
