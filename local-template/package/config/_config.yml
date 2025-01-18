@@ -1,0 +1,9 @@
+kramdown:
+  toc_levels:    1..3
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+
+
+search:
+  enabled: true
+  preload: true
+  tokenize: true
