@@ -1,0 +1,37 @@
+<nav aria-label="Main" id="site-nav" class="site-nav">
+  <ul class="nav-list">
+    {% for item, value in site.data.menu %}
+      {% if value == nil %}
+        <li class="nav-list-item">
+          <div class="nav-category">{{ item }}</div>
+        </li>
+      {% elsif value contains '_link' %}
+        <li class="nav-list-item">
+          <a href="{{ value._link }}" class="nav-list-link">
+            {{ item }}
+          </a>
+        </li>
+      {% else %}
+        <li class="nav-list-item">
+          <button class="nav-list-expander btn-reset" aria-label="Toggle {{ item }}" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use xlink:href="#svg-arrow-right"></use>
+            </svg>
+          </button>
+          <div class="nav-category">{{ item }}</div>
+          <ul class="nav-list nav-category-list">
+            {% for subitem, subvalue in value %}
+              <li class="nav-list-item">
+                {% if subvalue contains '_link' %}
+                  <a href="{{ subvalue }}" class="nav-list-link">{{ subitem }}</a>
+                {% else %}
+                  <span>{{ subitem }}</span>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

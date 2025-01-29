@@ -1,0 +1,14 @@
+Home: index.html
+Description:
+  Functional:
+    _link: functional.html
+    Use Cases: usecases.html
+    Actors: actors.html
+    Data Models: models.html
+  Technical: technical.html
+Artifacts:
+  Profiles: artifacts.html#2
+  Extensions: artifacts.html#3
+  Value Sets: artifacts.html#4
+Downloads: downloads.html
+History: http://hl7.org/fhir/us/example/history.html
