@@ -1,0 +1,1 @@
+jekyll build -s temp\pages -d output
