@@ -19,23 +19,34 @@ $search-result-preview-color: $grey-dk-000 !default;
 $content-width: 70rem;
 $search-results-width: $content-width - $nav-width !default;
 
-// TOC positioning - floating on the right side with a gap after content
+// TOC positioning - responsive behavior
 div.markdown-toc {
   margin: 4px !important;
   padding: 4px !important;
-  position: fixed !important;
-  left: calc(
-    Max(
-      #{$nav-width},
-      (100% - #{$nav-width + $content-width}) / 6 + #{$nav-width}
-    ) + #{$content-width} + 1rem
-  ) !important;
-  top: 8rem !important;
   z-index: 10 !important;
-  width: 250px !important;
-  max-width: 20vw !important;
   max-height: 80vh !important;
   overflow-y: auto !important;
+
+  // On smaller screens: float right within content, text wraps around it
+  float: right !important;
+  width: 250px !important;
+  max-width: 35% !important;
+  margin-left: 1rem !important;
+
+  // On larger screens with enough space: fixed position to the right of content
+  @media (min-width: calc(#{$nav-width} + #{$content-width} + 300px)) {
+    position: fixed !important;
+    float: none !important;
+    left: calc(
+      Max(
+        #{$nav-width},
+        (100% - #{$nav-width + $content-width}) / 6 + #{$nav-width}
+      ) + #{$content-width} + 1rem
+    ) !important;
+    top: 8rem !important;
+    width: 250px !important;
+    max-width: 20vw !important;
+  }
 }
 
 .side-bar {

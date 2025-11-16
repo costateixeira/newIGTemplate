@@ -94,7 +94,15 @@ function disableHeadStyleSheets() {
 
 function initSearch() {
   var request = new XMLHttpRequest();
-  request.open('GET', '{{ "assets/js/search-data.json" }}', true);
+  // Determine the correct path based on current page location
+  // For multilingual sites, this handles /en/, /fr/, etc.
+  var currentPath = window.location.pathname;
+  var searchDataPath;
+
+  // Check if we're in a language-specific directory
+    searchDataPath = './assets/js/search-data.json';
+
+  request.open('GET', searchDataPath, true);
 
   request.onload = function(){
     if (request.status >= 200 && request.status < 400) {
