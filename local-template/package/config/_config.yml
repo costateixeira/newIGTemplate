@@ -4,6 +4,6 @@ kramdown:
 
 
 search:
-  enabled: true
+  enabled: false
   preload: true
   tokenize: true

@@ -594,11 +594,16 @@ div.markdown-toc
 {
   margin: 4px;
   padding: 4px;
-  float: right;
+  position: fixed;
+  right: 2rem;
+  top: 8rem;
   z-index: 10;
-  width: 30%;
+  width: 250px;
+  max-width: 20vw;
   background-color:  var(--toc-box-bg-color);
   border: var(--toc-box-border);
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 div.markdown-toc p

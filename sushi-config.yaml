@@ -134,6 +134,7 @@ pages:
 #  guidance.md:
   changes.xml:
   downloads.xml:
+  background.xml:
 # The ImplementationGuide resource defines several other properties
 # not represented above. These properties can be used as-is and
 # should follow the format defined in ImplementationGuide:

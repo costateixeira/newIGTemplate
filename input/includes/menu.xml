@@ -1,0 +1,125 @@
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+  <li><a href="index.html">IG Home</a></li>
+  <li><a href="toc.html">Table of Contents</a></li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Background<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="background.html">Background info</a>
+      </li>
+      <li>
+        <a href="tooling.html">IG Tooling</a>
+      </li>
+    </ul>
+  </li> 
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Specification<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="using-templates.html">Using the HL7 Templates</a>
+      </li>
+      <li>
+        <a href="best-practice.html">IG Best Practices</a>
+      </li>
+      <li>
+        <a href="pinning.html">Managing Canonical Versions (pinning)</a>
+      </li>
+      <li>
+        <a href="terminology.html">Working with Terminology</a>
+      </li>
+      <li>
+        <a href="sql.html">Working with SQL</a>
+      </li>
+      <li>
+        <a href="jsonxml.html">Presenting JSON and XML content</a>
+      </li>
+      <li>
+        <a href="fragments.html">Using Instance Fragments</a>
+      </li>
+      <li>
+        <a href="uml.html">UML Class Diagrams</a>
+      </li>
+      <li>
+        <a href="diagrams-plantuml.html">PlantUml Diagrams</a>
+      </li>
+      <li>
+        <a href="diagrams-mermaid.html">Mermaid Diagrams</a>
+      </li>
+      <li>
+        <a href="languages.html">Writing Multi-lingual IGs</a>
+      </li>
+      <li>
+        <a href="related-igs.html">Related IGs</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Testing Support<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="testing.html">Testing Overview</a>
+      </li>
+      <li>
+        <a href="profile-test-cases.html">Testing Profiles</a>
+      </li>
+      <li>
+        <a href="matchetypes.html">Using Matchetypes</a>
+      </li>
+      <li>
+        <a href="testfactory.html">Using Test Data Factories</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Language Support<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="languages.md">Multi-lingual content</a>
+      </li>
+      <li>
+        <a href="lang-pack.html">Language pack</a>
+      </li>
+      <li>
+        <a href="lang-maintenance.html">Maintaining multilingual content</a>
+      </li>
+      <li>
+        <a href="lang-creating-ml-specs.html">Creating multi-lingual specifications</a>
+      </li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Customization<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="template.html">Extending the HL7 IG Templates</a>
+      </li>
+      <li>
+        <a href="colors.html">Changing colors in the template</a>
+      </li>
+    </ul>
+  </li>
+  <li><a href="artifacts.html">Artifact Index</a></li>
+  <li class="dropdown">
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">Support<b class="caret">
+      </b>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a target="_blank" href="{{site.data.fhir.path}}index.html">FHIR Spec <img src="external.png" style="text-align: baseline"/></a>
+      </li>
+      <li>
+        <a href="downloads.html">Downloads</a>
+      </li>
+    </ul>
+  </li>
+</ul>      

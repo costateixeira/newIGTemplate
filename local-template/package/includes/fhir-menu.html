@@ -1,0 +1,278 @@
+{%- comment -%}
+  This include wraps the FHIR IG menu.xml content and transforms it into just-the-docs navigation format
+  The menu.xml from input/includes uses Bootstrap dropdown classes
+  We transform it to use just-the-docs nav-list classes for proper styling
+{%- endcomment -%}
+
+<style>
+/* Fix sidebar alignment - override align-items: flex-end */
+.side-bar {
+  align-items: flex-start !important;
+}
+
+/* Constrain site-nav to sidebar width */
+#site-nav {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Constrain nav-list width */
+.side-bar .nav-list {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove bullets/dashes from all nav lists */
+.side-bar .nav-list,
+.side-bar ul.nav-list,
+#site-nav .nav-list,
+#site-nav ul.nav-list,
+nav .nav-list,
+nav ul.nav-list {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding-left: 0 !important;
+}
+
+/* Force all nav list items to have no bullets - very aggressive */
+.side-bar * {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+/* Nuclear option - remove ALL ::before content in sidebar */
+.side-bar *::before {
+  content: "" !important;
+  display: none !important;
+}
+
+.side-bar *::marker {
+  content: "" !important;
+  display: none !important;
+}
+
+/* Remove any borders, underlines, or text decorations that might look like dashes */
+.side-bar * {
+  border: none !important;
+  text-decoration: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+}
+
+.side-bar .nav-list-link,
+.side-bar .nav-list-item,
+#site-nav .nav-list-link,
+#site-nav .nav-list-item {
+  border: none !important;
+  text-decoration: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.side-bar .nav-list-item,
+.side-bar ul.nav-list li,
+#site-nav .nav-list-item,
+#site-nav ul.nav-list li,
+.side-bar li.nav-list-item,
+#site-nav li.nav-list-item {
+  list-style: none !important;
+  list-style-type: none !important;
+  position: relative !important;
+}
+
+/* Remove ::before and ::marker pseudo-elements that might create bullets */
+.side-bar .nav-list::before,
+.side-bar .nav-list-item::before,
+.side-bar li.nav-list-item::before,
+.side-bar ul > li.nav-list-item::before,
+.side-bar #site-nav .nav-list-item::before,
+.side-bar #site-nav li.nav-list-item::before,
+.side-bar #site-nav ul > li.nav-list-item::before,
+.side-bar nav#site-nav .nav-list-item::before,
+.side-bar nav#site-nav li.nav-list-item::before,
+#site-nav .nav-list::before,
+#site-nav .nav-list-item::before,
+#site-nav li.nav-list-item::before,
+#site-nav ul > li.nav-list-item::before,
+nav#site-nav .nav-list-item::before,
+nav#site-nav li.nav-list-item::before {
+  content: "" !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+}
+
+.side-bar .nav-list-item::marker,
+.side-bar li.nav-list-item::marker,
+.side-bar #site-nav .nav-list-item::marker,
+#site-nav .nav-list-item::marker,
+#site-nav li.nav-list-item::marker,
+nav#site-nav .nav-list-item::marker,
+nav#site-nav li.nav-list-item::marker {
+  content: "" !important;
+  display: none !important;
+  font-size: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Make child nav lists visible when parent is active */
+.nav-list .nav-list-item.active > .nav-list {
+  display: block !important;
+}
+
+/* Highlight current page */
+#site-nav .nav-list-link.active {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Hover effect for nav links */
+#site-nav .nav-list-link:hover {
+  background-image: linear-gradient(
+    -90deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 9%,
+    rgba(0, 0, 0, 0.2) 95%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Active parent items */
+#site-nav .nav-list-item.active > .nav-list-link {
+  font-weight: 600;
+}
+</style>
+
+<script>
+// Transform Bootstrap menu to just-the-docs format on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const siteNav = document.getElementById('site-nav');
+  if (!siteNav) return;
+
+  const bootstrapMenu = siteNav.querySelector('ul.nav.navbar-nav');
+  if (!bootstrapMenu) return;
+
+  // Get current page URL for highlighting
+  const currentPath = window.location.pathname;
+  const currentPage = currentPath.split('/').pop();
+
+  // Create new nav-list structure
+  const navList = document.createElement('ul');
+  navList.className = 'nav-list';
+
+  // Process each top-level menu item
+  const topItems = Array.from(bootstrapMenu.children);
+  for (let i = 0; i < topItems.length; i++) {
+    const item = topItems[i];
+    const newItem = document.createElement('li');
+    newItem.className = 'nav-list-item';
+
+    // Check if it has dropdown (children)
+    const dropdown = item.querySelector('.dropdown-menu');
+    if (dropdown) {
+      // Item with children
+      const toggle = item.querySelector('.dropdown-toggle');
+      const label = toggle ? toggle.textContent.replace(/\s*\n.*/, '').trim() : '';
+
+      // Create expander button
+      const expander = document.createElement('button');
+      expander.className = 'nav-list-expander btn-reset';
+      expander.setAttribute('aria-label', 'Toggle ' + label);
+      expander.setAttribute('aria-pressed', 'false');
+      expander.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>';
+
+      // Create parent link
+      const parentLink = document.createElement('a');
+      parentLink.href = '#';
+      parentLink.className = 'nav-list-link';
+      parentLink.textContent = label;
+      parentLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        expander.click();
+      });
+
+      // Create children list
+      const childList = document.createElement('ul');
+      childList.className = 'nav-list';
+
+      let hasActiveChild = false;
+      const dropdownItems = Array.from(dropdown.children);
+      for (let j = 0; j < dropdownItems.length; j++) {
+        const dropItem = dropdownItems[j];
+        const link = dropItem.querySelector('a[href]');
+        if (link && link.getAttribute('href') !== '#') {
+          const childItem = document.createElement('li');
+          childItem.className = 'nav-list-item';
+
+          const childLink = document.createElement('a');
+          const href = link.getAttribute('href');
+          childLink.href = href;
+          childLink.className = 'nav-list-link';
+          childLink.textContent = link.textContent.trim();
+
+          // Check if this is the current page
+          if (href === currentPage || href === currentPath ||
+              currentPath.endsWith('/' + href)) {
+            childLink.classList.add('active');
+            hasActiveChild = true;
+          }
+
+          childItem.appendChild(childLink);
+          childList.appendChild(childItem);
+        }
+      }
+
+      newItem.appendChild(expander);
+      newItem.appendChild(parentLink);
+      newItem.appendChild(childList);
+
+      // If one of the children is active, expand the parent
+      if (hasActiveChild) {
+        newItem.classList.add('active');
+        expander.setAttribute('aria-pressed', 'true');
+      }
+
+      // Add click handler for expander
+      expander.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isPressed = this.getAttribute('aria-pressed') === 'true';
+        this.setAttribute('aria-pressed', !isPressed);
+        newItem.classList.toggle('active');
+      });
+    } else {
+      // Simple item without children
+      const link = item.querySelector('a');
+      if (link) {
+        const newLink = document.createElement('a');
+        const href = link.getAttribute('href');
+        newLink.href = href;
+        newLink.className = 'nav-list-link';
+        newLink.textContent = link.textContent.trim();
+
+        // Check if this is the current page
+        if (href === currentPage || href === currentPath ||
+            currentPath.endsWith('/' + href)) {
+          newLink.classList.add('active');
+        }
+
+        newItem.appendChild(newLink);
+      }
+    }
+
+    navList.appendChild(newItem);
+  }
+
+  // Replace bootstrap menu with just-the-docs menu
+  bootstrapMenu.replaceWith(navList);
+});
+</script>
+
+{% include menu.xml %}
