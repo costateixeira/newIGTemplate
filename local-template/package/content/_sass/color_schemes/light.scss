@@ -1,10 +1,10 @@
-$color-scheme: wider !default;
+// $color-scheme: wider !default;
 $body-background-color: $white !default;
 $body-heading-color: $grey-dk-300 !default;
 $body-text-color: $grey-dk-100 !default;
 $link-color: $red-000 !default;
 $nav-child-link-color: #fffff0 !default;
-$sidebar-color: #630303 !default;
+$sidebar-color: #5e0b0b !default;
 $base-button-color: #f7f7f7 !default;
 $btn-primary-color: $purple-100 !default;
 $code-background-color: $grey-lt-000 !default;
@@ -16,8 +16,27 @@ $search-result-preview-color: $grey-dk-000 !default;
 @import "./vendor/OneLightJekyll/syntax";
 
 
-$content-width: 80rem;
+$content-width: 70rem;
 $search-results-width: $content-width - $nav-width !default;
+
+// TOC positioning - floating on the right side with a gap after content
+div.markdown-toc {
+  margin: 4px !important;
+  padding: 4px !important;
+  position: fixed !important;
+  left: calc(
+    Max(
+      #{$nav-width},
+      (100% - #{$nav-width + $content-width}) / 6 + #{$nav-width}
+    ) + #{$content-width} + 1rem
+  ) !important;
+  top: 8rem !important;
+  z-index: 10 !important;
+  width: 250px !important;
+  max-width: 20vw !important;
+  max-height: 80vh !important;
+  overflow-y: auto !important;
+}
 
 .side-bar {
     z-index: 0;

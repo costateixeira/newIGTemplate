@@ -589,13 +589,13 @@ ul.markdown-toc p.link
   padding-left: 8px;
   margin: 0px;
 }
-
+ 
 div.markdown-toc
 {
   margin: 4px;
   padding: 4px;
-  position: fixed;
-  right: 2rem;
+  /* position: fixed;
+  right: 2rem; */
   top: 8rem;
   z-index: 10;
   width: 250px;
