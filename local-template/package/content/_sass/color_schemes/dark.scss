@@ -17,6 +17,40 @@ $border-color: $grey-dk-200;
 
 @import "./vendor/OneDarkJekyll/syntax"; // this is the one-dark-vivid atom syntax theme
 
+// Dark theme body background - override light theme defaults
+html, body {
+  background-color: var(--body-bg-color-dark, #1e1e2e) !important;
+  color: var(--body-text-color-dark, #cdd6f4) !important;
+}
+
+.main, .main-content, .main-content-wrap {
+  background-color: var(--body-bg-color-dark, #1e1e2e) !important;
+}
+
+// Links in dark theme
+a {
+  color: var(--link-color-dark, #89b4fa) !important;
+}
+
+a:hover {
+  color: var(--link-hover-color-dark, #b4befe) !important;
+}
+
+// Tables in dark theme
+table, th, td {
+  background-color: var(--table-bg-color-dark, #1e1e2e) !important;
+  border-color: var(--table-border-color-dark, #45475a) !important;
+}
+
+th {
+  background-color: var(--table-header-bg-dark, #313244) !important;
+}
+
+// Code blocks in dark theme
+code, pre {
+  background-color: var(--code-bg-color-dark, #313244) !important;
+}
+
 // Menu styles - using CSS variables from project.css
 // Configure these in :root { } in project.css:
 //   --navbar-bg-color-dark, --btn-text-color-dark, --btn-hover-color-dark, etc.

@@ -113,6 +113,16 @@ var(--publish-box-border); */
   --toc-box-border-left-dark: 4px solid #e94560; /* D18b. TOC box left border (dark) */
   --toc-box-title-color-dark: #aaa; /* D18c. TOC box title color (dark) */
 
+  /* Dark theme page colors */
+  --body-bg-color-dark: #1e1e2e; /* D34. Page background (dark) */
+  --body-text-color-dark: #cdd6f4; /* D35. Page text color (dark) */
+  --link-color-dark: #89b4fa; /* D36. Link color (dark) */
+  --link-hover-color-dark: #b4befe; /* D37. Link hover color (dark) */
+  --table-bg-color-dark: #1e1e2e; /* D38. Table background (dark) */
+  --table-header-bg-dark: #313244; /* D39. Table header background (dark) */
+  --table-border-color-dark: #45475a; /* D40. Table border color (dark) */
+  --code-bg-color-dark: #313244; /* D41. Code background (dark) */
+
 }
 
 
