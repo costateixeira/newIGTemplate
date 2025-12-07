@@ -32,7 +32,18 @@ nav .nav-list,
 nav ul.nav-list {
   list-style: none !important;
   list-style-type: none !important;
+}
+
+/* Top-level nav list has no padding, but child lists are indented */
+.side-bar > nav > .nav-list,
+#site-nav > .nav-list {
   padding-left: 0 !important;
+}
+
+/* Indent child/submenu nav lists */
+.side-bar .nav-list .nav-list,
+#site-nav .nav-list .nav-list {
+  padding-left: 1rem !important;
 }
 
 /* Force all nav list items to have no bullets - very aggressive */
@@ -128,27 +139,13 @@ nav#site-nav li.nav-list-item::marker {
   display: block !important;
 }
 
-/* Highlight current page */
-#site-nav .nav-list-link.active {
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* Hover effect for nav links */
-#site-nav .nav-list-link:hover {
-  background-image: linear-gradient(
-    -90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.2) 9%,
-    rgba(0, 0, 0, 0.2) 95%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
 /* Active parent items */
 #site-nav .nav-list-item.active > .nav-list-link {
   font-weight: 600;
 }
+
+/* Note: Hover and selected styles are now in light.scss using configurable variables:
+   $nav-link-hover-bg, $nav-link-hover-color, $nav-link-selected-bg, $nav-link-selected-color */
 </style>
 
 <script>
@@ -272,6 +269,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Replace bootstrap menu with just-the-docs menu
   bootstrapMenu.replaceWith(navList);
+
+  // Position TOC in white space to the right of content if there's room
+  function positionTOC() {
+    const toc = document.querySelector('div.markdown-toc');
+    const main = document.querySelector('.main');
+    if (!toc || !main) return;
+
+    const mainRect = main.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const tocWidth = 250; // TOC width
+    const gap = 16; // Gap between content and TOC
+    const minTocSpace = tocWidth + gap + 20; // Minimum space needed for TOC
+
+    // Calculate available space to the right of .main content
+    const spaceOnRight = viewportWidth - mainRect.right;
+
+    if (spaceOnRight >= minTocSpace) {
+      // Enough space: position TOC fixed to the right of content
+      toc.style.position = 'fixed';
+      toc.style.float = 'none';
+      toc.style.left = (mainRect.right + gap) + 'px';
+      toc.style.top = '8rem';
+      toc.style.width = Math.min(tocWidth, spaceOnRight - gap - 20) + 'px';
+      toc.style.maxWidth = '20vw';
+      toc.style.marginLeft = '0';
+    } else {
+      // Not enough space: float within content
+      toc.style.position = '';
+      toc.style.float = 'right';
+      toc.style.left = '';
+      toc.style.top = '';
+      toc.style.width = '250px';
+      toc.style.maxWidth = '35%';
+      toc.style.marginLeft = '1rem';
+    }
+  }
+
+  // Run on load and resize
+  positionTOC();
+  window.addEventListener('resize', positionTOC);
+  window.addEventListener('scroll', function() {
+    // Reposition on scroll in case content position changed
+    const toc = document.querySelector('div.markdown-toc');
+    if (toc && toc.style.position === 'fixed') {
+      positionTOC();
+    }
+  });
 });
 </script>
 

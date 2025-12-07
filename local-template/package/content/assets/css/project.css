@@ -46,14 +46,17 @@ var(--publish-box-border); */
 :root {
 
   --ig-status-text-color: maroon; /* 1. IG Title and status text color */
-  --navbar-bg-color: #7b1fad; /* 2. Header container color */
+  --navbar-bg-color: #27415a; /* 2. Header container color */
   --footer-bg-color: #707070; /* 3. Footer background color*/
   --footer-container-bg-color: #7b1fad; /* 4. Footer container color */
   --stripe-bg-color: #999999; /* 5. Header strip color */
 
-  --btn-hover-color: #9b2fdd;  /* 6. Menu button hover color */
-  --btn-active-color: #da0c23; /* 7. Menu button active color */
+  --btn-hover-color: #3c5677;  /* 6. Menu button hover color */
+  --btn-active-color: #40679a; /* 7. Menu button active color */
   --btn-text-color: #e6e6e6; /* 8. Menu button text color */
+  --btn-expander-color: #e6e6e6; /* 8b. Menu expander arrow color */
+  --btn-expander-bg-color: #3c5677; /* 8c. Menu expander background color */
+  --btn-expander-hover-bg-color: #357ebd; /* 8d. Menu expander hover background color */
   --btn-gradient-start-color: #428bca; /* 9. Menu item gradient start color */
   --btn-gradient-end-color: #357ebd; /* 10. Menu item gradient end  color */
   --btn-gradient-start-color-alpha: #ff428bca; /* 11. Menu item gradient start color (with alpha) */
@@ -61,11 +64,13 @@ var(--publish-box-border); */
   --link-color: #428bca; /* 13. Hyperlink text color */
   --link-hover-color: #2a6496; /* 14. Hyperlink text hover color */
 
-  --publish-box-bg-color: yellow; /* 15. Publish box background color */
+  --publish-box-bg-color: rgb(212, 212, 179); /* 15. Publish box background color */
   --publish-box-border: 1px solid #0A0008; /* 16.  Publish box border definition */
 
-  --toc-box-bg-color: #ffeb7e; /* 17.  TOC box background color */
+  --toc-box-bg-color: #f3f3f377; /* 17.  TOC box background color */
   --toc-box-border: 1px solid navy; /* 18. TOC box border definition */
+  --toc-box-border-left: 4px solid #7b1fad; /* 18b. TOC box left border accent */
+  --toc-box-title-color: #555; /* 18c. TOC box title color */
 
   --stu-note-background-color: #fff2ff; /* 19. (STU) Note box background color */
   --stu-note-border-left-color: #ffa0ff; /* 20. (STU) Note box border color */
@@ -83,6 +88,30 @@ var(--publish-box-border); */
 
   --dragon-background-color: #fffbf7; /* 29. Dragon background color */
   --dragon-text-color: #101020; /* 30. Dragon font color */
+
+  /* Layout widths */
+  --nav-width: 15.5rem; /* 31. Sidebar navigation width */
+  --content-width: 70rem; /* 32. Main content max width */
+  --site-title-hover-bg: rgba(255, 255, 255, 0.1); /* 33. Site title hover background */
+
+  /* ============================================
+     DARK THEME COLORS
+     To use: set color_scheme: dark in _config.yml
+     ============================================ */
+  --navbar-bg-color-dark: #1a1a2e; /* D2. Sidebar background color (dark) */
+  --btn-hover-color-dark: #16213e;  /* D6. Menu button hover color (dark) */
+  --btn-active-color-dark: #0f3460; /* D7. Menu button active color (dark) */
+  --btn-text-color-dark: #e6e6e6; /* D8. Menu button text color (dark) */
+  --btn-expander-color-dark: #e6e6e6; /* D8b. Menu expander arrow color (dark) */
+  --btn-expander-hover-bg-color-dark: #16213e; /* D8d. Menu expander hover bg (dark) */
+  --btn-gradient-start-color-dark: #0f3460; /* D9. Menu gradient start (dark) */
+  --btn-gradient-end-color-dark: #16213e; /* D10. Menu gradient end (dark) */
+  --site-title-hover-bg-dark: rgba(255, 255, 255, 0.15); /* D33. Site title hover bg (dark) */
+
+  --toc-box-bg-color-dark: #1a1a2e; /* D17. TOC box background (dark) */
+  --toc-box-border-dark: 1px solid #0f3460; /* D18. TOC box border (dark) */
+  --toc-box-border-left-dark: 4px solid #e94560; /* D18b. TOC box left border (dark) */
+  --toc-box-title-color-dark: #aaa; /* D18c. TOC box title color (dark) */
 
 }
 

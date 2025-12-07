@@ -16,3 +16,257 @@ $search-result-preview-color: $grey-dk-000;
 $border-color: $grey-dk-200;
 
 @import "./vendor/OneDarkJekyll/syntax"; // this is the one-dark-vivid atom syntax theme
+
+// Menu styles - using CSS variables from project.css
+// Configure these in :root { } in project.css:
+//   --navbar-bg-color-dark, --btn-text-color-dark, --btn-hover-color-dark, etc.
+
+// Base sidebar and nav link colors
+.side-bar {
+  background-color: var(--navbar-bg-color-dark) !important;
+}
+
+.side-bar .nav-list-link,
+#site-nav .nav-list-link {
+  color: var(--btn-text-color-dark) !important;
+  background: linear-gradient(to bottom, var(--btn-gradient-start-color-dark), var(--btn-gradient-end-color-dark)) !important;
+}
+
+// Hover state
+.side-bar .nav-list-link:hover,
+#site-nav .nav-list-link:hover {
+  background-color: var(--btn-hover-color-dark) !important;
+  background: var(--btn-hover-color-dark) !important;
+}
+
+// Selected/active state
+.side-bar .nav-list-link.active,
+#site-nav .nav-list-link.active {
+  background-color: var(--btn-active-color-dark) !important;
+  background: var(--btn-active-color-dark) !important;
+  font-weight: 600 !important;
+}
+
+// Expander button (arrow to expand/collapse submenus)
+.side-bar .nav-list-expander,
+#site-nav .nav-list-expander {
+  color: var(--btn-expander-color-dark) !important;
+}
+
+.side-bar .nav-list-expander:hover,
+#site-nav .nav-list-expander:hover {
+  background-color: var(--btn-expander-hover-bg-color-dark) !important;
+  background-image: none !important;
+}
+
+// When the nav-list-link is hovered, also highlight its sibling expander
+.side-bar .nav-list-item:has(> .nav-list-link:hover) > .nav-list-expander,
+#site-nav .nav-list-item:has(> .nav-list-link:hover) > .nav-list-expander,
+.side-bar .nav-list-expander:hover,
+#site-nav .nav-list-expander:hover {
+  background-color: var(--btn-hover-color-dark) !important;
+  background-image: none !important;
+}
+
+// When parent nav-list-item has active link, also highlight the expander
+.side-bar .nav-list-item:has(> .nav-list-link.active) > .nav-list-expander,
+#site-nav .nav-list-item:has(> .nav-list-link.active) > .nav-list-expander {
+  background-color: var(--btn-active-color-dark) !important;
+  background-image: none !important;
+}
+
+// Home/logo hover state
+.site-title:hover,
+.site-header a:hover {
+  background-color: var(--site-title-hover-bg-dark) !important;
+  background-image: none !important;
+}
+
+
+// Content width - also set via CSS variable --content-width in project.css
+$content-width: 70rem;
+$search-results-width: $content-width - $nav-width !default;
+
+// Apply content width from CSS variable
+.main {
+  max-width: var(--content-width) !important;
+}
+
+// TOC positioning and styling - responsive behavior
+div.markdown-toc {
+  margin: 4px !important;
+  padding: 12px 16px !important;
+  z-index: 10 !important;
+  max-height: 80vh !important;
+  overflow-y: auto !important;
+
+  // TOC box styling from CSS variables
+  background-color: var(--toc-box-bg-color-dark) !important;
+  border: var(--toc-box-border-dark) !important;
+  border-left: var(--toc-box-border-left-dark) !important;
+
+  // On smaller screens: float right within content, text wraps around it
+  float: right !important;
+  width: 250px !important;
+  max-width: 35% !important;
+  margin-left: 1rem !important;
+
+  // TOC title styling ("On this page")
+  p:first-child,
+  strong:first-child {
+    color: var(--toc-box-title-color-dark) !important;
+    font-size: 0.85rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+// Sidebar width - uses CSS variable --nav-width from project.css
+.side-bar {
+    z-index: 0;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: $sidebar-color;
+
+    @include mq(md) {
+      flex-flow: column nowrap;
+      position: fixed;
+      width: var(--nav-width) !important;
+      height: 100%;
+      border-right: 0px !important;
+      align-items: flex-end;
+    }
+
+    @include mq(lg) {
+      width: var(--nav-width) !important;
+      min-width: var(--nav-width) !important;
+    }
+
+  }
+
+
+.site-header {
+border-bottom: 0px !important;
+}
+
+
+
+.site-title {
+
+  line-height: 24px !important;
+  font-size: 18px !important;
+  padding-right: 5px! important;
+  padding-left: 15px! important;
+  margin:5px;
+
+}
+
+.site-logo {
+
+  padding-right: 25px! important;
+  margin:5px;
+
+}
+
+
+.site-nav, .site-header, .site-footer {
+  width: var(--nav-width) !important;
+}
+
+div.site-header a.site-title.lh-tight {
+font-size: 16px !important;
+line-height: 20px !important;
+}
+
+.site-header .site-logo {
+  margin-right: 15px; /* Adjust this value as needed */
+}
+
+
+.site-logo {
+width: 20% !important;
+}
+
+// Remove dots/bullets from FHIR IG Publisher tabs and nav elements in main content
+.main ul.nav-tabs,
+.main .nav-tabs,
+.main ul.nav,
+.main-content ul.nav-tabs,
+.main-content .nav-tabs,
+.main-content ul.nav,
+#tabs > ul,
+div#tabs > ul {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.main ul.nav-tabs > li,
+.main .nav-tabs > li,
+.main ul.nav > li,
+.main-content ul.nav-tabs > li,
+.main-content .nav-tabs > li,
+.main-content ul.nav > li,
+#tabs > ul > li,
+div#tabs > ul > li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.main ul.nav-tabs > li::before,
+.main .nav-tabs > li::before,
+.main ul.nav > li::before,
+.main-content ul.nav-tabs > li::before,
+.main-content .nav-tabs > li::before,
+.main-content ul.nav > li::before,
+.main ul.nav-tabs > li::marker,
+.main .nav-tabs > li::marker,
+.main ul.nav > li::marker,
+.main-content ul.nav-tabs > li::marker,
+.main-content .nav-tabs > li::marker,
+.main-content ul.nav > li::marker,
+#tabs > ul > li::before,
+#tabs > ul > li::marker,
+div#tabs > ul > li::before,
+div#tabs > ul > li::marker,
+.ui-tabs .ui-tabs-nav li::before,
+.ui-tabs .ui-tabs-nav li::marker {
+  content: "" !important;
+  content: none !important;
+  display: none !important;
+}
+
+// Also target jQuery UI tabs navigation list
+.ui-tabs .ui-tabs-nav {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+.ui-tabs .ui-tabs-nav li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+// Print styles - hide sidebar and TOC when printing
+@media print {
+  .side-bar,
+  #site-nav,
+  .site-header,
+  .site-footer,
+  div.markdown-toc,
+  ul.markdown-toc {
+    display: none !important;
+  }
+
+  // Make main content full width when printing
+  .main {
+    margin-left: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .main-content-wrap {
+    padding: 0 !important;
+  }
+}
