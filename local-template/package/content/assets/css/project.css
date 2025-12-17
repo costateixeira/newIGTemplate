@@ -142,6 +142,15 @@ body {
   background-color: #ffffff;
   position: relative;
 }
+/* Content wrapper - sits beside sidebar */
+.side-bar ~ .content-wrapper {
+  margin-left: var(--nav-width, 16.5rem);
+}
+
+.content-wrapper .main {
+  margin-left: 0;
+}
+
 #segment-header {
   background-color: var(--ig-header-color);
 }
@@ -150,11 +159,16 @@ body {
 }
 #segment-footer {
   background-color: var(--footer-bg-color);
+  padding: 0;
 }
 
 #segment-footer > .container {
   background-color: var(--footer-container-bg-color);
   color: var(--footer-text-color);
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  margin: 0;
 }
 .navbar-inverse {
   background-color: var(--navbar-bg-color);

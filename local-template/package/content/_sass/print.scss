@@ -11,9 +11,7 @@
   }
 
   .side-bar {
-    width: 100%;
-    height: auto;
-    border-right: 0 !important;
+    display: none !important;
   }
 
   .site-header {
@@ -33,8 +31,19 @@
     border: 1px solid $border-color;
   }
 
+  .content-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
   .main {
-    max-width: none;
-    margin-left: 0;
+    max-width: none !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  #segment-footer {
+    margin-left: 0 !important;
+    width: 100% !important;
   }
 }

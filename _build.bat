@@ -314,7 +314,7 @@ SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 :: Debugging statements before running publisher
 ECHO 1jar_location is: %jar_location%
 IF NOT "%jar_location%"=="not_found" (
-	java %JAVA_OPTS% -jar "%jar_location%" -ig . %txoption% %*
+	java %JAVA_OPTS% -jar "%jar_location%" -ig . %txoption% %* 
 ) ELSE (
 	ECHO IG Publisher NOT FOUND in input-cache or parent folder.  Please run _updatePublisher.  Aborting...
 )
