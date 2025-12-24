@@ -645,7 +645,7 @@ ul.markdown-toc p.link
  
 div.markdown-toc
 {
-  margin: 4px;
+  margin: 2px;
   padding: 4px;
   /* position: fixed;
   right: 2rem; */
@@ -657,6 +657,8 @@ div.markdown-toc
   border: var(--toc-box-border);
   max-height: 80vh;
   overflow-y: auto;
+  /* Flexible margin: shrinks from 1rem down to 2px minimum based on available space */
+  margin-left: clamp(2px, 2vw, 1rem);
 }
 
 div.markdown-toc p
