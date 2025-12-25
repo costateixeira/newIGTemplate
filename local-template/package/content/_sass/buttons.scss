@@ -1,5 +1,6 @@
 // Buttons and things that look like buttons
 // stylelint-disable color-named
+@use "sass:color";
 
 .btn {
   display: inline-block;
@@ -43,13 +44,13 @@
   &.zeroclipboard-is-hover,
   &.zeroclipboard-is-active {
     text-decoration: none;
-    background-color: darken($base-button-color, 1%);
+    background-color: color.adjust($base-button-color, $lightness: -1%);
   }
 
   &:active,
   &.selected,
   &.zeroclipboard-is-active {
-    background-color: darken($base-button-color, 3%);
+    background-color: color.adjust($base-button-color, $lightness: -3%);
     background-image: none;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
   }
