@@ -913,3 +913,28 @@ code[class*="language-"],
 pre[class*="language-"] {
     text-shadow: none;
 }
+
+/* Search results should not affect sidebar or main content layout */
+.search {
+  position: relative;
+}
+
+.search-results {
+  z-index: 1000;
+  max-width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .search-results {
+    max-width: 23.5rem;
+  }
+}
+
+/* Prevent search active state from affecting sidebar */
+.search-active .side-bar {
+  z-index: 1;
+}
+
+.search-active .main {
+  position: relative;
+}
