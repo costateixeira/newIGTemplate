@@ -1,47 +1,64 @@
+{%- assign lang = include.lang | default: "en" -%}
 
-        {% include footer.html %}
         </main>
       </div>  <!-- /main-content -->
-    </div>  <!-- /main-content-wrap -->
 
-    <a name="bottom"> </a>
-    <div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
-      <div class="container" data-fhir="generated">  <!-- container -->
-        {% include page-nav.html lang=include.lang position='bottom' %}
-        <div class="inner-wrapper">
-          <p>
-{% capture pkg %}{{site.data.fhir.packageId}}#{{site.data.fhir.igVer}}{% endcapture %}
-{% capture fhirver %}<a style="color: var(--footer-hyperlink-text-color)" href="{{site.data.fhir.path}}">FHIR {{site.data.fhir.version}}</a>{% endcapture %}
-{% capture gendate %}
-<span title="{{ site.data.fhir.genDate | date: "%Y-%m-%d %H:%M:%S %z" }}">
-  {{ site.data.fhir.genDate | date: "%Y-%m-%d" }}
-</span>
-{% endcapture %}
-            {{site.data.stringsBase[include.lang]['IGCopyright'] | replace: "%YEAR%", site.data.info.copyrightyear}} <a style="color:var(--footer-hyperlink-text-color)" href="{{site.data.fhir.ig.contact[0].telecom[0]}}">{{site.data.fhir.ig.publisher | escape}}</a>.
-            {{site.data.stringsBase[include.lang]['IGPackage'] | replace: "%PKG%", pkg | replace: "%FHIRVER%", fhirver}}
-            {{site.data.stringsBase[include.lang]['GeneratedDate'] | replace: "%DATE%", gendate}}
-            <br/>
-            <span style="color: var(--footer-highlight-text-color)">
-              {% include footer-content.html lang=include.lang %}
-            </span>
-          </p>
-        </div>  <!-- /inner-wrapper -->
-      </div>  <!-- /container -->
-    </div>  <!-- /segment-footer -->
+<a name="bottom"> </a>
+<div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+  <div class="container" data-fhir="generated">  <!-- container -->
+    {% include page-nav.html lang=lang position='bottom' %}
+    <div class="inner-wrapper">
+      <p>
+{%- capture pkg -%}{{site.data.fhir.packageId}}#{{site.data.fhir.igVer}}{%- endcapture -%}
+{%- capture fhirver -%}<a style="color: var(--footer-hyperlink-text-color)" href="{{site.data.fhir.path}}">FHIR {{site.data.fhir.version}}</a>{%- endcapture -%}
+{%- capture gendate -%}
+  <span title="{{ site.data.fhir.genDate | date: "%Y-%m-%d %H:%M:%S %z" }}">
+    {{ site.data.fhir.genDate | date: "%Y-%m-%d" }}
+  </span>
+{%- endcapture -%}
+        {{site.data.stringsBase[lang]['IGCopyright'] | replace: "%YEAR%", site.data.info.copyrightyear}} <a style="color:var(--footer-hyperlink-text-color)" href="{{site.data.fhir.ig.contact[0].telecom[0].value}}">{{site.data.fhir.ig.publisher | escape}}</a>.
+        {{site.data.stringsBase[lang]['IGPackage'] | replace: "%PKG%", pkg | replace: "%FHIRVER%", fhirver}}
+        {{site.data.stringsBase[lang]['GeneratedDate'] | replace: "%DATE%", gendate}}
+        <br/>
+        <span style="color: var(--footer-highlight-text-color)">
+          {% include fragment-footer.html lang=lang %}
+        </span>
+      </p>
+    </div>  <!-- /inner-wrapper -->
+  </div>  <!-- /container -->
+</div>  <!-- /segment-footer -->
+
+    </div>  <!-- /main-content-wrap -->
 
     {% if site.mermaid %}
     {% include mermaid.html %}
   {% endif %}
-  </div>  <!-- /main-content-wrap -->
 </div>  <!-- /main -->
-</div>  <!-- /content-wrapper -->
+  </div>  <!-- /content-wrapper -->
 
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/jquery-ui.min.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/flags.js"> </script>
 {% if includetabscripts %}
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/tabs.js"> </script>
 {% endif %}
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/window-hash.js"> </script>
+{% if site.data.info.togglechanges == 'y' %}
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/togglechanges.js"> </script>
+{% endif %}
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/requirements-table.js"> </script>
 
+<!-- JS and analytics only. -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/bootstrap.min.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/respond.min.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/anchor.min.js"> </script>
+<script type="text/javascript" src="assets/js/clipboard.min.js"> </script>
+<script type="text/javascript" src="assets/js/clipboard-btn.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/anchor-hover.js"> </script>
+<!-- Analytics Below
+================================================== -->
 </body>
 </html>

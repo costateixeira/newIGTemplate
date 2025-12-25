@@ -83,8 +83,9 @@ var(--publish-box-border); */
   --footer-hyperlink-text-color: #81BEF7; /* 25. Footer hyperlinks font color */
   --footer-highlight-text-color: #ffff77; /* 26. Footer highlight font color */
 
-  --breadcrumb-bg-color: #f5f5f5; /* 27. Breadcrumb font color */
-  --breadcrumb-text-color: ##555555; /* 28. Breadcrumb font color */
+  --breadcrumb-bg-color: #f5f5f5; /* 27. Breadcrumb background color */
+  --breadcrumb-text-color: #555555; /* 28. Breadcrumb text color */
+  --breadcrumb-separator-color: #999999; /* 28b. Breadcrumb separator color */
 
   --dragon-background-color: #fffbf7; /* 29. Dragon background color */
   --dragon-text-color: #101020; /* 30. Dragon font color */
@@ -157,32 +158,79 @@ body {
 #segment-header > .container {
   background-color: var(--ig-header-container-color);
 }
+/* Footer styling - positioned inside main-content-wrap */
 #segment-footer {
   background-color: var(--footer-bg-color);
+  /* Extend to edges of main-content-wrap padding */
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: -1rem;
+  margin-top: 2rem;
   padding: 0;
+  /* Ensure footer spans full width */
+  width: calc(100% + 2rem);
+  /* Ensure it's a block element */
+  display: block;
+  clear: both;
+}
+
+@media (min-width: 40rem) {
+  #segment-footer {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-bottom: -2rem;
+    width: calc(100% + 4rem);
+  }
 }
 
 #segment-footer > .container {
   background-color: var(--footer-container-bg-color);
   color: var(--footer-text-color);
-  padding-left: 0;
-  padding-right: 0;
-  padding-bottom: 0;
+  max-width: none;
   margin: 0;
+  padding: 0;
 }
+
+#segment-footer .page-nav {
+  background-color: var(--footer-nav-bg-color, #f0f0f0);
+  padding: 8px 1rem;
+}
+
+#segment-footer .page-nav table {
+  margin-bottom: 0;
+}
+
+#segment-footer .page-nav tbody tr:last-of-type td {
+  padding-bottom: 0;
+}
+
+@media (min-width: 40rem) {
+  #segment-footer .page-nav {
+    padding: 8px 2rem;
+  }
+}
+
+#segment-footer > .container .inner-wrapper {
+  padding: 10px 1rem;
+}
+
+@media (min-width: 40rem) {
+  #segment-footer > .container .inner-wrapper {
+    padding: 10px 2rem;
+  }
+}
+
+#segment-footer > .container .inner-wrapper > p {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  color: var(--footer-text-color);
+}
+
 .navbar-inverse {
   background-color: var(--navbar-bg-color);
 }
 .navbar-inverse .navbar-nav > li > a:hover {
   background-color: var(--btn-hover-color);
-}
-#segment-footer > .container .inner-wrapper {
-  padding: 4px 20px;
-}
-#segment-footer > .container .inner-wrapper > p {
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  color:var(--footer-text-color);
 }
 #segment-post-footer {
   background-color: #f5f5f5;
@@ -526,11 +574,46 @@ a:focus {
 .nav-list > li > a {
   padding: 3px 15px;
 }
-.breadcrumb {
-  margin-bottom: 0;
-  background-color: var(--breadcrumb-bg-color);;
+#segment-breadcrumb {
+  margin-bottom: 10px;
 }
-.breadcrumb a {
+#segment-breadcrumb .breadcrumb-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--breadcrumb-bg-color);
+  padding: 8px 15px;
+}
+#segment-breadcrumb .breadcrumb {
+  margin: 0;
+  padding: 0;
+  list-style: none !important;
+  display: inline;
+}
+#segment-breadcrumb .breadcrumb a {
+  color: var(--breadcrumb-text-color);
+}
+#segment-breadcrumb .breadcrumb > li {
+  display: inline;
+  list-style: none !important;
+  margin: 0 15px 5px 0;
+}
+#segment-breadcrumb .breadcrumb > li::before {
+  content: none !important;
+}
+#segment-breadcrumb .breadcrumb > li + li::before {
+  content: ">" !important;
+  color: var(--breadcrumb-separator-color, #999);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+#segment-breadcrumb .breadcrumb > li b {
+  font-weight: normal;
+}
+#segment-breadcrumb .breadcrumb-nav {
+  white-space: nowrap;
+}
+#segment-breadcrumb .breadcrumb-nav a {
   color: var(--breadcrumb-text-color);
 }
 .nav-listing {
