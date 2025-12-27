@@ -16,6 +16,7 @@
 {%- endif -%}
 {%- for pages in pages_array -%}
   {%- for page in pages -%}
+    {%- unless page.url contains '.ai.html' -%}
     {%- if page.search_exclude != true -%}
       {%- assign page_content = page.content -%}
       {%- assign heading_level = site.search.heading_level | default: 2 -%}
@@ -68,6 +69,7 @@
         {%- assign i = i | plus: 1 -%}
       {%- endunless -%}
     {%- endif -%}
+    {%- endunless -%}
   {%- endfor -%}
 {%- endfor %}
 }

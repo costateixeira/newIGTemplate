@@ -37,6 +37,11 @@ widget in sidebar vs in column = uiterlijk op basis van locale class via functio
 /* SCAFFOLDING STYLING
 ----------------------------------------------------------------------------------------*/
 
+/* Heading numbers - copy-pasteable section numbers */
+.heading-number {
+  color: silver;
+  margin-right: 0.3em;
+}
 
 /* Colors
 
@@ -48,7 +53,7 @@ var(--publish-box-border); */
   --ig-status-text-color: maroon; /* 1. IG Title and status text color */
   --navbar-bg-color: #27415a; /* 2. Header container color */
   --footer-bg-color: #707070; /* 3. Footer background color*/
-  --footer-container-bg-color: #7b1fad; /* 4. Footer container color */
+  --footer-container-bg-color: #494e71; /* 4. Footer container color */
   --stripe-bg-color: #999999; /* 5. Header strip color */
 
   --btn-hover-color: #3c5677;  /* 6. Menu button hover color */
@@ -192,12 +197,17 @@ body {
 }
 
 #segment-footer .page-nav {
-  background-color: var(--footer-nav-bg-color, #f0f0f0);
+  background-color: var(--breadcrumb-bg-color);
   padding: 8px 1rem;
 }
 
 #segment-footer .page-nav table {
   margin-bottom: 0;
+  background-color: transparent;
+}
+
+#segment-footer .page-nav table td {
+  background-color: transparent;
 }
 
 #segment-footer .page-nav tbody tr:last-of-type td {
@@ -596,7 +606,7 @@ a:focus {
 #segment-breadcrumb .breadcrumb > li {
   display: inline;
   list-style: none !important;
-  margin: 0 15px 5px 0;
+  margin: 0 15px 0 0;
 }
 #segment-breadcrumb .breadcrumb > li::before {
   content: none !important;
@@ -675,6 +685,52 @@ p > img {
 .table th.inverted h6 {
   color: inherit;
 }
+
+/* Artifact summary table (colsi) styling */
+table.colsi {
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #dee2e6;
+  width: 100%;
+  overflow: hidden;
+}
+
+table.colsi td,
+table.colsi th {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+table.colsi tr:last-child td,
+table.colsi tr:last-child th {
+  border-bottom: none !important;
+}
+
+/* Round corners for first and last cells */
+table.colsi tr:first-child td:first-child,
+table.colsi tr:first-child th:first-child {
+  border-top-left-radius: 7px;
+}
+
+table.colsi tr:first-child td:last-child,
+table.colsi tr:first-child th:last-child {
+  border-top-right-radius: 7px;
+}
+
+table.colsi tr:last-child td:first-child,
+table.colsi tr:last-child th:first-child {
+  border-bottom-left-radius: 7px;
+}
+
+table.colsi tr:last-child td:last-child,
+table.colsi tr:last-child th:last-child {
+  border-bottom-right-radius: 7px;
+}
+
 pre {
   font-size: 12px;
 }

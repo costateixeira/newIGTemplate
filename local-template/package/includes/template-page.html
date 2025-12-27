@@ -1,14 +1,44 @@
 {% include fragment-pagebegin.html %}
-<style type="text/css">
-h2:before{color:silver;counter-increment:section;content:var(--heading-prefix) " ";}
-h3:before{color:silver;counter-increment:sub-section;content:var(--heading-prefix) "." counter(sub-section) " ";}
-h4:before{color:silver;counter-increment:composite;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) " ";}
-h5:before{color:silver;counter-increment:detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) " ";}
-h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefix) "." counter(sub-section) "." counter(composite) "." counter(detail) "." counter(more-detail)" ";}
-</style>
+{%- assign pageLabel = site.data.pages[page.path].label | default: "" -%}
 <!--ReleaseHeader--><p id="publish-box">Publish Box goes here</p><!--EndReleaseHeader-->
-{% include breadcrumbs.html lang="en" %}
-<h2>{{site.data.pages[page.path].title | escape_once}}</h2>
+<h2><span class="heading-number">{{ pageLabel }}</span> {{site.data.pages[page.path].title | escape_once}}</h2>
+<script>
+(function() {
+  var pageLabel = "{{ pageLabel }}";
+  if (!pageLabel) return;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var counters = [0, 0, 0, 0]; // h3, h4, h5, h6
+    var main = document.getElementById('main-content');
+    if (!main) return;
+
+    var headings = main.querySelectorAll('h3, h4, h5, h6');
+    headings.forEach(function(h) {
+      var level = parseInt(h.tagName.charAt(1)) - 3; // 0 for h3, 1 for h4, etc.
+
+      // Increment current level counter
+      counters[level]++;
+      // Reset all deeper level counters
+      for (var i = level + 1; i < counters.length; i++) {
+        counters[i] = 0;
+      }
+
+      // Build the number string
+      var num = pageLabel;
+      for (var i = 0; i <= level; i++) {
+        num += "." + counters[i];
+      }
+
+      // Prepend the number to the heading
+      var span = document.createElement('span');
+      span.className = 'heading-number';
+      span.textContent = num + ' ';
+      span.style.color = 'silver';
+      h.insertBefore(span, h.firstChild);
+    });
+  });
+})();
+</script>
 {% if page.path == 'index.html' %}
 {% include fragment-igTable.html %}
 {% endif %}
