@@ -4,6 +4,25 @@
 
 @import "./rtl";
 
+// Search sits towards the end of the top bar: open its results towards the content
+.search-results {
+  @include mq(md) {
+    left: auto;
+    right: 0;
+  }
+}
+
+// Search colours from the palette in project.css
+.search-result:hover,
+.search-result.active {
+  background-color: var(--search-highlight-bg-color);
+}
+
+.search-input:focus + .search-label .search-icon,
+.search-result-icon {
+  color: var(--link-color);
+}
+
 // IG title takes the space left by search and the language selector
 .main-header #ig-status {
   flex: 1 1 auto;

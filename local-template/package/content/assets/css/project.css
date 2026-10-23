@@ -99,6 +99,7 @@ var(--publish-box-border); */
   --nav-width: 15.5rem; /* 31. Sidebar navigation width */
   --content-width: 70rem; /* 32. Main content max width */
   --site-title-hover-bg: rgba(255, 255, 255, 0.1); /* 33. Site title hover background */
+  --search-highlight-bg-color: #e8f0f8; /* 42. Search result highlight background */
 
   /* ============================================
      DARK THEME COLORS
@@ -128,6 +129,7 @@ var(--publish-box-border); */
   --table-header-bg-dark: #313244; /* D39. Table header background (dark) */
   --table-border-color-dark: #45475a; /* D40. Table border color (dark) */
   --code-bg-color-dark: #313244; /* D41. Code background (dark) */
+  --search-highlight-bg-color-dark: #313244; /* D42. Search result highlight background (dark) */
 
 }
 

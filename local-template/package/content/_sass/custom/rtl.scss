@@ -61,6 +61,13 @@
     padding-right: 1rem !important;
   }
 
+  .search-results {
+    @include mq(md) {
+      right: auto;
+      left: 0;
+    }
+  }
+
   // "On this page" box on the left
   div.markdown-toc {
     float: left !important;

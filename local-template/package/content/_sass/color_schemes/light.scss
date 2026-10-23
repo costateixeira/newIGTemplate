@@ -2,9 +2,11 @@
 $body-background-color: $white !default;
 $body-heading-color: $grey-dk-300 !default;
 $body-text-color: $grey-dk-100 !default;
-$link-color: $red-000 !default;
+// $link-color and $sidebar-color mirror --link-color (13) and --navbar-bg-color (2)
+// in assets/css/project.css; Sass needs literal colours for darken()/rgba()
+$link-color: #428bca !default;
 $nav-child-link-color: #fffff0 !default;
-$sidebar-color: #5e0b0b !default;
+$sidebar-color: #27415a !default;
 $base-button-color: #f7f7f7 !default;
 $btn-primary-color: $purple-100 !default;
 $code-background-color: $grey-lt-000 !default;

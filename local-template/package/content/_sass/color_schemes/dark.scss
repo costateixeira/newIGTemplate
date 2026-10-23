@@ -305,3 +305,9 @@ div#tabs > ul > li::marker,
     padding: 0 !important;
   }
 }
+
+// Search result highlight (custom.scss sets the light colour)
+.search-result:hover,
+.search-result.active {
+  background-color: var(--search-highlight-bg-color-dark) !important;
+}
