@@ -108,8 +108,8 @@ var(--publish-box-border); */
   --font-size-base: 15px; /* 45. Body text size */
   --font-size-small: 13px; /* 46. Table, breadcrumb and footer text size */
   --muted-text-color: #5c6b7a; /* 47. Secondary text (labels) */
-  --rail-bg-color: #f6f8fa; /* 48. Side rail beside the text (search, language, Contents, outer margin) */
-  --rail-border-color: #e3e8ee; /* 48b. Side rail edge */
+  --rail-bg-color: #fafbfc; /* 48. Side rail beside the text (search, language, Contents, outer margin) */
+  --rail-border-color: #edf0f3; /* 48b. Side rail edge */
 
   /* ============================================
      DARK THEME COLORS
