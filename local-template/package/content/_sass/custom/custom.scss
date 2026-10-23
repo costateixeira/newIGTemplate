@@ -2,6 +2,8 @@
 // Sidebar width is now controlled by --nav-width CSS variable in project.css
 // See light.scss for the sidebar styling
 
+@import "./rtl";
+
 // Language selector (base2 fragment-language.html) at the end of the top bar
 .main-header #language {
   position: relative;

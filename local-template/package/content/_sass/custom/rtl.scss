@@ -1,0 +1,81 @@
+// Right-to-left layout, active when fragment-pagebegin.html sets <html dir="rtl">.
+// base2 only swaps --ig-left / --ig-right (direction-management.js); the
+// just-the-docs layout uses fixed positions and margins, so mirror those here.
+
+:root {
+  --ig-left: left;
+  --ig-right: right;
+}
+
+// Same swap as direction-management.js, without waiting for the script
+:root[dir="rtl"] {
+  --ig-left: right;
+  --ig-right: left;
+}
+
+[dir="rtl"] {
+  // Sidebar on the right
+  .side-bar {
+    @include mq(md) {
+      right: 0;
+      border-right: 0;
+      border-left: $border $border-color;
+      align-items: flex-start;
+    }
+  }
+
+  // Mirrors project.css
+  .side-bar ~ .content-wrapper {
+    @include mq(md) {
+      margin-left: 0;
+      margin-right: var(--nav-width, 16.5rem);
+    }
+  }
+
+  // Menu: expanders on the left, children indented from the right
+  .nav-list .nav-list-item {
+    .nav-list-link {
+      padding-right: $gutter-spacing-sm;
+      padding-left: $nav-list-item-height-sm;
+
+      @include mq(md) {
+        padding-right: $gutter-spacing;
+        padding-left: $nav-list-item-height;
+      }
+    }
+
+    .nav-list-expander {
+      right: auto;
+      left: 0;
+    }
+
+    > .nav-list {
+      padding-left: 0;
+      padding-right: $sp-3;
+    }
+  }
+
+  .side-bar .nav-list .nav-list,
+  #site-nav .nav-list .nav-list {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+  }
+
+  // "On this page" box on the left
+  div.markdown-toc {
+    float: left !important;
+    margin-left: 0 !important;
+    margin-right: clamp(2px, 2vw, 1rem) !important;
+    border-left: var(--toc-box-border) !important;
+    border-right: var(--toc-box-border-left) !important;
+  }
+
+  // Code, FHIR paths and the tree tables stay left-to-right
+  pre,
+  code,
+  .highlight,
+  table[fhir="generated-heirarchy"] {
+    direction: ltr;
+    text-align: left;
+  }
+}

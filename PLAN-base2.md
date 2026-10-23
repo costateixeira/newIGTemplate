@@ -13,7 +13,7 @@ Goal: `local-template` keeps the just-the-docs (jtd) look, carries only what it 
 | 3. Remove unused jtd parts | ☐ |
 | 4. Trim runtime JS/CSS | ☐ |
 | 5. Re-fork page shell from base2 (languages) | ◐ page lookup (`localPage`, `titlelang`) fixed, so numbering and titles work again; `lang` is passed to header/breadcrumbs |
-| 6. Multilingual test IG (2nd language + RTL) | ◐ `pt es fr nl ar` added; language selector at the right of the jtd top bar |
+| 6. Multilingual test IG (2nd language + RTL) | ◐ `pt es fr nl ar` added; language selector at the right of the jtd top bar; RTL: base2 `dir` logic + `direction-management.js` + `_sass/custom/rtl.scss` (sidebar right, menu, TOC, code/tree tables kept LTR) |
 | 7. Upstream-sync safeguard | ☐ |
 | 8. Branch / PR / CI | ☐ |
 

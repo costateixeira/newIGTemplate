@@ -270,34 +270,36 @@ document.addEventListener('DOMContentLoaded', function() {
   // Replace bootstrap menu with just-the-docs menu
   bootstrapMenu.replaceWith(navList);
 
-  // Position TOC in white space to the right of content if there's room
+  // Position TOC in white space beside the content (right, or left in RTL) if there's room
   function positionTOC() {
     const toc = document.querySelector('div.markdown-toc');
     const main = document.querySelector('.main');
     if (!toc || !main) return;
 
+    const rtl = document.documentElement.dir === 'rtl';
     const mainRect = main.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const tocWidth = 250; // TOC width
     const gap = 16; // Gap between content and TOC
     const minTocSpace = tocWidth + gap + 20; // Minimum space needed for TOC
 
-    // Calculate available space to the right of .main content
-    const spaceOnRight = viewportWidth - mainRect.right;
+    // Calculate available space beside .main content
+    const spaceBeside = rtl ? mainRect.left : viewportWidth - mainRect.right;
 
-    if (spaceOnRight >= minTocSpace) {
-      // Enough space: position TOC fixed to the right of content
+    if (spaceBeside >= minTocSpace) {
+      // Enough space: position TOC fixed beside the content
+      const width = Math.min(tocWidth, spaceBeside - gap - 20);
       toc.style.position = 'fixed';
       toc.style.float = 'none';
-      toc.style.left = (mainRect.right + gap) + 'px';
+      toc.style.left = (rtl ? mainRect.left - gap - width : mainRect.right + gap) + 'px';
       toc.style.top = '8rem';
-      toc.style.width = Math.min(tocWidth, spaceOnRight - gap - 20) + 'px';
+      toc.style.width = width + 'px';
       toc.style.maxWidth = '20vw';
       toc.style.marginLeft = '0';
     } else {
       // Not enough space: float within content
       toc.style.position = '';
-      toc.style.float = 'right';
+      toc.style.float = rtl ? 'left' : 'right';
       toc.style.left = '';
       toc.style.top = '';
       toc.style.width = '250px';

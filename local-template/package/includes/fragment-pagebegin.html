@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-
-<html lang="{{ site.lang | default: 'en-US' }}">
+{% assign baselang = include.lang | default: '' | slice: 0,2 | downcase %}
+{% assign rtl_langs = "ar,dv,fa,ha,he,iw,ji,ps,sd,ug,ur,yi" | split: "," %}
+{% if baselang != "" and rtl_langs contains baselang %}
+{% assign dir = 'rtl' %}
+{% else %}
+{% assign dir = 'ltr' %}
+{% endif %}
+<html lang="{{ include.lang | default: site.lang | default: 'en-US' }}" dir="{{dir}}">
 {% include head.html %}
 <body>
 
