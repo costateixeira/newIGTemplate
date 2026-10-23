@@ -4,6 +4,11 @@
 
 @import "./rtl";
 
+// "Language:" label: base2 colours it for a dark navbar (inline style)
+.main-header #language > div:nth-child(2) {
+  color: var(--muted-text-color) !important;
+}
+
 // Search sits towards the end of the top bar: open its results towards the content
 .search-results {
   @include mq(md) {

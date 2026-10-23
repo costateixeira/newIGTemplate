@@ -50,11 +50,11 @@ var(--publish-box-border); */
 
 :root {
 
-  --ig-status-text-color: maroon; /* 1. IG Title and status text color */
+  --ig-status-text-color: #27415a; /* 1. IG Title and status text color */
   --navbar-bg-color: #27415a; /* 2. Header container color */
-  --footer-bg-color: #707070; /* 3. Footer background color*/
-  --footer-container-bg-color: #494e71; /* 4. Footer container color */
-  --stripe-bg-color: #999999; /* 5. Header strip color */
+  --footer-bg-color: #27415a; /* 3. Footer background color*/
+  --footer-container-bg-color: #27415a; /* 4. Footer container color */
+  --stripe-bg-color: #27415a; /* 5. Header strip color */
 
   --btn-hover-color: #3c5677;  /* 6. Menu button hover color */
   --btn-active-color: #40679a; /* 7. Menu button active color */
@@ -69,28 +69,28 @@ var(--publish-box-border); */
   --link-color: #428bca; /* 13. Hyperlink text color */
   --link-hover-color: #2a6496; /* 14. Hyperlink text hover color */
 
-  --publish-box-bg-color: rgb(212, 212, 179); /* 15. Publish box background color */
-  --publish-box-border: 1px solid #0A0008; /* 16.  Publish box border definition */
+  --publish-box-bg-color: #f4f6f9; /* 15. Publish box background color */
+  --publish-box-border: 1px solid #d5dde7; /* 16.  Publish box border definition */
 
-  --toc-box-bg-color: #f3f3f377; /* 17.  TOC box background color */
-  --toc-box-border: 1px solid navy; /* 18. TOC box border definition */
-  --toc-box-border-left: 4px solid #7b1fad; /* 18b. TOC box left border accent */
-  --toc-box-title-color: #555; /* 18c. TOC box title color */
+  --toc-box-bg-color: #f8fafc; /* 17.  TOC box background color */
+  --toc-box-border: 1px solid #d5dde7; /* 18. TOC box border definition */
+  --toc-box-border-left: 3px solid #428bca; /* 18b. TOC box left border accent */
+  --toc-box-title-color: #4a5a6a; /* 18c. TOC box title color */
 
-  --stu-note-background-color: #fff2ff; /* 19. (STU) Note box background color */
-  --stu-note-border-left-color: #ffa0ff; /* 20. (STU) Note box border color */
+  --stu-note-background-color: #fff8e5; /* 19. (STU) Note box background color */
+  --stu-note-border-left-color: #e8a33d; /* 20. (STU) Note box border color */
 
-  --ig-header-color: #f5f5f5; /* 21. Header color (sides) */
+  --ig-header-color: #f4f6f9; /* 21. Header color (sides) */
   --ig-header-container-color: #ffffff; /* 22. Header container color (center) */
-  --footer-nav-bg-color: #f5f5f5; /* 23. Footer navigation background color*/
+  --footer-nav-bg-color: #f4f6f9; /* 23. Footer navigation background color*/
 
   --footer-text-color: #ffffff; /* 24. Footer highlight font color */
-  --footer-hyperlink-text-color: #81BEF7; /* 25. Footer hyperlinks font color */
-  --footer-highlight-text-color: #ffff77; /* 26. Footer highlight font color */
+  --footer-hyperlink-text-color: #a9cdf0; /* 25. Footer hyperlinks font color */
+  --footer-highlight-text-color: #c9d6e3; /* 26. Footer highlight font color */
 
-  --breadcrumb-bg-color: #f5f5f5; /* 27. Breadcrumb background color */
-  --breadcrumb-text-color: #555555; /* 28. Breadcrumb text color */
-  --breadcrumb-separator-color: #999999; /* 28b. Breadcrumb separator color */
+  --breadcrumb-bg-color: #f4f6f9; /* 27. Breadcrumb background color */
+  --breadcrumb-text-color: #4a5a6a; /* 28. Breadcrumb text color */
+  --breadcrumb-separator-color: #8a97a6; /* 28b. Breadcrumb separator color */
 
   --dragon-background-color: #fffbf7; /* 29. Dragon background color */
   --dragon-text-color: #101020; /* 30. Dragon font color */
@@ -100,6 +100,13 @@ var(--publish-box-border); */
   --content-width: 100rem; /* 32. Main content max width */
   --site-title-hover-bg: rgba(255, 255, 255, 0.1); /* 33. Site title hover background */
   --search-highlight-bg-color: #e8f0f8; /* 42. Search result highlight background */
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 43. Text font */
+  --font-family-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; /* 44. Code font */
+  --font-size-base: 15px; /* 45. Body text size */
+  --font-size-small: 13px; /* 46. Table, breadcrumb and footer text size */
+  --muted-text-color: #5c6b7a; /* 47. Secondary text (labels) */
 
   /* ============================================
      DARK THEME COLORS
@@ -1058,4 +1065,32 @@ pre[class*="language-"] {
 .ui-state-active a:link,
 .ui-state-active a:visited {
   color: #eb8f00;
+}
+
+/* Typography: one font family (palette 43-46) instead of fhir.css's Verdana
+   on p/li/td/tr and Helvetica/Arial elsewhere */
+body,
+h1, h2, h3, h4, h5, h6,
+p, li, td, tr, th,
+input, button, select, textarea,
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+  font-family: var(--font-family);
+}
+body,
+p, li {
+  font-size: var(--font-size-base);
+}
+#main-content p,
+#main-content li {
+  line-height: 1.6;
+}
+td, tr, th,
+#segment-breadcrumb, #segment-breadcrumb li, .page-nav,
+#ig-status p,
+#segment-footer p, #segment-footer li,
+div.markdown-toc li {
+  font-size: var(--font-size-small);
+}
+code, pre, kbd, samp, tt {
+  font-family: var(--font-family-mono);
 }
