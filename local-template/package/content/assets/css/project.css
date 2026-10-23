@@ -999,3 +999,56 @@ pre[class*="language-"] {
 .search-active .main {
   position: relative;
 }
+
+/* jQuery UI tabs (resource pages): jQuery UI 1.14's flat base theme with the
+   colours of base2's earlier jQuery UI 1.11 theme, and normal link colours
+   inside widgets (the 1.14 theme greys them out) */
+.ui-widget-content a {
+  color: var(--link-color);
+}
+.ui-widget-header {
+  border: 1px solid #efefef;
+  background: #eeeeee;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 1px solid #cccccc;
+  background: #f6f6f6;
+  font-weight: bold;
+  color: #1c94c4;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: #1c94c4;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #fbcb09;
+  background: #fdf5ce;
+  color: #c77405;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-focus a,
+.ui-state-focus a:hover {
+  color: #c77405;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: 1px solid #fbd850;
+  background: #ffffff;
+  font-weight: bold;
+  color: #eb8f00;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: #eb8f00;
+}
