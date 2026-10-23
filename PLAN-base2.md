@@ -104,6 +104,10 @@ replace the base2 versions, so the language support never reaches the pages.
   found nothing. Fixed by using `localPage` (the last path segment), as base2 does.
 - `.index.json` / `.index.db` files under `local-template/` are empty publisher cache files committed to git.
   Remove them and add them to `.gitignore` in a separate cleanup commit.
+- Possible base2 (upstream) issues, seen in base2 itself, not caused by this template:
+  - Pages the publisher generates from layouts (`-examples`, `.profile.history`, `.change.history`) aren't in
+    `pages.json`, so `<title>` is empty (" - IG title vX"). Search falls back to the page's first heading.
+  - The heading on `ValueSet-*.change.history.html` lacks the ValueSet name ("ValueSet:  - Change History").
 - Copy of the output for comparison: scratchpad `baseline/`, inventory in `inventory-baseline.txt`
   (`node inventory.js output` regenerates it). Headless Firefox screenshots fail on this machine, so visual checks are done by hand in Firefox.
 
