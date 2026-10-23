@@ -1,45 +1,28 @@
-{% comment %}
-The complexity of this file comes from a breaking change in Mermaid v10; mermaid.init has been deprecated (and supposedly, didn't work earlier?).
+{%- comment -%}
+  Mermaid diagrams (```mermaid code blocks, or <div class="mermaid">).
+  Loads base2's assets/js/mermaid.js only on pages that have a diagram, then
+  converts and renders the blocks with the same settings as base2's
+  mermaid-init.js (which can't be used here: it waits for DOMContentLoaded,
+  already past when the library is loaded on demand).
+{%- endcomment -%}
+<script type="text/javascript">
+(function() {
+  var codes = document.querySelectorAll('code.language-mermaid');
+  if (!codes.length && !document.querySelector('div.mermaid')) return;
 
-So, we check whether the user's Mermaid version is >= 10; if not, we fall back to the previous init syntax.
-
-If a user is using a custom mermaid file and doesn't specify a version, we default to the < v10 behaviour. Users who use version v10 or above should specify this in the version key.
-{% endcomment %}
-
-{% if site.mermaid.version %}
-  {% assign mermaid_major_version = site.mermaid.version | split: "." | first | plus: 0 %}
-{% else %}
-  {% assign mermaid_major_version = 9 %}
-{% endif %}
-
-{% if mermaid_major_version > 9 %}
-
-<script type="module">
-  {% if site.mermaid.path %}
-  import mermaid from '{{ site.mermaid.path | relative_url }}';
-  {% else %}
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@{{ site.mermaid.version }}/dist/mermaid.esm.min.mjs';
-  {% endif %}
-
-  var config = {% include mermaid_config.js %};
-  mermaid.initialize(config);
-  mermaid.run({
-    querySelector: '.language-mermaid',
-  });
+  var script = document.createElement('script');
+  script.src = '{{site.data.info.assets}}assets/js/mermaid.js';
+  script.onload = function() {
+    Array.prototype.forEach.call(codes, function(code) {
+      var block = code.closest('div.language-mermaid') || code.closest('pre') || code;
+      var diagram = document.createElement('div');
+      diagram.className = 'mermaid';
+      diagram.textContent = code.textContent;
+      block.parentNode.replaceChild(diagram, block);
+    });
+    mermaid.initialize({ startOnLoad: false, securityLevel: 'sandbox' });
+    mermaid.run({ querySelector: 'div.mermaid' });
+  };
+  document.body.appendChild(script);
+})();
 </script>
-
-{% else %}
-
-{% if site.mermaid.path %}
-  <script src="{{ site.mermaid.path | relative_url }}"></script>
-{% else %}
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@{{ site.mermaid.version }}/dist/mermaid.min.js"></script>
-{% endif %}
-
-<script>
-  var config = {% include mermaid_config.js %};
-  mermaid.initialize(config);
-  window.mermaid.init(undefined, document.querySelectorAll('.language-mermaid'));
-</script>
-
-{% endif %}

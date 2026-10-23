@@ -30,9 +30,6 @@
 
     </div>  <!-- /main-content-wrap -->
 
-    {% if site.mermaid %}
-    {% include mermaid.html %}
-  {% endif %}
 </div>  <!-- /main -->
   </div>  <!-- /content-wrapper -->
 
@@ -54,6 +51,7 @@
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/clipboard-2.0.11.min.js"> </script>
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/copy-btn.js"> </script>
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/anchor-hover.js"> </script>
+{% include mermaid.html %}
 <!-- Analytics Below
 ================================================== -->
 </body>

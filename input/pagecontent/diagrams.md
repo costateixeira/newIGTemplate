@@ -21,3 +21,12 @@ Here's another perspective on how PlantUML is used:
 
 
 <br/>
+
+### Mermaid
+Diagrams can also be written inline as a `mermaid` code block:
+
+```mermaid
+sequenceDiagram
+    Client->>Server: GET Patient/123
+    Server-->>Client: 200 OK (Patient)
+```
