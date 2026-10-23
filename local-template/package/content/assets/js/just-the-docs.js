@@ -93,20 +93,15 @@ function disableHeadStyleSheets() {
 // Site search
 
 function initSearch() {
-  var request = new XMLHttpRequest();
-  // Determine the correct path based on current page location
-  // For multilingual sites, this handles /en/, /fr/, etc.
-  var currentPath = window.location.pathname;
-  var searchDataPath;
+  // The index is a script (search-data.js sets window.jtdSearchData) rather
+  // than JSON fetched with XMLHttpRequest, so search also works when the IG
+  // is opened from the file system
+  var script = document.createElement('script');
+  script.src = './assets/js/search-data.js';
 
-  // Check if we're in a language-specific directory
-    searchDataPath = './assets/js/search-data.json';
-
-  request.open('GET', searchDataPath, true);
-
-  request.onload = function(){
-    if (request.status >= 200 && request.status < 400) {
-      var docs = JSON.parse(request.responseText);
+  script.onload = function(){
+    if (window.jtdSearchData) {
+      var docs = window.jtdSearchData;
 
       // One index for all languages (urls are /<lang>/page.html): keep this
       // page's language and link relative to the IG root
@@ -146,15 +141,15 @@ function initSearch() {
 
       searchLoaded(index, docs);
     } else {
-      console.log('Error loading ajax request. Request status:' + request.status);
+      console.log('Search index loaded but empty: ' + script.src);
     }
   };
 
-  request.onerror = function(){
-    console.log('There was a connection error');
+  script.onerror = function(){
+    console.log('Could not load the search index: ' + script.src);
   };
 
-  request.send();
+  document.head.appendChild(script);
 }
 
 function searchLoaded(index, docs) {

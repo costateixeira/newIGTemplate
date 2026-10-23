@@ -1,7 +1,8 @@
 ---
 ---
-{
-{%- comment -%}base2 renders this file once per language (/<lang>/assets/js/search-data.json): index only that language{%- endcomment -%}
+{%- comment -%}A script, not JSON, so it loads with a <script> tag and search also works from the file system{%- endcomment -%}
+window.jtdSearchData = {
+{%- comment -%}base2 renders this file once per language (/<lang>/assets/js/search-data.js): index only that language{%- endcomment -%}
 {%- assign index_url_parts = page.url | split: '/' -%}
 {%- assign lang_prefix = '/' | append: index_url_parts[1] | append: '/' -%}
 {%- assign i = 0 -%}
@@ -88,4 +89,4 @@
     {%- endunless -%}
   {%- endfor -%}
 {%- endfor %}
-}
+};
