@@ -4,3 +4,8 @@
 // always keeps its full width beside the menu. Keep the min-width media
 // queries in assets/css/project.css in step with this value.
 $media-queries: map-merge($media-queries, (md: $content-width + $nav-width-md));
+
+// "Contents" box (div.markdown-toc): from this width it gets its own column
+// beside the text (width --toc-width in project.css); below it, it sits above the text
+$toc-column-min-width: 75rem;
+$toc-column-gap: $sp-6;

@@ -4,6 +4,31 @@
 
 @import "./rtl";
 
+// "Contents" box (div.markdown-toc): never over the text. Above the text on
+// narrower screens; on wide screens, pages that have one reserve a column
+// beside the text and the box stays in view while scrolling (RTL: rtl.scss)
+div.markdown-toc {
+  float: none;
+  width: auto;
+  margin: 0 0 $sp-4;
+}
+
+@media (min-width: $toc-column-min-width) {
+  main:has(div.markdown-toc) {
+    padding-right: calc(var(--toc-width) + #{$toc-column-gap});
+  }
+
+  div.markdown-toc {
+    float: right;
+    position: sticky;
+    top: $sp-4;
+    width: var(--toc-width);
+    max-height: calc(100vh - #{$sp-8});
+    overflow-y: auto;
+    margin-right: calc(-1 * (var(--toc-width) + #{$toc-column-gap}));
+  }
+}
+
 // "Language:" label: base2 colours it for a dark navbar (inline style)
 .main-header #language > div:nth-child(2) {
   color: var(--muted-text-color) !important;

@@ -76,6 +76,7 @@ var(--publish-box-border); */
   --toc-box-border: 1px solid #d5dde7; /* 18. TOC box border definition */
   --toc-box-border-left: 3px solid #428bca; /* 18b. TOC box left border accent */
   --toc-box-title-color: #4a5a6a; /* 18c. TOC box title color */
+  --toc-width: 16rem; /* 18d. TOC column width (wide screens) */
 
   --stu-note-background-color: #fff8e5; /* 19. (STU) Note box background color */
   --stu-note-border-left-color: #e8a33d; /* 20. (STU) Note box border color */
@@ -801,22 +802,12 @@ ul.markdown-toc p.link
   margin: 0px;
 }
  
+/* Box look only; placement (column beside the text) is in _sass/custom/custom.scss */
 div.markdown-toc
 {
-  margin: 2px;
   padding: 4px;
-  /* position: fixed;
-  right: 2rem; */
-  top: 8rem;
-  z-index: 10;
-  width: 250px;
-  max-width: 20vw;
   background-color:  var(--toc-box-bg-color);
   border: var(--toc-box-border);
-  max-height: 80vh;
-  overflow-y: auto;
-  /* Flexible margin: shrinks from 1rem down to 2px minimum based on available space */
-  margin-left: clamp(2px, 2vw, 1rem);
 }
 
 div.markdown-toc p

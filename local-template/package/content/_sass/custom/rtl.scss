@@ -74,13 +74,23 @@
     }
   }
 
-  // "On this page" box on the left
+  // "Contents" box: accent on the right, column on the left (see custom.scss)
   div.markdown-toc {
-    float: left !important;
-    margin-left: 0 !important;
-    margin-right: clamp(2px, 2vw, 1rem) !important;
     border-left: var(--toc-box-border) !important;
     border-right: var(--toc-box-border-left) !important;
+  }
+
+  @media (min-width: $toc-column-min-width) {
+    main:has(div.markdown-toc) {
+      padding-right: 0;
+      padding-left: calc(var(--toc-width) + #{$toc-column-gap});
+    }
+
+    div.markdown-toc {
+      float: left;
+      margin-right: 0;
+      margin-left: calc(-1 * (var(--toc-width) + #{$toc-column-gap}));
+    }
   }
 
   // Code, FHIR paths and the tree tables stay left-to-right
