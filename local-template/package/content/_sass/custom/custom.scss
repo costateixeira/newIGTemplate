@@ -127,6 +127,13 @@ html body {
   .main:has(div.markdown-toc) .main-header {
     background-image: none;
   }
+
+  // The footer stops at the rail, so the rail runs down beside it
+  // (project.css bleeds it to the page edges; RTL: rtl.scss)
+  .main:has(div.markdown-toc) #segment-footer {
+    width: calc(100% + #{$gutter-spacing} - var(--toc-width) - #{$toc-column-gap} / 2);
+    margin-right: calc(var(--toc-width) + #{$toc-column-gap} / 2);
+  }
 }
 
 // Top bar tools: search above the language selector, in a column as wide as

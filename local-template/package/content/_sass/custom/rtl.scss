@@ -100,6 +100,11 @@
     .main:has(div.markdown-toc) .main-header {
       background-image: none;
     }
+
+    .main:has(div.markdown-toc) #segment-footer {
+      margin-right: -$gutter-spacing;
+      margin-left: calc(var(--toc-width) + #{$toc-column-gap} / 2);
+    }
   }
 
   // Top bar tools (see custom.scss): search icon and dropdown arrow on the other side
