@@ -14,6 +14,17 @@
 }
 
 [dir="rtl"] {
+  // jtd parks the skip link at left: -999px, which makes RTL pages scroll sideways
+  a.skip-to-main {
+    left: auto;
+    right: -999px;
+  }
+
+  a.skip-to-main:focus,
+  a.skip-to-main:active {
+    right: auto;
+  }
+
   // Sidebar on the right
   .side-bar {
     @include mq(md) {
