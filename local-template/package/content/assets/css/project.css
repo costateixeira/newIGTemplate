@@ -148,9 +148,12 @@ body {
   background-color: #ffffff;
   position: relative;
 }
-/* Content wrapper - sits beside sidebar */
-.side-bar ~ .content-wrapper {
-  margin-left: var(--nav-width, 16.5rem);
+/* Content wrapper - sits beside sidebar once it is pinned (jtd md breakpoint);
+   below that the sidebar collapses into the top bar and needs no space */
+@media (min-width: 40rem) {
+  .side-bar ~ .content-wrapper {
+    margin-left: var(--nav-width, 16.5rem);
+  }
 }
 
 .content-wrapper .main {
