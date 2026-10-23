@@ -175,8 +175,20 @@ border-bottom: 0px !important;
 }
 
 
+// Fixed width only while the sidebar is pinned; collapsed, the header spans the top bar
 .site-nav, .site-header, .site-footer {
-  width: var(--nav-width) !important;
+  @include mq(md) {
+    width: var(--nav-width) !important;
+  }
+}
+
+// Collapsed: menu button at the outer edge (left, or right in RTL)
+#menu-button {
+  order: -1;
+
+  @include mq(md) {
+    order: 0;
+  }
 }
 
 div.site-header a.site-title.lh-tight {
