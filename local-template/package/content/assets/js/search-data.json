@@ -22,7 +22,8 @@
       {%- assign localPage = url_parts | last -%}
       {%- assign page_lang = url_parts[1] -%}
       {%- assign doc_title = site.data.pages[localPage].titlelang[page_lang] | default: page.title | default: "Untitled Page" -%}
-      {%- assign page_content = page.content -%}
+      {%- comment -%}base2 pages include the whole template; index only the page body{%- endcomment -%}
+      {%- assign page_content = page.content | split: '<main>' | last | split: '</main>' | first -%}
       {%- assign heading_level = site.search.heading_level | default: 2 -%}
       {%- for j in (2..heading_level) -%}
         {%- assign tag = '<h' | append: j -%}
