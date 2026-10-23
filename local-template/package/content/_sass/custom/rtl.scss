@@ -32,6 +32,12 @@
     }
   }
 
+  // Content against the sidebar, spare width on the outer (left) side
+  .content-wrapper .main {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
   // Menu: expanders on the left, children indented from the right
   .nav-list .nav-list-item {
     .nav-list-link {
