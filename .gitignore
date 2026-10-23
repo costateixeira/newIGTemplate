@@ -25,3 +25,9 @@ nul
 *.bak
 /output_new
 /output_old
+
+# IG Publisher caches and generated files #
+############################################
+.index.json
+.index.db
+Requirements-fromNarrative.json
