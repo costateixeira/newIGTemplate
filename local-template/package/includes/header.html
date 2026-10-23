@@ -1,12 +1,13 @@
 <div id="main-header" class="main-header">
   {% include header_custom.html lang=include.lang %}
-  {% if site.search_enabled != false %}
-    {% include search_header.html %}
-  {% else %}
-    <div> <p> </p> </div>
-  {% endif %}
   {% if site.aux_links %}
     {% include aux_nav.html %}
   {% endif %}
-  {% include fragment-language.html lang=include.lang %}
+  {%- comment -%}Search above the language selector, in a column as wide as the Contents column{%- endcomment -%}
+  <div class="header-tools">
+    {% if site.search_enabled != false %}
+      {% include search_header.html %}
+    {% endif %}
+    {% include fragment-language.html lang=include.lang %}
+  </div>
 </div>

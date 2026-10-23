@@ -29,9 +29,114 @@ div.markdown-toc {
   }
 }
 
-// "Language:" label: base2 colours it for a dark navbar (inline style)
-.main-header #language > div:nth-child(2) {
-  color: var(--muted-text-color) !important;
+// Top bar tools: search above the language selector, in a column as wide as
+// the Contents column (--toc-width) and ending at the same edge as the content
+.main-header {
+  @include mq(md) {
+    height: auto;
+    min-height: $header-height;
+    align-items: center;
+  }
+}
+
+.header-tools {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-2;
+  padding: $sp-2 $gutter-spacing-sm;
+
+  @include mq(md) {
+    flex: 0 0 var(--toc-width);
+    width: var(--toc-width);
+    padding: $sp-2 0;
+    margin-inline-end: $gutter-spacing;
+  }
+
+  .search {
+    @include mq(md) {
+      width: 100% !important;
+      height: 2rem !important;
+      padding: 0;
+      flex-grow: 0;
+    }
+  }
+
+  .search-input-wrap,
+  .search-active & .search-input-wrap {
+    @include mq(md) {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      height: 2rem !important;
+      border: $border $border-color;
+      border-radius: 1rem;
+      box-shadow: none;
+    }
+  }
+
+  .search-input {
+    @include mq(md) {
+      padding: 0 $sp-3 0 2.25rem;
+      font-size: var(--font-size-small);
+      border-radius: 1rem;
+    }
+  }
+
+  .search-label {
+    @include mq(md) {
+      padding-left: $sp-3;
+    }
+  }
+
+  // base2 fragment-language.html, restyled as a field like the search box
+  #language {
+    position: relative;
+    float: none !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  // "Language:" label: kept for screen readers, hidden visually
+  #language > div:nth-child(2) {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .flaglist {
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0 $sp-3;
+    font-size: var(--font-size-small);
+    line-height: calc(2rem - 2px);
+    border: $border $border-color;
+    border-radius: 1rem;
+    background-color: $body-background-color;
+    background-repeat: no-repeat;
+    background-position: right $sp-3 center !important; // the arrow image (inline style)
+
+    img.flag {
+      height: 12px;
+      margin-inline-end: $sp-1;
+      vertical-align: middle;
+    }
+  }
+
+  #flaglist {
+    background-image: none !important; // base2's "up" arrow (inline style)
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    line-height: 1.8;
+    border-radius: $border-radius;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  }
 }
 
 // Search sits towards the end of the top bar: open its results towards the content
@@ -78,40 +183,4 @@ div.markdown-toc {
 .main-header #ig-status {
   flex: 1 1 auto;
   min-width: 0;
-}
-
-// Language selector (base2 fragment-language.html) at the end of the top bar
-.main-header #language {
-  position: relative;
-  display: flex;
-  flex-direction: row-reverse; // label before the current language
-  align-items: center;
-  float: none !important;
-  padding: 0 $sp-4 !important;
-  white-space: nowrap;
-}
-
-.main-header .flaglist {
-  cursor: pointer;
-  width: 150px;
-  padding: 2px 4px;
-  margin: 0 0 0 $sp-2;
-  border: $border $border-color;
-  border-radius: $border-radius;
-  background-color: $body-background-color;
-  background-repeat: no-repeat;
-
-  img.flag {
-    height: 12px;
-    margin-right: $sp-1;
-    vertical-align: middle;
-  }
-}
-
-.main-header #flaglist {
-  top: 100%;
-
-  div {
-    padding: 2px 0;
-  }
 }
