@@ -85,6 +85,23 @@
     }
   }
 
+  // Side rail on the left (see custom.scss)
+  .main-header {
+    @include mq(md) {
+      @include rail-background(to right);
+    }
+  }
+
+  @media (min-width: $toc-column-min-width) {
+    .main:has(div.markdown-toc) {
+      @include rail-background(to right);
+    }
+
+    .main:has(div.markdown-toc) .main-header {
+      background-image: none;
+    }
+  }
+
   // Top bar tools (see custom.scss): search icon and dropdown arrow on the other side
   .header-tools {
     .search-input {

@@ -29,6 +29,38 @@ div.markdown-toc {
   }
 }
 
+// Side rail: the area beside the text (outer margin, the top bar's language and
+// search column, and the Contents column on pages that have one) gets
+// --rail-bg-color, with a hairline edge (--rail-border-color). Mixin in
+// setup.scss; RTL in rtl.scss
+html body {
+  @include mq(md) {
+    background-color: var(--rail-bg-color);
+  }
+}
+
+.content-wrapper .main {
+  @include mq(md) {
+    background-color: $body-background-color;
+  }
+}
+
+.main-header {
+  @include mq(md) {
+    @include rail-background;
+  }
+}
+
+@media (min-width: $toc-column-min-width) {
+  .main:has(div.markdown-toc) {
+    @include rail-background;
+  }
+
+  .main:has(div.markdown-toc) .main-header {
+    background-image: none;
+  }
+}
+
 // Top bar tools: search above the language selector, in a column as wide as
 // the Contents column (--toc-width) and ending at the same edge as the content
 .main-header {
