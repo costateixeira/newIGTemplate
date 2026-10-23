@@ -7,5 +7,5 @@ color_scheme: light
 
 search:
   enabled: true
-  preload: true
+  # the per-language index loads when the search box is first focused
   tokenize: true

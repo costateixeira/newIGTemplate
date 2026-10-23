@@ -1,6 +1,9 @@
 ---
 ---
 {
+{%- comment -%}base2 renders this file once per language (/<lang>/assets/js/search-data.json): index only that language{%- endcomment -%}
+{%- assign index_url_parts = page.url | split: '/' -%}
+{%- assign lang_prefix = '/' | append: index_url_parts[1] | append: '/' -%}
 {%- assign i = 0 -%}
 {%- assign pages_array = "" | split: "" -%}
 {%- assign pages_array = pages_array | push: site.html_pages -%}
@@ -18,7 +21,7 @@
   {%- for page in pages -%}
     {%- comment -%}Skip AI and format views (XML/JSON/Turtle) and base2's own search page{%- endcomment -%}
     {%- unless page.url contains '.ai.html' or page.url contains '.xml.html' or page.url contains '.json.html' or page.url contains '.ttl.html' or page.url contains 'searchform.html' -%}
-    {%- if page.search_exclude != true -%}
+    {%- if page.search_exclude != true and page.url contains lang_prefix -%}
       {%- assign url_parts = page.url | split: '/' -%}
       {%- assign localPage = url_parts | last -%}
       {%- assign page_lang = url_parts[1] -%}

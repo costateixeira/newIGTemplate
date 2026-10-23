@@ -438,6 +438,11 @@ function searchLoaded(index, docs) {
     setTimeout(update, 0);
   });
 
+  // The index loads on first focus; show results for anything typed meanwhile
+  if (searchInput.value !== '') {
+    update();
+  }
+
   jtd.addEvent(searchInput, 'keyup', function(e){
     switch (e.keyCode) {
       case 27: // When esc key is pressed, hide the results and clear the field
@@ -582,7 +587,11 @@ jtd.onReady(function(){
     scrollNav();
   }
   {%- if site.search_enabled != false %}
-  initSearch();
+  // Load the search index only when the search box is first used
+  var searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('focus', initSearch, { once: true });
+  }
   {%- endif %}
 });
 
