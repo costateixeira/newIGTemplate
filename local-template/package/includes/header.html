@@ -6,6 +6,7 @@
     <div> <p> </p> </div>
   {% endif %}
   {% if site.aux_links %}
-    {% include aux_nav.html %} 
-  {% endif %} 
+    {% include aux_nav.html %}
+  {% endif %}
+  {% include fragment-language.html lang=include.lang %}
 </div>

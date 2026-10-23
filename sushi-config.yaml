@@ -173,6 +173,8 @@ menu:
 # https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
 parameters:
   shownav: 'true'
+  i18n-default-lang: en
+  i18n-lang: [pt, es, fr, nl, ar]
 
 #  excludettl: true
 #  validation: [allow-any-extensions, no-broken-links]

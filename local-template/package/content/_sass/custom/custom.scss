@@ -1,3 +1,39 @@
 // custom SCSS (or CSS) goes here
 // Sidebar width is now controlled by --nav-width CSS variable in project.css
 // See light.scss for the sidebar styling
+
+// Language selector (base2 fragment-language.html) at the end of the top bar
+.main-header #language {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse; // label before the current language
+  align-items: center;
+  float: none !important;
+  padding: 0 $sp-4 !important;
+  white-space: nowrap;
+}
+
+.main-header .flaglist {
+  cursor: pointer;
+  width: 150px;
+  padding: 2px 4px;
+  margin: 0 0 0 $sp-2;
+  border: $border $border-color;
+  border-radius: $border-radius;
+  background-color: $body-background-color;
+  background-repeat: no-repeat;
+
+  img.flag {
+    height: 12px;
+    margin-right: $sp-1;
+    vertical-align: middle;
+  }
+}
+
+.main-header #flaglist {
+  top: 100%;
+
+  div {
+    padding: 2px 0;
+  }
+}
