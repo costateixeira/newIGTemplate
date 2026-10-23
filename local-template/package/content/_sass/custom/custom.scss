@@ -29,11 +29,79 @@ div.markdown-toc {
   }
 }
 
+// Colour theme switch at the bottom of the menu (nav_footer_custom.html);
+// on narrow screens only shown with the menu open
+.theme-footer {
+  position: static;
+  display: none;
+  justify-content: center;
+  width: 100%;
+
+  @include mq(md) {
+    display: flex;
+  }
+}
+
+.site-nav.nav-open ~ .theme-footer {
+  display: flex;
+}
+
+.theme-switch {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+}
+
+.theme-switch-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 1.5rem;
+  padding: 0;
+  color: var(--btn-text-color);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 0.75rem;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    .fill {
+      fill: currentColor;
+      stroke: none;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &[aria-pressed="true"] {
+    background-color: rgba(255, 255, 255, 0.22);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--btn-text-color);
+    outline-offset: 1px;
+  }
+}
+
 // Side rail: the area beside the text (outer margin, the top bar's language and
 // search column, and the Contents column on pages that have one) gets
 // --rail-bg-color, with a hairline edge (--rail-border-color). Mixin in
 // setup.scss; RTL in rtl.scss
 html body {
+  background-color: var(--page-bg-color);
+
   @include mq(md) {
     background-color: var(--rail-bg-color);
   }
@@ -41,7 +109,7 @@ html body {
 
 .content-wrapper .main {
   @include mq(md) {
-    background-color: $body-background-color;
+    background-color: var(--page-bg-color);
   }
 }
 

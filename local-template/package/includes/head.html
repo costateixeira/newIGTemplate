@@ -17,6 +17,8 @@
   <title>{{site.data.pages[localPage].titlelang[include.lang] | escape_once}} - {{site.data.fhir.ig.title | escape_once}} v{{site.data.fhir.ig.version | escape_once}}</title>
 
   <link rel="stylesheet" href="{{ 'assets/css/just-the-docs-default.css'  }}">
+  <link rel="stylesheet" href="assets/css/just-the-docs-dark.css" id="jtd-dark-stylesheet" media="(prefers-color-scheme: dark)">
+  {% include theme-switch.html %}
 
   <link rel="stylesheet" href="{{ 'assets/css/just-the-docs-head-nav.css' }}" id="jtd-head-nav-stylesheet">
 

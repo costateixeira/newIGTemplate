@@ -1,4 +1,4 @@
 ---
 ---
-{% include theme-config.html %}
-{% include just-the-docs.scss.liquid color_scheme=color_scheme %}
+{%- comment -%}Light theme; just-the-docs-dark.scss is the dark one (switching: includes/theme-switch.html){%- endcomment -%}
+{% include just-the-docs.scss.liquid color_scheme="light" %}

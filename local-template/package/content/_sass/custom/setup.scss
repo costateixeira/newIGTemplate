@@ -22,6 +22,6 @@ $rail-width: calc(var(--toc-width) + #{$gutter-spacing} + #{$toc-column-gap} / 2
     var(--rail-bg-color) $rail-width,
     var(--rail-border-color) $rail-width,
     var(--rail-border-color) calc(#{$rail-width} + 1px),
-    $body-background-color calc(#{$rail-width} + 1px)
+    var(--page-bg-color) calc(#{$rail-width} + 1px)
   );
 }

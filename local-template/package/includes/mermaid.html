@@ -20,7 +20,8 @@
       diagram.textContent = code.textContent;
       block.parentNode.replaceChild(diagram, block);
     });
-    mermaid.initialize({ startOnLoad: false, securityLevel: 'sandbox' });
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    mermaid.initialize({ startOnLoad: false, securityLevel: 'sandbox', theme: dark ? 'dark' : 'default' });
     mermaid.run({ querySelector: 'div.mermaid' });
   };
   document.body.appendChild(script);

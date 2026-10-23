@@ -110,10 +110,12 @@ var(--publish-box-border); */
   --muted-text-color: #5c6b7a; /* 47. Secondary text (labels) */
   --rail-bg-color: #fafbfc; /* 48. Side rail beside the text (search, language, Contents, outer margin) */
   --rail-border-color: #edf0f3; /* 48b. Side rail edge */
+  --page-bg-color: #ffffff; /* 49. Page (text) background */
 
   /* ============================================
      DARK THEME COLORS
-     To use: set color_scheme: dark in _config.yml
+     Used when the reader picks Dark (switch at the bottom of the menu) or
+     Auto with a dark system setting; default in includes/theme-config.html
      ============================================ */
   --navbar-bg-color-dark: #1a1a2e; /* D2. Sidebar background color (dark) */
   --btn-hover-color-dark: #16213e;  /* D6. Menu button hover color (dark) */
@@ -127,7 +129,7 @@ var(--publish-box-border); */
 
   --toc-box-bg-color-dark: #1a1a2e; /* D17. TOC box background (dark) */
   --toc-box-border-dark: 1px solid #0f3460; /* D18. TOC box border (dark) */
-  --toc-box-border-left-dark: 4px solid #e94560; /* D18b. TOC box left border (dark) */
+  --toc-box-border-left-dark: 3px solid #89b4fa; /* D18b. TOC box left border (dark) */
   --toc-box-title-color-dark: #aaa; /* D18c. TOC box title color (dark) */
 
   /* Dark theme page colors */
@@ -140,6 +142,30 @@ var(--publish-box-border); */
   --table-border-color-dark: #45475a; /* D40. Table border color (dark) */
   --code-bg-color-dark: #313244; /* D41. Code background (dark) */
   --search-highlight-bg-color-dark: #313244; /* D42. Search result highlight background (dark) */
+
+  /* Dark versions of the light palette entries above (the dark stylesheet,
+     _sass/color_schemes/dark.scss, maps each light entry to its D entry) */
+  --ig-status-text-color-dark: #c9d6e3; /* D1. IG Title and status text color (dark) */
+  --footer-bg-color-dark: #181825; /* D3. Footer background color (dark) */
+  --footer-container-bg-color-dark: #181825; /* D4. Footer container color (dark) */
+  --publish-box-bg-color-dark: #262637; /* D15. Publish box background color (dark) */
+  --publish-box-border-dark: 1px solid #3b3b52; /* D16. Publish box border (dark) */
+  --stu-note-background-color-dark: #3a3222; /* D19. (STU) Note box background color (dark) */
+  --stu-note-border-left-color-dark: #e8a33d; /* D20. (STU) Note box border color (dark) */
+  --ig-header-color-dark: #1e1e2e; /* D21. Header color (sides) (dark) */
+  --ig-header-container-color-dark: #1e1e2e; /* D22. Header container color (dark) */
+  --footer-nav-bg-color-dark: #262637; /* D23. Footer navigation background color (dark) */
+  --footer-text-color-dark: #cdd6f4; /* D24. Footer font color (dark) */
+  --footer-hyperlink-text-color-dark: #89b4fa; /* D25. Footer hyperlinks font color (dark) */
+  --footer-highlight-text-color-dark: #bac2de; /* D26. Footer highlight font color (dark) */
+  --breadcrumb-bg-color-dark: #262637; /* D27. Breadcrumb background color (dark) */
+  --breadcrumb-text-color-dark: #bac2de; /* D28. Breadcrumb text color (dark) */
+  --breadcrumb-separator-color-dark: #7f849c; /* D28b. Breadcrumb separator color (dark) */
+  --dragon-background-color-dark: #2e2a24; /* D29. Dragon background color (dark) */
+  --dragon-text-color-dark: #e6dccf; /* D30. Dragon font color (dark) */
+  --muted-text-color-dark: #9399b2; /* D47. Secondary text (labels) (dark) */
+  --rail-bg-color-dark: #181825; /* D48. Side rail beside the text (dark) */
+  --rail-border-color-dark: #313244; /* D48b. Side rail edge (dark) */
 
 }
 
@@ -619,6 +645,7 @@ a:focus {
 #segment-breadcrumb .breadcrumb {
   margin: 0;
   padding: 0;
+  background-color: transparent; /* Bootstrap gives it its own grey box */
   list-style: none !important;
   display: inline;
 }

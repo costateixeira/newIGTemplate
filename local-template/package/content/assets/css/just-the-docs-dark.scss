@@ -1,0 +1,4 @@
+---
+---
+{%- comment -%}Dark theme, applied over the light one (switching: includes/theme-switch.html){%- endcomment -%}
+{% include just-the-docs.scss.liquid color_scheme="dark" %}

@@ -1,0 +1,48 @@
+{%- comment -%}
+  Colour theme: "light", "dark" or "auto" (follow the system setting).
+  The reader's choice (switch at the bottom of the menu, nav_footer_custom.html)
+  is kept in localStorage; otherwise theme_default from theme-config.html.
+  Runs in <head>, right after the stylesheets, so the page is painted in the
+  right theme. Without JavaScript the dark stylesheet still follows the system
+  setting through its media attribute.
+  Sets <html data-theme="light|dark"> (resolved) and data-theme-mode (choice).
+{%- endcomment -%}
+{%- include theme-config.html -%}
+<script>
+(function() {
+  var KEY = 'ig-theme';
+  var DEFAULT = '{{ theme_default | default: "auto" }}';
+  var darkSheet = document.getElementById('jtd-dark-stylesheet');
+  var system = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  function chosen() {
+    try {
+      var mode = localStorage.getItem(KEY);
+      if (mode === 'light' || mode === 'dark' || mode === 'auto') return mode;
+    } catch (e) {}
+    return DEFAULT;
+  }
+
+  function apply(mode) {
+    var dark = mode === 'dark' || (mode === 'auto' && system && system.matches);
+    if (darkSheet) {
+      darkSheet.media = mode === 'auto' ? '(prefers-color-scheme: dark)' : (mode === 'dark' ? 'all' : 'not all');
+    }
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme-mode', mode);
+  }
+
+  apply(chosen());
+  if (system && system.addEventListener) {
+    system.addEventListener('change', function() { apply(chosen()); });
+  }
+
+  window.igTheme = {
+    get: chosen,
+    set: function(mode) {
+      try { localStorage.setItem(KEY, mode); } catch (e) {}
+      apply(mode);
+    }
+  };
+})();
+</script>

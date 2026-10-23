@@ -17,14 +17,130 @@ $border-color: $grey-dk-200;
 
 @import "./vendor/OneDarkJekyll/syntax"; // this is the one-dark-vivid atom syntax theme
 
-// Dark theme body background - override light theme defaults
-html, body {
-  background-color: var(--body-bg-color-dark, #1e1e2e) !important;
+// Dark versions of the palette (project.css): each light entry takes its D
+// entry. html:root outranks project.css's :root, which loads later, so
+// everything styled from the palette (header, breadcrumb, publish box, notes,
+// Contents box, footer, side rail) turns dark without rules of its own
+html:root {
+  --page-bg-color: var(--body-bg-color-dark);
+  --ig-status-text-color: var(--ig-status-text-color-dark);
+  --footer-bg-color: var(--footer-bg-color-dark);
+  --footer-container-bg-color: var(--footer-container-bg-color-dark);
+  --link-color: var(--link-color-dark);
+  --link-hover-color: var(--link-hover-color-dark);
+  --publish-box-bg-color: var(--publish-box-bg-color-dark);
+  --publish-box-border: var(--publish-box-border-dark);
+  --toc-box-bg-color: var(--toc-box-bg-color-dark);
+  --toc-box-border: var(--toc-box-border-dark);
+  --toc-box-border-left: var(--toc-box-border-left-dark);
+  --toc-box-title-color: var(--toc-box-title-color-dark);
+  --stu-note-background-color: var(--stu-note-background-color-dark);
+  --stu-note-border-left-color: var(--stu-note-border-left-color-dark);
+  --ig-header-color: var(--ig-header-color-dark);
+  --ig-header-container-color: var(--ig-header-container-color-dark);
+  --footer-nav-bg-color: var(--footer-nav-bg-color-dark);
+  --footer-text-color: var(--footer-text-color-dark);
+  --footer-hyperlink-text-color: var(--footer-hyperlink-text-color-dark);
+  --footer-highlight-text-color: var(--footer-highlight-text-color-dark);
+  --breadcrumb-bg-color: var(--breadcrumb-bg-color-dark);
+  --breadcrumb-text-color: var(--breadcrumb-text-color-dark);
+  --breadcrumb-separator-color: var(--breadcrumb-separator-color-dark);
+  --dragon-background-color: var(--dragon-background-color-dark);
+  --dragon-text-color: var(--dragon-text-color-dark);
+  --search-highlight-bg-color: var(--search-highlight-bg-color-dark);
+  --muted-text-color: var(--muted-text-color-dark);
+  --rail-bg-color: var(--rail-bg-color-dark);
+  --rail-border-color: var(--rail-border-color-dark);
+}
+
+// Page text; backgrounds come from --page-bg-color and --rail-bg-color (custom.scss)
+html {
+  background-color: var(--page-bg-color) !important;
+}
+
+body {
   color: var(--body-text-color-dark, #cdd6f4) !important;
 }
 
-.main, .main-content, .main-content-wrap {
-  background-color: var(--body-bg-color-dark, #1e1e2e) !important;
+h1, h2, h3, h4, h5, h6,
+#main-content h1, #main-content h2, #main-content h3,
+#main-content h4, #main-content h5, #main-content h6 {
+  color: $body-heading-color !important;
+}
+
+// Top bar fields (custom.scss)
+.header-tools .flaglist,
+.header-tools .search-input {
+  background-color: var(--page-bg-color) !important;
+  color: var(--body-text-color-dark) !important;
+}
+
+// Links: jtd's thin underline in the border colour is near-invisible in
+// light; keep it as subtle on the dark background
+html a:not([class]) {
+  text-decoration-color: rgba(137, 180, 250, 0.25);
+}
+
+// Bootstrap tabs on resource pages (Content / Detailed Descriptions / XML ...)
+.nav-tabs > li > a {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: var(--page-bg-color) !important;
+  border-color: var(--table-border-color-dark) var(--table-border-color-dark) transparent !important;
+}
+
+.nav-tabs {
+  border-bottom-color: var(--table-border-color-dark) !important;
+}
+
+// Inputs in the page (e.g. the Filter box of the FHIR tables)
+#main-content input[type="text"] {
+  color: var(--body-text-color-dark) !important;
+  background-color: var(--table-header-bg-dark) !important;
+  border: 1px solid var(--table-border-color-dark) !important;
+}
+
+// jQuery UI tabs (project.css keeps base2's light tab colours)
+.ui-widget-content {
+  color: var(--body-text-color-dark) !important;
+  background: var(--page-bg-color) !important;
+  border-color: var(--table-border-color-dark) !important;
+}
+
+.ui-widget-header {
+  background: var(--rail-bg-color) !important;
+  border-color: var(--table-border-color-dark) !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  background: var(--table-header-bg-dark) !important;
+  border-color: var(--table-border-color-dark) !important;
+}
+
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: var(--link-color-dark) !important;
+}
+
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: var(--page-bg-color) !important;
+  border-color: var(--stu-note-border-left-color-dark) !important;
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: var(--stu-note-border-left-color-dark) !important;
 }
 
 // Links in dark theme
