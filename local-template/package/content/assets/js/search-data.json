@@ -16,14 +16,22 @@
 {%- endif -%}
 {%- for pages in pages_array -%}
   {%- for page in pages -%}
-    {%- unless page.url contains '.ai.html' -%}
+    {%- comment -%}Skip AI and format views (XML/JSON/Turtle) and base2's own search page{%- endcomment -%}
+    {%- unless page.url contains '.ai.html' or page.url contains '.xml.html' or page.url contains '.json.html' or page.url contains '.ttl.html' or page.url contains 'searchform.html' -%}
     {%- if page.search_exclude != true -%}
       {%- assign url_parts = page.url | split: '/' -%}
       {%- assign localPage = url_parts | last -%}
       {%- assign page_lang = url_parts[1] -%}
-      {%- assign doc_title = site.data.pages[localPage].titlelang[page_lang] | default: page.title | default: "Untitled Page" -%}
+      {%- assign url_end = page.url | slice: -1 -%}
+      {%- if url_end == '/' -%}
+        {%- assign localPage = 'index.html' -%}
+      {%- endif -%}
       {%- comment -%}base2 pages include the whole template; index only the page body{%- endcomment -%}
       {%- assign page_content = page.content | split: '<main>' | last | split: '</main>' | first -%}
+      {%- comment -%}Pages the publisher generates from layouts (examples, history) are not in pages.json: use their first heading{%- endcomment -%}
+      {%- assign h2_parts = page_content | split: '<h2' -%}
+      {%- assign first_h2 = h2_parts[1] | split: '</h2>' | first | prepend: '<h2' | strip_html | strip -%}
+      {%- assign doc_title = site.data.pages[localPage].titlelang[page_lang] | default: page.title | default: first_h2 | default: "Untitled Page" -%}
       {%- assign heading_level = site.search.heading_level | default: 2 -%}
       {%- for j in (2..heading_level) -%}
         {%- assign tag = '<h' | append: j -%}
