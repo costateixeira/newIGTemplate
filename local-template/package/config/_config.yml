@@ -9,3 +9,7 @@ search:
   enabled: true
   # the per-language index loads when the search box is first focused
   tokenize: true
+
+# Google Analytics: off. To turn it on, set the measurement ID(s), comma-separated
+# ga_tracking: G-XXXXXXXXXX
+# ga_tracking_anonymize_ip: true
