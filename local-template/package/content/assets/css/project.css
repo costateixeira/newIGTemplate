@@ -97,7 +97,7 @@ var(--publish-box-border); */
 
   /* Layout widths */
   --nav-width: 15.5rem; /* 31. Sidebar navigation width */
-  --content-width: 70rem; /* 32. Main content max width */
+  --content-width: 100rem; /* 32. Main content max width */
   --site-title-hover-bg: rgba(255, 255, 255, 0.1); /* 33. Site title hover background */
   --search-highlight-bg-color: #e8f0f8; /* 42. Search result highlight background */
 
@@ -591,6 +591,13 @@ a:focus {
 }
 #segment-breadcrumb {
   margin-bottom: 10px;
+}
+/* Span the content width (Bootstrap's .container has a fixed width) */
+#segment-breadcrumb > .container {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 #segment-breadcrumb .breadcrumb-wrapper {
   display: flex;
