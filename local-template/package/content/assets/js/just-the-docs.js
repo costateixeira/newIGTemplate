@@ -108,6 +108,18 @@ function initSearch() {
     if (request.status >= 200 && request.status < 400) {
       var docs = JSON.parse(request.responseText);
 
+      // One index for all languages (urls are /<lang>/page.html): keep this
+      // page's language and link relative to the IG root
+      var langPrefix = '/' + document.documentElement.lang + '/';
+      var hasLang = Object.keys(docs).some(function(key) { return docs[key].url.indexOf(langPrefix) === 0; });
+      for (var key in docs) {
+        if (hasLang && docs[key].url.indexOf(langPrefix) !== 0) {
+          delete docs[key];
+        } else {
+          docs[key].url = '..' + docs[key].url;
+        }
+      }
+
       lunr.tokenizer.separator = {{ site.search.tokenizer_separator | default: site.search_tokenizer_separator | default: "/[\s\-/]+/" }}
 
       var index = lunr(function(){
