@@ -1,1 +1,6 @@
 // custom setup code goes here
+
+// Collapse the sidebar into the top bar below this width, so the content
+// always keeps its full width beside the menu. Keep the min-width media
+// queries in assets/css/project.css in step with this value.
+$media-queries: map-merge($media-queries, (md: $content-width + $nav-width-md));

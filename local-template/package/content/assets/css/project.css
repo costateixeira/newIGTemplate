@@ -148,9 +148,9 @@ body {
   background-color: #ffffff;
   position: relative;
 }
-/* Content wrapper - sits beside sidebar once it is pinned (jtd md breakpoint);
+/* Content wrapper - sits beside sidebar once it is pinned (jtd md breakpoint, see _sass/custom/setup.scss);
    below that the sidebar collapses into the top bar and needs no space */
-@media (min-width: 40rem) {
+@media (min-width: 55.5rem) {
   .side-bar ~ .content-wrapper {
     margin-left: var(--nav-width, 16.5rem);
   }
@@ -182,7 +182,7 @@ body {
   clear: both;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 55.5rem) {
   #segment-footer {
     margin-left: -2rem;
     margin-right: -2rem;
@@ -217,7 +217,7 @@ body {
   padding-bottom: 0;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 55.5rem) {
   #segment-footer .page-nav {
     padding: 8px 2rem;
   }
@@ -227,7 +227,7 @@ body {
   padding: 10px 1rem;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 55.5rem) {
   #segment-footer > .container .inner-wrapper {
     padding: 10px 2rem;
   }
@@ -983,7 +983,7 @@ pre[class*="language-"] {
   max-width: 100%;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 55.5rem) {
   .search-results {
     max-width: 23.5rem;
   }
