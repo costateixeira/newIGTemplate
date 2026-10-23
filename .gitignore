@@ -13,6 +13,7 @@ fsh-generated
 # Windows generated files #
 ###########################
 Thumbs.db
+nul
 
 # OS generated files #
 ######################
@@ -24,3 +25,9 @@ Thumbs.db
 *.bak
 /output_new
 /output_old
+
+# IG Publisher caches and generated files #
+############################################
+.index.json
+.index.db
+Requirements-fromNarrative.json
