@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Library xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R4/fhir-single.xsd">
   <id value="example-sql"/>
-  <url value="http://example.com/fhir/example/Library/example-sql"/>
+  <url value="http://somewhere.org/fhir/uv/myig/Library/example-sql"/>
   <version value="1.0.0"/>
   <name value="ExampleLibrary"/>
   <title value="Example Library"/>
