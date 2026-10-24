@@ -59,6 +59,9 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for `uri` and `version`.
+dependencies:
+  # FHIRHelpers for input/cql/example.cql
+  fhir.cqf.common: 4.0.1
 #dependencies:
 #  hl7.fhir.us.core: 3.1.0
 #  hl7.fhir.us.mcode:
@@ -97,6 +100,44 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 #    description: An example Patient
 #    exampleBoolean: true
 #  Patient/bad-example: omit
+# Entries for the sample-ig content (names as in sample-ig's IG resource)
+resources:
+  Patient/example:
+    name: Simple patient example
+    exampleCanonical: http://example.com/fhir/example/StructureDefinition/MyPatient
+  Observation/example:
+    name: Observation patient example
+    exampleCanonical: http://example.com/fhir/example/StructureDefinition/myObservation
+  Binary/example:
+    name: Example binary
+    exampleBoolean: true
+  Binary/logical-example:
+    extension:
+      - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
+        valueCode: application/xml
+    name: Example of Logical Model
+    description: Example showing example content for a logical model
+    exampleCanonical: http://example.com/fhir/example/StructureDefinition/MyLogical
+  Binary/image-example:
+    extension:
+      - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
+        valueCode: image/jpeg
+    name: Example of Binary Image
+    description: Example showing example content for an image
+    exampleBoolean: true
+  Library/example:
+    name: Simple library example
+    exampleBoolean: true
+  Library/example-sql:
+    name: Example SQL library
+  Library/example-image:
+    name: Example image library
+  ValueSet/valueset-no-codesystem:
+    name: Value set for no code system
+  ActorDefinition/example:
+    name: Example Server
+  Questionnaire/example:
+    name: Cancer Quality Forum Questionnaire 2012
 
 # Groups can control certain aspects of the IG generation.  The IG
 # documentation recommends that authors use the default groups that
@@ -136,6 +177,12 @@ pages:
   changes.xml:
   downloads.xml:
   background.xml:
+  spec.md:
+    title: Detailed Specification
+    spec2.md:
+      title: Spec sub-page
+  fragments.xml:
+    title: Instance Fragments
 # The ImplementationGuide resource defines several other properties
 # not represented above. These properties can be used as-is and
 # should follow the format defined in ImplementationGuide:
@@ -175,6 +222,12 @@ parameters:
   shownav: 'true'
   i18n-default-lang: en
   i18n-lang: [pt, es, fr, nl, ar]
+  # sample-ig content: CQL for the Library example, the profile diagram, UML, source links
+  find-other-resources: 'true'
+  path-binary: input/cql
+  path-pages: input/diagrams
+  generate-uml: source
+  showsource: 'true'
 
 #  excludettl: true
 #  validation: [allow-any-extensions, no-broken-links]
