@@ -1,115 +1,39 @@
-<div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../src-generated/schemas/fhir-single.xsd" lang="en">
-  <a name="scope">  </a>
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../../input-cache/schemas/R5/fhir-single.xsd">
+  <!-- The spaces between the open and close "a" tag are mandatory.  (Cuz HTML renderers are dumb...) -->
+  <a name="intro"> </a>
+  <h3>Introduction</h3>
 	<p>
-    This is our FHIR Implementation Guide. It contains the specifications developed by our community. 
-   </p>
-	<blockquote class="stu-note">
-	<strong>This documentation and set of artefacts are still undergoing development.</strong>
-	This content is only for demonstrative purposes.
-	</blockquote>
-	<p> </p>
-  <h3>Content</h3> <a name="content"> </a>
-	<p/>
-
-<p>This publication contains the full set of specifications...</p>
-<p></p>
-<p>There is also an overview of the projects and motivation for the specifications.</p>
-<p></p>
-
-<a name="navigation"> </a>
-<p>The top menu allows quick navigation to the different sections, and a <a href="toc.html">Table of Contents</a> is provided with the entire content of this Implementation Guide. (Be aware that some pages have multiple tabs).</p>
-<p></p>
-	<a name="ip"> </a>
-	<h3>Intellectual Property Considerations</h3>
-	<p>
-    While this implementation guide and the underlying FHIR are licensed as public domain, this guide includes examples making use of terminologies such 
-    as LOINC, SNOMED CT and others which have more restrictive licensing requirements. Implementers should make themselves familiar with licensing and 
-    any other constraints of terminologies, questionnaires, and other components used as part of their implementation process. In some cases, 
-    licensing requirements may limit the systems that data captured using certain questionnaires may be shared with.
+    What is this IG about (in patient/non-expert friendly terms).
   </p>
-
-	<a name="disclaimer"> </a>
-	<h3>Disclaimer</h3>
+	<a name="technical"> </a>
+	<h3>Technical Overview</h3>
 	<p>
-    The specification herewith documented is a demo working specification, and may not be used for any implementation purposes. 
-    This draft is provided without warranty of completeness or consistency, and the official publication supersedes this draft.
-    No liability can be inferred from the use or misuse of this specification, or its consequences.
+    Additional detail/context setting for those who have significant background in the domain.  (Try to make as understandable as you can, but
+    set important context).
   </p>
-	<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non massa non sapien dapibus lacinia. Pellentesque non nulla quis quam eleifend facilisis. Curabitur orci tortor, rhoncus vitae mollis ut, porttitor a lorem. Proin lacus est, viverra vel sem eget, feugiat viverra tortor. In scelerisque bibendum tristique. Donec tincidunt nibh sit amet enim pharetra ultrices. Nullam malesuada arcu eu felis dapibus commodo. Nunc non varius augue, quis molestie enim. Maecenas ac consectetur lorem. Morbi sed eros vel tortor dapibus elementum non sed erat.
-	</p>
-	<p>
-Suspendisse molestie in ante ut feugiat. Donec condimentum magna et mi consequat, eu tristique nulla lacinia. Maecenas semper massa odio, vitae maximus est vulputate id. In non lobortis ex, eget aliquam elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla condimentum maximus blandit. Vestibulum vel gravida dolor, nec ultrices erat. Fusce auctor sem metus. Vestibulum facilisis leo non odio consectetur ultrices. Morbi id lacus porta lectus venenatis fringilla. Nullam venenatis ultrices mattis. Vivamus est ligula, elementum ac urna quis, hendrerit feugiat metus. Suspendisse vitae interdum magna. Nulla et enim auctor lorem porta congue. Donec congue dictum suscipit.
-	</p>
-	<p>
-Fusce lacinia euismod feugiat. Mauris enim tortor, auctor at erat rhoncus, mollis pretium nisl. Morbi vehicula orci non aliquam lacinia. Morbi pharetra quis nisl ac placerat. Sed vel neque a ante scelerisque condimentum vel in odio. Morbi eros dolor, pretium sed cursus quis, euismod sed libero. Praesent purus odio, suscipit nec ante quis, rutrum luctus leo. Fusce vitae erat non nibh pellentesque porta. Vestibulum eget lectus gravida, ornare orci nec, eleifend quam. In et nisl et mi fringilla venenatis at vitae urna.
-	</p>
-	<p>
-Suspendisse et sodales massa. Nullam et enim convallis, blandit ante a, faucibus nisl. Integer consequat porta magna vitae laoreet. Phasellus luctus est in turpis aliquet blandit. Sed lobortis, risus semper feugiat auctor, eros lorem pellentesque ligula, in luctus lorem elit at lectus. Nam id ipsum sapien. Mauris blandit et dolor vel sollicitudin. Morbi eu erat arcu. Duis sed lorem felis. Cras sed dolor euismod, convallis lectus semper, posuere est. Praesent ac pellentesque nunc. Vestibulum sodales placerat vulputate. Mauris consequat mollis nibh quis suscipit. Morbi pharetra mi ut augue eleifend, vel bibendum purus faucibus.
-	</p>
-	<p>
-Duis maximus a felis laoreet posuere. Aenean sit amet porttitor est, ornare commodo magna. Sed congue vestibulum augue, nec ultrices lectus feugiat vitae. Proin bibendum iaculis ligula, non fringilla lorem pellentesque mollis. Aliquam ultricies enim ac eleifend pharetra. Etiam dolor odio, dapibus pretium tempor ac, ultricies vitae magna. Mauris viverra aliquam ligula, ut viverra magna fringilla quis. Nulla vitae eros interdum ex ornare feugiat non sed erat. Nullam ut ante in elit aliquet faucibus sit amet ut leo. Sed imperdiet risus vitae nisl vulputate, ut facilisis lacus convallis. Cras tristique non erat id posuere. Ut nulla augue, condimentum at nisl eu, suscipit placerat dolor. Morbi imperdiet, nisl vitae hendrerit dignissim, tortor quam mollis enim, sit amet hendrerit arcu est nec nisi. Donec a tellus placerat, posuere augue condimentum, aliquam nisi.
-	</p>
-	<p>
-    The specification herewith documented is a demo working specification, and may not be used for any implementation purposes. 
-    This draft is provided without warranty of completeness or consistency, and the official publication supersedes this draft.
-    No liability can be inferred from the use or misuse of this specification, or its consequences.
+  <a name="walkthrough"> </a>
+  <p>
+    The main sections of this IG are:
   </p>
-	<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non massa non sapien dapibus lacinia. Pellentesque non nulla quis quam eleifend facilisis. Curabitur orci tortor, rhoncus vitae mollis ut, porttitor a lorem. Proin lacus est, viverra vel sem eget, feugiat viverra tortor. In scelerisque bibendum tristique. Donec tincidunt nibh sit amet enim pharetra ultrices. Nullam malesuada arcu eu felis dapibus commodo. Nunc non varius augue, quis molestie enim. Maecenas ac consectetur lorem. Morbi sed eros vel tortor dapibus elementum non sed erat.
-	</p>
-	<p>
-Suspendisse molestie in ante ut feugiat. Donec condimentum magna et mi consequat, eu tristique nulla lacinia. Maecenas semper massa odio, vitae maximus est vulputate id. In non lobortis ex, eget aliquam elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla condimentum maximus blandit. Vestibulum vel gravida dolor, nec ultrices erat. Fusce auctor sem metus. Vestibulum facilisis leo non odio consectetur ultrices. Morbi id lacus porta lectus venenatis fringilla. Nullam venenatis ultrices mattis. Vivamus est ligula, elementum ac urna quis, hendrerit feugiat metus. Suspendisse vitae interdum magna. Nulla et enim auctor lorem porta congue. Donec congue dictum suscipit.
-	</p>
-	<p>
-Fusce lacinia euismod feugiat. Mauris enim tortor, auctor at erat rhoncus, mollis pretium nisl. Morbi vehicula orci non aliquam lacinia. Morbi pharetra quis nisl ac placerat. Sed vel neque a ante scelerisque condimentum vel in odio. Morbi eros dolor, pretium sed cursus quis, euismod sed libero. Praesent purus odio, suscipit nec ante quis, rutrum luctus leo. Fusce vitae erat non nibh pellentesque porta. Vestibulum eget lectus gravida, ornare orci nec, eleifend quam. In et nisl et mi fringilla venenatis at vitae urna.
-	</p>
-	<p>
-Suspendisse et sodales massa. Nullam et enim convallis, blandit ante a, faucibus nisl. Integer consequat porta magna vitae laoreet. Phasellus luctus est in turpis aliquet blandit. Sed lobortis, risus semper feugiat auctor, eros lorem pellentesque ligula, in luctus lorem elit at lectus. Nam id ipsum sapien. Mauris blandit et dolor vel sollicitudin. Morbi eu erat arcu. Duis sed lorem felis. Cras sed dolor euismod, convallis lectus semper, posuere est. Praesent ac pellentesque nunc. Vestibulum sodales placerat vulputate. Mauris consequat mollis nibh quis suscipit. Morbi pharetra mi ut augue eleifend, vel bibendum purus faucibus.
-	</p>
-	<p>
-Duis maximus a felis laoreet posuere. Aenean sit amet porttitor est, ornare commodo magna. Sed congue vestibulum augue, nec ultrices lectus feugiat vitae. Proin bibendum iaculis ligula, non fringilla lorem pellentesque mollis. Aliquam ultricies enim ac eleifend pharetra. Etiam dolor odio, dapibus pretium tempor ac, ultricies vitae magna. Mauris viverra aliquam ligula, ut viverra magna fringilla quis. Nulla vitae eros interdum ex ornare feugiat non sed erat. Nullam ut ante in elit aliquet faucibus sit amet ut leo. Sed imperdiet risus vitae nisl vulputate, ut facilisis lacus convallis. Cras tristique non erat id posuere. Ut nulla augue, condimentum at nisl eu, suscipit placerat dolor. Morbi imperdiet, nisl vitae hendrerit dignissim, tortor quam mollis enim, sit amet hendrerit arcu est nec nisi. Donec a tellus placerat, posuere augue condimentum, aliquam nisi.
-	</p>
-	<p>
-    The specification herewith documented is a demo working specification, and may not be used for any implementation purposes. 
-    This draft is provided without warranty of completeness or consistency, and the official publication supersedes this draft.
-    No liability can be inferred from the use or misuse of this specification, or its consequences.
+  <ul>
+    <li>
+      <a href="background.html">Background</a> - provides business context for the implementation guide and information that implementers should be
+      familiar with before reading the remainder of the IG.  There could be multiple pages for this.
+    </li>
+    <li>
+      <a href="spec.html">Detailed Specification</a> - The actual stuff implementers are expected to do.  (Could be multiple pages for this.)
+    </li>
+    <li class="new-content">
+      <a href="fragments.html">Fragments</a> - Guidance about how to embed fragments in an IG
+    </li>
+    <li>
+      <a href="downloads.html">Downloads</a> - Allows downloading a copy of this implementation guide and other useful information
+    </li>
+  </ul>
+  <p class="modified-content">
+    Sample showing changed content
   </p>
-	<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non massa non sapien dapibus lacinia. Pellentesque non nulla quis quam eleifend facilisis. Curabitur orci tortor, rhoncus vitae mollis ut, porttitor a lorem. Proin lacus est, viverra vel sem eget, feugiat viverra tortor. In scelerisque bibendum tristique. Donec tincidunt nibh sit amet enim pharetra ultrices. Nullam malesuada arcu eu felis dapibus commodo. Nunc non varius augue, quis molestie enim. Maecenas ac consectetur lorem. Morbi sed eros vel tortor dapibus elementum non sed erat.
-	</p>
-	<p>
-Suspendisse molestie in ante ut feugiat. Donec condimentum magna et mi consequat, eu tristique nulla lacinia. Maecenas semper massa odio, vitae maximus est vulputate id. In non lobortis ex, eget aliquam elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla condimentum maximus blandit. Vestibulum vel gravida dolor, nec ultrices erat. Fusce auctor sem metus. Vestibulum facilisis leo non odio consectetur ultrices. Morbi id lacus porta lectus venenatis fringilla. Nullam venenatis ultrices mattis. Vivamus est ligula, elementum ac urna quis, hendrerit feugiat metus. Suspendisse vitae interdum magna. Nulla et enim auctor lorem porta congue. Donec congue dictum suscipit.
-	</p>
-	<p>
-Fusce lacinia euismod feugiat. Mauris enim tortor, auctor at erat rhoncus, mollis pretium nisl. Morbi vehicula orci non aliquam lacinia. Morbi pharetra quis nisl ac placerat. Sed vel neque a ante scelerisque condimentum vel in odio. Morbi eros dolor, pretium sed cursus quis, euismod sed libero. Praesent purus odio, suscipit nec ante quis, rutrum luctus leo. Fusce vitae erat non nibh pellentesque porta. Vestibulum eget lectus gravida, ornare orci nec, eleifend quam. In et nisl et mi fringilla venenatis at vitae urna.
-	</p>
-	<p>
-Suspendisse et sodales massa. Nullam et enim convallis, blandit ante a, faucibus nisl. Integer consequat porta magna vitae laoreet. Phasellus luctus est in turpis aliquet blandit. Sed lobortis, risus semper feugiat auctor, eros lorem pellentesque ligula, in luctus lorem elit at lectus. Nam id ipsum sapien. Mauris blandit et dolor vel sollicitudin. Morbi eu erat arcu. Duis sed lorem felis. Cras sed dolor euismod, convallis lectus semper, posuere est. Praesent ac pellentesque nunc. Vestibulum sodales placerat vulputate. Mauris consequat mollis nibh quis suscipit. Morbi pharetra mi ut augue eleifend, vel bibendum purus faucibus.
-	</p>
-	<p>
-Duis maximus a felis laoreet posuere. Aenean sit amet porttitor est, ornare commodo magna. Sed congue vestibulum augue, nec ultrices lectus feugiat vitae. Proin bibendum iaculis ligula, non fringilla lorem pellentesque mollis. Aliquam ultricies enim ac eleifend pharetra. Etiam dolor odio, dapibus pretium tempor ac, ultricies vitae magna. Mauris viverra aliquam ligula, ut viverra magna fringilla quis. Nulla vitae eros interdum ex ornare feugiat non sed erat. Nullam ut ante in elit aliquet faucibus sit amet ut leo. Sed imperdiet risus vitae nisl vulputate, ut facilisis lacus convallis. Cras tristique non erat id posuere. Ut nulla augue, condimentum at nisl eu, suscipit placerat dolor. Morbi imperdiet, nisl vitae hendrerit dignissim, tortor quam mollis enim, sit amet hendrerit arcu est nec nisi. Donec a tellus placerat, posuere augue condimentum, aliquam nisi.
-	</p>
-	<p>
-    The specification herewith documented is a demo working specification, and may not be used for any implementation purposes. 
-    This draft is provided without warranty of completeness or consistency, and the official publication supersedes this draft.
-    No liability can be inferred from the use or misuse of this specification, or its consequences.
+  <p class="new-content">
+    Sample showing new content
   </p>
-	<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non massa non sapien dapibus lacinia. Pellentesque non nulla quis quam eleifend facilisis. Curabitur orci tortor, rhoncus vitae mollis ut, porttitor a lorem. Proin lacus est, viverra vel sem eget, feugiat viverra tortor. In scelerisque bibendum tristique. Donec tincidunt nibh sit amet enim pharetra ultrices. Nullam malesuada arcu eu felis dapibus commodo. Nunc non varius augue, quis molestie enim. Maecenas ac consectetur lorem. Morbi sed eros vel tortor dapibus elementum non sed erat.
-	</p>
-	<p>
-Suspendisse molestie in ante ut feugiat. Donec condimentum magna et mi consequat, eu tristique nulla lacinia. Maecenas semper massa odio, vitae maximus est vulputate id. In non lobortis ex, eget aliquam elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla condimentum maximus blandit. Vestibulum vel gravida dolor, nec ultrices erat. Fusce auctor sem metus. Vestibulum facilisis leo non odio consectetur ultrices. Morbi id lacus porta lectus venenatis fringilla. Nullam venenatis ultrices mattis. Vivamus est ligula, elementum ac urna quis, hendrerit feugiat metus. Suspendisse vitae interdum magna. Nulla et enim auctor lorem porta congue. Donec congue dictum suscipit.
-	</p>
-	<p>
-Fusce lacinia euismod feugiat. Mauris enim tortor, auctor at erat rhoncus, mollis pretium nisl. Morbi vehicula orci non aliquam lacinia. Morbi pharetra quis nisl ac placerat. Sed vel neque a ante scelerisque condimentum vel in odio. Morbi eros dolor, pretium sed cursus quis, euismod sed libero. Praesent purus odio, suscipit nec ante quis, rutrum luctus leo. Fusce vitae erat non nibh pellentesque porta. Vestibulum eget lectus gravida, ornare orci nec, eleifend quam. In et nisl et mi fringilla venenatis at vitae urna.
-	</p>
-	<p>
-Suspendisse et sodales massa. Nullam et enim convallis, blandit ante a, faucibus nisl. Integer consequat porta magna vitae laoreet. Phasellus luctus est in turpis aliquet blandit. Sed lobortis, risus semper feugiat auctor, eros lorem pellentesque ligula, in luctus lorem elit at lectus. Nam id ipsum sapien. Mauris blandit et dolor vel sollicitudin. Morbi eu erat arcu. Duis sed lorem felis. Cras sed dolor euismod, convallis lectus semper, posuere est. Praesent ac pellentesque nunc. Vestibulum sodales placerat vulputate. Mauris consequat mollis nibh quis suscipit. Morbi pharetra mi ut augue eleifend, vel bibendum purus faucibus.
-	</p>
-	<p>
-Duis maximus a felis laoreet posuere. Aenean sit amet porttitor est, ornare commodo magna. Sed congue vestibulum augue, nec ultrices lectus feugiat vitae. Proin bibendum iaculis ligula, non fringilla lorem pellentesque mollis. Aliquam ultricies enim ac eleifend pharetra. Etiam dolor odio, dapibus pretium tempor ac, ultricies vitae magna. Mauris viverra aliquam ligula, ut viverra magna fringilla quis. Nulla vitae eros interdum ex ornare feugiat non sed erat. Nullam ut ante in elit aliquet faucibus sit amet ut leo. Sed imperdiet risus vitae nisl vulputate, ut facilisis lacus convallis. Cras tristique non erat id posuere. Ut nulla augue, condimentum at nisl eu, suscipit placerat dolor. Morbi imperdiet, nisl vitae hendrerit dignissim, tortor quam mollis enim, sit amet hendrerit arcu est nec nisi. Donec a tellus placerat, posuere augue condimentum, aliquam nisi.
-	</p>
-
-  
 </div>
