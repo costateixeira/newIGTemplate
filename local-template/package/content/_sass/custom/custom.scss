@@ -95,6 +95,25 @@ div.markdown-toc {
   }
 }
 
+// Short pages: the main column fills the window, so the footer sits at the
+// bottom of the window instead of halfway up; long pages are unaffected
+// (the footer follows the content). Undone for print in print.scss
+.content-wrapper .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > .main-content-wrap {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+
+    > #segment-footer {
+      margin-top: auto;
+    }
+  }
+}
+
 // Side rail: the area beside the text (outer margin, the top bar's language and
 // search column, and the Contents column on pages that have one) gets
 // --rail-bg-color, with a hairline edge (--rail-border-color). Mixin in
