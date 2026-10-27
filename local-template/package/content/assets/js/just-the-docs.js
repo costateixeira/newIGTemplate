@@ -99,7 +99,26 @@ function initSearch() {
   var script = document.createElement('script');
   script.src = './assets/js/search-data.js';
 
+  // In large IGs building the index takes seconds and blocks the page: show
+  // that it is loading (spinner in the field, custom.scss, and placeholder)
+  var searchBox = document.querySelector('.search');
+  var searchField = document.getElementById('search-input');
+  var placeholder = searchField ? searchField.getAttribute('placeholder') : '';
+  function showLoading(on, message) {
+    if (searchBox) {
+      searchBox.classList.toggle('search-loading', on);
+      searchBox.setAttribute('aria-busy', on ? 'true' : 'false');
+    }
+    if (searchField) searchField.setAttribute('placeholder', message || placeholder);
+  }
+  showLoading(true, 'Loading search index…');
+
+  // Let the browser draw the indicator before the blocking build starts
   script.onload = function(){
+    requestAnimationFrame(function(){ setTimeout(buildIndex, 0); });
+  };
+
+  function buildIndex(){
     if (window.jtdSearchData) {
       var docs = window.jtdSearchData;
 
@@ -139,13 +158,16 @@ function initSearch() {
         }
       });
 
+      showLoading(false);
       searchLoaded(index, docs);
     } else {
+      showLoading(false);
       console.log('Search index loaded but empty: ' + script.src);
     }
-  };
+  }
 
   script.onerror = function(){
+    showLoading(false, 'Search unavailable');
     console.log('Could not load the search index: ' + script.src);
   };
 
