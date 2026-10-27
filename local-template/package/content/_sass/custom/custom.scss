@@ -103,6 +103,14 @@ div.markdown-toc {
   flex-direction: column;
   min-height: 100vh;
 
+  // As a flex item the top bar's z-index (0, from jtd) makes it a stacking
+  // context: keep it above the page so search results and the language list
+  // open over the breadcrumb and content
+  > .main-header {
+    position: relative;
+    z-index: 2;
+  }
+
   > .main-content-wrap {
     display: flex;
     flex: 1 0 auto;
