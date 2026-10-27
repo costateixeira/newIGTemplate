@@ -148,8 +148,8 @@ var(--publish-box-border); */
   --ig-status-text-color-dark: #c9d6e3; /* D1. IG Title and status text color (dark) */
   --footer-bg-color-dark: #181825; /* D3. Footer background color (dark) */
   --footer-container-bg-color-dark: #181825; /* D4. Footer container color (dark) */
-  --publish-box-bg-color-dark: #262637; /* D15. Publish box background color (dark) */
-  --publish-box-border-dark: 1px solid #3b3b52; /* D16. Publish box border (dark) */
+  --publish-box-bg-color-dark: #3a3420; /* D15. Publish box background color (dark) */
+  --publish-box-border-dark: 1px solid #6b5d2a; /* D16. Publish box border (dark) */
   --stu-note-background-color-dark: #3a3222; /* D19. (STU) Note box background color (dark) */
   --stu-note-border-left-color-dark: #e8a33d; /* D20. (STU) Note box border color (dark) */
   --ig-header-color-dark: #1e1e2e; /* D21. Header color (sides) (dark) */
