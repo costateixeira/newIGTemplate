@@ -69,8 +69,8 @@ var(--publish-box-border); */
   --link-color: #428bca; /* 13. Hyperlink text color */
   --link-hover-color: #2a6496; /* 14. Hyperlink text hover color */
 
-  --publish-box-bg-color: #f4f6f9; /* 15. Publish box background color */
-  --publish-box-border: 1px solid #d5dde7; /* 16.  Publish box border definition */
+  --publish-box-bg-color: #fff8d6; /* 15. Publish box background color */
+  --publish-box-border: 1px solid #e8d48a; /* 16.  Publish box border definition */
 
   --toc-box-bg-color: #f8fafc; /* 17.  TOC box background color */
   --toc-box-border: 1px solid #d5dde7; /* 18. TOC box border definition */
