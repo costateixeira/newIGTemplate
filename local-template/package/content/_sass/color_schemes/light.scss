@@ -256,25 +256,4 @@ div#tabs > ul > li::marker,
   list-style-type: none !important;
 }
 
-// Print styles - hide sidebar and TOC when printing
-@media print {
-  .side-bar,
-  #site-nav,
-  .site-header,
-  .site-footer,
-  div.markdown-toc,
-  ul.markdown-toc {
-    display: none !important;
-  }
-
-  // Make main content full width when printing
-  .main {
-    margin-left: 0 !important;
-    max-width: 100% !important;
-  }
-
-  .main-content-wrap {
-    padding: 0 !important;
-  }
-}
 

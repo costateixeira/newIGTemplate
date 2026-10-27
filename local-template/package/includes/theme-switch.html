@@ -26,7 +26,7 @@
   function apply(mode) {
     var dark = mode === 'dark' || (mode === 'auto' && system && system.matches);
     if (darkSheet) {
-      darkSheet.media = mode === 'auto' ? '(prefers-color-scheme: dark)' : (mode === 'dark' ? 'all' : 'not all');
+      darkSheet.media = mode === 'auto' ? 'screen and (prefers-color-scheme: dark)' : (mode === 'dark' ? 'screen' : 'not all');
     }
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme-mode', mode);

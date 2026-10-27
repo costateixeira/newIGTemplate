@@ -1,49 +1,201 @@
+// Print layout: a document, not a web page.
+//   Kept:    the logo (the menu's site header), the page header (IG title,
+//            version, status/build, jurisdiction), the breadcrumb as a small
+//            line, the content, and the footer (light, below a rule)
+//   Removed: menu, search, language selector, theme switch, publish box, the
+//            Contents box and every navigation link (prev / top / next, the
+//            footer's Links line), and the screen backgrounds (side rail)
+// The dark theme never prints: its stylesheet is screen-only (theme-switch.html).
 // stylelint-disable selector-max-specificity, selector-max-id, selector-max-type, selector-no-qualifying-type
 
 @media print {
-  .site-footer,
+  @page {
+    margin: 15mm 15mm 18mm;
+  }
+
+  html,
+  body {
+    color: #000 !important;
+    background: #fff !important;
+  }
+
+  // Screen-only parts
+  .skip-to-main,
+  .site-nav,
   .site-button,
+  #menu-button,
+  .theme-footer,
+  .header-tools,
+  .search-results,
   #edit-this-page,
   #back-to-top,
-  .site-nav,
-  .main-header {
+  #segment-breadcrumb .breadcrumb-nav,
+  .page-nav,
+  #publish-box,
+  ul.nav-tabs,
+  #main-content input,
+  #main-content button,
+  div.markdown-toc,
+  ul.markdown-toc,
+  #segment-footer p > span[style*="footer-highlight"] {
     display: none !important;
   }
 
+  // Logo: the menu's site header, above the page header
   .side-bar {
-    display: none !important;
+    position: static !important;
+    display: block !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    background: none !important;
+    border: 0 !important;
   }
 
-  .site-header {
-    border-bottom: 1px solid $border-color;
+  .side-bar .site-header {
+    width: auto !important;
+    height: auto !important;
+    border: 0 !important;
   }
 
   .site-title {
-    font-size: 1rem !important;
-    font-weight: 700 !important;
+    color: #000 !important;
+    background: none !important;
   }
 
-  .text-small {
+  .site-logo {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  // Full width, no side rail
+  .content-wrapper {
+    margin: 0 !important;
+    background: none !important;
+  }
+
+  .main {
+    display: block !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+    background: none !important;
+  }
+
+  .main-content-wrap {
+    display: block !important;
+    padding: 0 !important;
+  }
+
+  main:has(div.markdown-toc) {
+    padding: 0 !important;
+  }
+
+  // Page header: title, version, status/build
+  .main-header {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 0 4pt !important;
+    margin-bottom: 6pt !important;
+    background: none !important;
+    border-bottom: 1px solid #888 !important;
+  }
+
+  #ig-status,
+  #ig-status * {
+    color: #000 !important;
+  }
+
+  #ig-status {
+    height: auto !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  // Breadcrumb: one small grey line
+  #segment-breadcrumb {
+    margin: 0 0 8pt !important;
+  }
+
+  #segment-breadcrumb .breadcrumb-wrapper {
+    padding: 0 !important;
+    background: none !important;
+  }
+
+  #segment-breadcrumb,
+  #segment-breadcrumb li,
+  #segment-breadcrumb a {
+    font-size: 8.5pt !important;
+    color: #555 !important;
+    text-decoration: none !important;
+  }
+
+  // Footer: light text on white below a rule (on screen it is a dark band)
+  #segment-footer {
+    width: auto !important;
+    margin: 14pt 0 0 !important;
+    background: none !important;
+    border-top: 1px solid #888 !important;
+  }
+
+  #segment-footer > .container,
+  #segment-footer > .container .inner-wrapper {
+    padding: 4pt 0 0 !important;
+    color: #333 !important;
+    background: none !important;
+  }
+
+  #segment-footer p,
+  #segment-footer a,
+  #segment-footer span {
     font-size: 8pt !important;
+    color: #333 !important;
+    text-decoration: none !important;
+  }
+
+  // Images and embedded diagrams scale down to the page width
+  #main-content img,
+  #main-content svg,
+  #main-content embed,
+  #main-content object,
+  #main-content iframe {
+    max-width: 100% !important;
+    height: auto;
+  }
+
+  // FHIR tables: smaller text and wrapping long values, so they fit the page width
+  #main-content table,
+  #main-content td,
+  #main-content th {
+    font-size: 8pt !important;
+  }
+
+  #main-content td,
+  #main-content th {
+    overflow-wrap: anywhere;
+  }
+
+  // Page breaks
+  h1, h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  tr,
+  img,
+  pre,
+  figure,
+  div.mermaid {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   pre.highlight {
     border: 1px solid $border-color;
   }
 
-  .content-wrapper {
-    margin-left: 0 !important;
-    width: 100% !important;
-  }
-
-  .main {
-    max-width: none !important;
-    margin-left: 0 !important;
-    width: 100% !important;
-  }
-
-  #segment-footer {
-    margin-left: 0 !important;
-    width: 100% !important;
+  .text-small {
+    font-size: 8pt !important;
   }
 }
