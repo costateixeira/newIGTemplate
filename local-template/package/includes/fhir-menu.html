@@ -161,6 +161,73 @@ document.addEventListener('DOMContentLoaded', function() {
   const currentPath = window.location.pathname;
   const currentPage = currentPath.split('/').pop();
 
+  function isCurrent(href) {
+    return href === currentPage || href === currentPath || currentPath.endsWith('/' + href);
+  }
+
+  // Expand/collapse button for a menu entry with children
+  function makeExpander(label, listItem) {
+    const expander = document.createElement('button');
+    expander.className = 'nav-list-expander btn-reset';
+    expander.setAttribute('aria-label', 'Toggle ' + label);
+    expander.setAttribute('aria-pressed', 'false');
+    expander.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>';
+    expander.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isPressed = this.getAttribute('aria-pressed') === 'true';
+      this.setAttribute('aria-pressed', !isPressed);
+      listItem.classList.toggle('active');
+    });
+    return expander;
+  }
+
+  // Copy the entries of a menu.xml list into a nav-list. An entry that holds
+  // its own <ul> becomes a sub-level (any depth): its link stays a link and
+  // an expander toggles its children. Returns true if the current page is
+  // among the entries, so the levels above it can open.
+  function buildItems(menuList, target) {
+    let hasActive = false;
+    Array.from(menuList.children).forEach(function(menuItem) {
+      const link = menuItem.querySelector(':scope > a[href]') || menuItem.querySelector('a[href]');
+      if (!link || link.getAttribute('href') === '#') return;
+
+      const listItem = document.createElement('li');
+      listItem.className = 'nav-list-item';
+
+      const href = link.getAttribute('href');
+      const navLink = document.createElement('a');
+      navLink.href = href;
+      navLink.className = 'nav-list-link';
+      navLink.textContent = link.textContent.trim();
+      const current = isCurrent(href);
+      if (current) {
+        navLink.classList.add('active');
+        hasActive = true;
+      }
+
+      const subMenu = menuItem.querySelector(':scope > ul');
+      if (subMenu) {
+        const subList = document.createElement('ul');
+        subList.className = 'nav-list';
+        const subActive = buildItems(subMenu, subList);
+        const expander = makeExpander(navLink.textContent, listItem);
+        listItem.appendChild(expander);
+        listItem.appendChild(navLink);
+        listItem.appendChild(subList);
+        if (subActive || current) {
+          listItem.classList.add('active');
+          expander.setAttribute('aria-pressed', 'true');
+          hasActive = true;
+        }
+      } else {
+        listItem.appendChild(navLink);
+      }
+
+      target.appendChild(listItem);
+    });
+    return hasActive;
+  }
+
   // Create new nav-list structure
   const navList = document.createElement('ul');
   navList.className = 'nav-list';
@@ -180,11 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const label = toggle ? toggle.textContent.replace(/\s*\n.*/, '').trim() : '';
 
       // Create expander button
-      const expander = document.createElement('button');
-      expander.className = 'nav-list-expander btn-reset';
-      expander.setAttribute('aria-label', 'Toggle ' + label);
-      expander.setAttribute('aria-pressed', 'false');
-      expander.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>';
+      const expander = makeExpander(label, newItem);
 
       // Create parent link
       const parentLink = document.createElement('a');
@@ -196,36 +259,10 @@ document.addEventListener('DOMContentLoaded', function() {
         expander.click();
       });
 
-      // Create children list
+      // Create children list (items may hold nested lists: deeper levels)
       const childList = document.createElement('ul');
       childList.className = 'nav-list';
-
-      let hasActiveChild = false;
-      const dropdownItems = Array.from(dropdown.children);
-      for (let j = 0; j < dropdownItems.length; j++) {
-        const dropItem = dropdownItems[j];
-        const link = dropItem.querySelector('a[href]');
-        if (link && link.getAttribute('href') !== '#') {
-          const childItem = document.createElement('li');
-          childItem.className = 'nav-list-item';
-
-          const childLink = document.createElement('a');
-          const href = link.getAttribute('href');
-          childLink.href = href;
-          childLink.className = 'nav-list-link';
-          childLink.textContent = link.textContent.trim();
-
-          // Check if this is the current page
-          if (href === currentPage || href === currentPath ||
-              currentPath.endsWith('/' + href)) {
-            childLink.classList.add('active');
-            hasActiveChild = true;
-          }
-
-          childItem.appendChild(childLink);
-          childList.appendChild(childItem);
-        }
-      }
+      const hasActiveChild = buildItems(dropdown, childList);
 
       newItem.appendChild(expander);
       newItem.appendChild(parentLink);
@@ -236,14 +273,6 @@ document.addEventListener('DOMContentLoaded', function() {
         newItem.classList.add('active');
         expander.setAttribute('aria-pressed', 'true');
       }
-
-      // Add click handler for expander
-      expander.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const isPressed = this.getAttribute('aria-pressed') === 'true';
-        this.setAttribute('aria-pressed', !isPressed);
-        newItem.classList.toggle('active');
-      });
     } else {
       // Simple item without children
       const link = item.querySelector('a');
