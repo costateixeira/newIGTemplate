@@ -42,6 +42,30 @@ div.markdown-toc {
   }
 }
 
+// First search: a spinner in the field while the index loads and builds
+// (just-the-docs.js sets .search-loading). A transform animation, so it keeps
+// turning while the build blocks the page
+.search-loading .search-input-wrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-end: $sp-3;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.5rem;
+  border: 2px solid $border-color;
+  border-top-color: var(--link-color);
+  border-radius: 50%;
+  animation: search-loading-spin 0.8s linear infinite;
+  will-change: transform;
+}
+
+@keyframes search-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 // Search colours from the palette in project.css
 .search-result:hover,
 .search-result.active {
