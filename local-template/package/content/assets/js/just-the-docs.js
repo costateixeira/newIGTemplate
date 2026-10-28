@@ -93,12 +93,46 @@ function disableHeadStyleSheets() {
 // Site search
 
 function initSearch() {
-  var request = new XMLHttpRequest();
-  request.open('GET', '{{ "assets/js/search-data.json" }}', true);
+  // The index is a script (search-data.js sets window.jtdSearchData) rather
+  // than JSON fetched with XMLHttpRequest, so search also works when the IG
+  // is opened from the file system
+  var script = document.createElement('script');
+  script.src = './assets/js/search-data.js';
 
-  request.onload = function(){
-    if (request.status >= 200 && request.status < 400) {
-      var docs = JSON.parse(request.responseText);
+  // In large IGs building the index takes seconds and blocks the page: show
+  // that it is loading (spinner in the field, custom.scss, and placeholder)
+  var searchBox = document.querySelector('.search');
+  var searchField = document.getElementById('search-input');
+  var placeholder = searchField ? searchField.getAttribute('placeholder') : '';
+  function showLoading(on, message) {
+    if (searchBox) {
+      searchBox.classList.toggle('search-loading', on);
+      searchBox.setAttribute('aria-busy', on ? 'true' : 'false');
+    }
+    if (searchField) searchField.setAttribute('placeholder', message || placeholder);
+  }
+  showLoading(true, 'Loading search index…');
+
+  // Let the browser draw the indicator before the blocking build starts
+  script.onload = function(){
+    requestAnimationFrame(function(){ setTimeout(buildIndex, 0); });
+  };
+
+  function buildIndex(){
+    if (window.jtdSearchData) {
+      var docs = window.jtdSearchData;
+
+      // One index for all languages (urls are /<lang>/page.html): keep this
+      // page's language and link relative to the IG root
+      var langPrefix = '/' + document.documentElement.lang + '/';
+      var hasLang = Object.keys(docs).some(function(key) { return docs[key].url.indexOf(langPrefix) === 0; });
+      for (var key in docs) {
+        if (hasLang && docs[key].url.indexOf(langPrefix) !== 0) {
+          delete docs[key];
+        } else {
+          docs[key].url = '..' + docs[key].url;
+        }
+      }
 
       lunr.tokenizer.separator = {{ site.search.tokenizer_separator | default: site.search_tokenizer_separator | default: "/[\s\-/]+/" }}
 
@@ -124,17 +158,20 @@ function initSearch() {
         }
       });
 
+      showLoading(false);
       searchLoaded(index, docs);
     } else {
-      console.log('Error loading ajax request. Request status:' + request.status);
+      showLoading(false);
+      console.log('Search index loaded but empty: ' + script.src);
     }
+  }
+
+  script.onerror = function(){
+    showLoading(false, 'Search unavailable');
+    console.log('Could not load the search index: ' + script.src);
   };
 
-  request.onerror = function(){
-    console.log('There was a connection error');
-  };
-
-  request.send();
+  document.head.appendChild(script);
 }
 
 function searchLoaded(index, docs) {
@@ -418,6 +455,11 @@ function searchLoaded(index, docs) {
     setTimeout(update, 0);
   });
 
+  // The index loads on first focus; show results for anything typed meanwhile
+  if (searchInput.value !== '') {
+    update();
+  }
+
   jtd.addEvent(searchInput, 'keyup', function(e){
     switch (e.keyCode) {
       case 27: // When esc key is pressed, hide the results and clear the field
@@ -562,7 +604,11 @@ jtd.onReady(function(){
     scrollNav();
   }
   {%- if site.search_enabled != false %}
-  initSearch();
+  // Load the search index only when the search box is first used
+  var searchInput = document.getElementById('search-input');
+  if (searchInput) {
+    searchInput.addEventListener('focus', initSearch, { once: true });
+  }
   {%- endif %}
 });
 

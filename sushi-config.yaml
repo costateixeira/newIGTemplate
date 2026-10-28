@@ -7,16 +7,22 @@
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 
-id: my-ig
-canonical: http://example.com/fhir/example
-url: http://example.com/fhir/example/ImplementationGuide/my-ig
-name: ExampleIG
-title: "HL7 FHIR Implementation Guide: Example IG Release 1 - US Realm | STU1"
-description: Example IG exercises many of the fields in a SUSHI configuration.
-status: active
+# The test content is FHIR/sample-ig (https://github.com/FHIR/sample-ig),
+# whose IG resource input/myig.xml is translated into this file.
+id: example.fhir.uv.myig
+canonical: http://somewhere.org/fhir/uv/myig
+name: YourComputableMyIGNameHere
+title: Your User Friendly Name for MyIG Here
+description: A brief description of what MyIG is about (probably the same text as in your readme)
+status: draft
+experimental: false
 license: CC0-1.0
-date: 2020-02-26
-version: 1.0.0
+version: 0.2.0
+extension:
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+    valueCode: informative
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+    valueInteger: 1
 
 # Although fhirVersions is 0..* in the ImplementationGuide resource
 # it can be a single item OR and array here, but the current tooling 
@@ -29,25 +35,16 @@ fhirVersion: 4.0.1
 # camelcase, but if authors use the formal parameter names, SUSHI
 # will recognize them as well. In either case, they'll be copied
 # to the IG JSON using the formal names.
-copyrightYear: 2021+
-releaseLabel: STU1
+copyrightYear: 2019+
+releaseLabel: CI Build
 
 # The publisher can be a single item or a list, each with a name and
 # optional url and/or email. The first publisher's name will be used
 # as IG.publisher.  The contact details and/or additional publishers
 # will be translated into IG.contact values.
 publisher:
-  name: My Organization 
-  url: http://example.com/committees
-  email: my-group@example.com
-
-# ContactDetail is required by the template.
-contact:
-  - name: Bob Smith
-    telecom:
-      - system: email
-        value: bobsmith@example.com
-        use: work
+  name: HL7 International - [Some] Work Group
+  url: http://hl7.org/Special/committees/[something]
 
 # The jurisdiction can be a single item or a list. The FHIR Shorthand
 # code syntax can be used here.
@@ -59,6 +56,9 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 # The dependencies property corresponds to IG.dependsOn. The key is the
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for `uri` and `version`.
+dependencies:
+  # FHIRHelpers for input/cql/example.cql
+  fhir.cqf.common: 4.0.1
 #dependencies:
 #  hl7.fhir.us.core: 3.1.0
 #  hl7.fhir.us.mcode:
@@ -97,6 +97,42 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 #    description: An example Patient
 #    exampleBoolean: true
 #  Patient/bad-example: omit
+# sample-ig's resource entries (input/myig.xml)
+resources:
+  StructureDefinition/mypatient:
+    description: Overriding description because we can
+  StructureDefinition/MyLogical:
+    description: Logical Model
+  Library/example-sql:
+    description: A test example
+  Library/example-image:
+    description: A test image example
+  Patient/example:
+    name: Simple patient example
+    description: A simple example showing how examples are defined and referenced
+    exampleCanonical: http://somewhere.org/fhir/uv/myig/StructureDefinition/mypatient
+  Observation/example:
+    name: Observation patient example
+    description: Example showing slicing
+    exampleCanonical: http://somewhere.org/fhir/uv/myig/StructureDefinition/myObservation
+  Binary/example:
+    name: Example binary
+    description: Example showing binary content
+  Binary/logical-example:
+    extension:
+      - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
+        valueCode: application/xml
+    name: Example of Logical Model
+    description: Example showing example content for a logical model
+    exampleCanonical: http://somewhere.org/fhir/uv/myig/StructureDefinition/MyLogical
+  Binary/image-example:
+    extension:
+      - url: http://hl7.org/fhir/StructureDefinition/implementationguide-resource-format
+        valueCode: image/jpeg
+    name: Example of Binary Image
+    description: Example showing example content for an image
+  ValueSet/valueset-no-codesystem:
+    name: Value set for no code system
 
 # Groups can control certain aspects of the IG generation.  The IG
 # documentation recommends that authors use the default groups that
@@ -128,12 +164,22 @@ jurisdiction: http://unstats.un.org/unsd/methods/m49/m49.htm#001 "World"
 # file name extension.  Any subproperties that are valid filenames
 # with supported extensions (e.g., .md/.xml) will be treated as
 # sub-pages.
+# sample-ig's pages
 pages:
   index.xml:
-    title: Home
-#  guidance.md:
-  changes.xml:
+    title: MyIG Home Page
+  background.xml:
+    title: Background
+  spec.md:
+    title: Detailed Specification
+    fragments.xml:
+      title: Fragments
+      spec2.md:
+        title: Spec sub-page
   downloads.xml:
+    title: Useful Downloads
+  changes.xml:
+    title: IG Change History
 # The ImplementationGuide resource defines several other properties
 # not represented above. These properties can be used as-is and
 # should follow the format defined in ImplementationGuide:
@@ -155,13 +201,7 @@ pages:
 # currently only supports one level deep on sub-menus.
 # To provide a custom menu.xml file, do not include this property and
 # include a `menu.xml` file in input/includes.
-menu:
-  Home: index.html
-#  Guidance: guidance.html
-  Artifacts: artifacts.html
-  Downloads: downloads.html
-  Changes: changes.html
-#  History: ../history.html
+# (Not used: sample-ig's menu is input/includes/menu.xml.)
 
 # The parameters property represents IG.definition.parameter. Rather
 # than a list of code/value pairs (as in the ImplementationGuide
@@ -169,7 +209,23 @@ menu:
 # values, the value in the YAML should be a sequence/array. For a
 # partial list of allowed parameters see:
 # https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
-#parameters:
+parameters:
+  # sample-ig's parameters, except the languages (template testing, incl. RTL)
+  # and path-liquid (sample-ig has no templates/liquid)
+  shownav: 'true'
+  i18n-default-lang: en
+  i18n-lang: [pt, es, fr, nl, ar]
+  find-other-resources: 'true'
+  path-resource: input/history
+  path-binary: input/cql
+  path-pages: input/diagrams
+  generate-uml: source
+  showsource: 'true'
+  fcp-approved-specification: 'false'
+  toggle-changes: 'true'
+  globals-in-artifacts: 'true'
+  term-params-in-artifacts: 'true'
+
 #  excludettl: true
 #  validation: [allow-any-extensions, no-broken-links]
 

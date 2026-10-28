@@ -1,1 +1,27 @@
 // custom setup code goes here
+
+// Collapse the sidebar into the top bar below this width, so the content
+// always keeps its full width beside the menu. Keep the min-width media
+// queries in assets/css/project.css in step with this value.
+$media-queries: map-merge($media-queries, (md: $content-width + $nav-width-md));
+
+// "Contents" box (div.markdown-toc): from this width it gets its own column
+// beside the text (width --toc-width in project.css); below it, it sits above the text
+$toc-column-min-width: 75rem;
+$toc-column-gap: $sp-6;
+
+// Side rail (see custom.scss): the Contents column, the content padding beside
+// it and half the gap to the text
+$rail-width: calc(var(--toc-width) + #{$gutter-spacing} + #{$toc-column-gap} / 2);
+
+@mixin rail-background($direction: to left) {
+  background-color: transparent;
+  background-image: linear-gradient(
+    $direction,
+    var(--rail-bg-color) 0,
+    var(--rail-bg-color) $rail-width,
+    var(--rail-border-color) $rail-width,
+    var(--rail-border-color) calc(#{$rail-width} + 1px),
+    var(--page-bg-color) calc(#{$rail-width} + 1px)
+  );
+}

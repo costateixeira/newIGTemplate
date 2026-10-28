@@ -1,19 +1,344 @@
 // custom SCSS (or CSS) goes here
-.side-bar {
-  
-    @include mq(md) {
-      flex-flow: column nowrap;
-      position: fixed;
-      width: $nav-width-md;
-      height: 100%;
-      border-right: $border $border-color;
-      align-items: flex-end;
-    }
-  
-    @include mq(lg) {
-      width: calc((100% - #{$nav-width + $content-width}) / 12 + #{$nav-width});
-      min-width: $nav-width;
-    }
-  
+// Sidebar width is now controlled by --nav-width CSS variable in project.css
+// See light.scss for the sidebar styling
+
+@import "./rtl";
+
+// "Contents" box (div.markdown-toc): never over the text. Above the text on
+// narrower screens; on wide screens, pages that have one reserve a column
+// beside the text and the box stays in view while scrolling (RTL: rtl.scss)
+div.markdown-toc {
+  float: none;
+  width: auto;
+  margin: 0 0 $sp-4;
 }
-  
+
+@media (min-width: $toc-column-min-width) {
+  main:has(div.markdown-toc) {
+    padding-right: calc(var(--toc-width) + #{$toc-column-gap});
+  }
+
+  div.markdown-toc {
+    float: right;
+    position: sticky;
+    top: $sp-4;
+    width: var(--toc-width);
+    max-height: calc(100vh - #{$sp-8});
+    overflow-y: auto;
+    margin-right: calc(-1 * (var(--toc-width) + #{$toc-column-gap}));
+  }
+}
+
+// Colour theme switch at the bottom of the menu (nav_footer_custom.html);
+// on narrow screens only shown with the menu open
+.theme-footer {
+  position: static;
+  display: none;
+  justify-content: center;
+  width: 100%;
+
+  @include mq(md) {
+    display: flex;
+  }
+}
+
+.site-nav.nav-open ~ .theme-footer {
+  display: flex;
+}
+
+.theme-switch {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+}
+
+.theme-switch-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 1.5rem;
+  padding: 0;
+  color: var(--btn-text-color);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 0.75rem;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    .fill {
+      fill: currentColor;
+      stroke: none;
+    }
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &[aria-pressed="true"] {
+    background-color: rgba(255, 255, 255, 0.22);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--btn-text-color);
+    outline-offset: 1px;
+  }
+}
+
+// Short pages: the main column fills the window, so the footer sits at the
+// bottom of the window instead of halfway up; long pages are unaffected
+// (the footer follows the content). Undone for print in print.scss
+.content-wrapper .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  // As a flex item the top bar's z-index (0, from jtd) makes it a stacking
+  // context: keep it above the page so search results and the language list
+  // open over the breadcrumb and content
+  > .main-header {
+    position: relative;
+    z-index: 2;
+  }
+
+  > .main-content-wrap {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+
+    > #segment-footer {
+      margin-top: auto;
+    }
+  }
+}
+
+// Side rail: the area beside the text (outer margin, the top bar's language and
+// search column, and the Contents column on pages that have one) gets
+// --rail-bg-color, with a hairline edge (--rail-border-color). Mixin in
+// setup.scss; RTL in rtl.scss
+html body {
+  background-color: var(--page-bg-color);
+
+  @include mq(md) {
+    background-color: var(--rail-bg-color);
+  }
+}
+
+.content-wrapper .main {
+  @include mq(md) {
+    background-color: var(--page-bg-color);
+  }
+}
+
+.main-header {
+  @include mq(md) {
+    @include rail-background;
+  }
+}
+
+@media (min-width: $toc-column-min-width) {
+  .main:has(div.markdown-toc) {
+    @include rail-background;
+  }
+
+  .main:has(div.markdown-toc) .main-header {
+    background-image: none;
+  }
+
+  // The footer stops at the rail, so the rail runs down beside it
+  // (project.css bleeds it to the page edges; RTL: rtl.scss)
+  .main:has(div.markdown-toc) #segment-footer {
+    width: calc(100% + #{$gutter-spacing} - var(--toc-width) - #{$toc-column-gap} / 2);
+    margin-right: calc(var(--toc-width) + #{$toc-column-gap} / 2);
+  }
+}
+
+// Top bar tools: search above the language selector, in a column as wide as
+// the Contents column (--toc-width) and ending at the same edge as the content
+.main-header {
+  @include mq(md) {
+    height: auto;
+    min-height: $header-height;
+    align-items: center;
+  }
+}
+
+.header-tools {
+  display: flex;
+  flex-direction: column;
+  gap: $sp-2;
+  padding: $sp-2 $gutter-spacing-sm;
+
+  @include mq(md) {
+    flex: 0 0 var(--toc-width);
+    width: var(--toc-width);
+    padding: $sp-2 0;
+    margin-inline-end: $gutter-spacing;
+  }
+
+  .search {
+    @include mq(md) {
+      width: 100% !important;
+      height: 2rem !important;
+      padding: 0;
+      flex-grow: 0;
+    }
+  }
+
+  .search-input-wrap,
+  .search-active & .search-input-wrap {
+    @include mq(md) {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      height: 2rem !important;
+      border: $border $border-color;
+      border-radius: 1rem;
+      box-shadow: none;
+    }
+  }
+
+  .search-input {
+    @include mq(md) {
+      padding: 0 $sp-3 0 2.25rem;
+      font-size: var(--font-size-small);
+      border-radius: 1rem;
+    }
+  }
+
+  .search-label {
+    @include mq(md) {
+      padding-left: $sp-3;
+    }
+  }
+
+  // base2 fragment-language.html, restyled as a field like the search box
+  #language {
+    position: relative;
+    float: none !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  // "Language:" label: kept for screen readers, hidden visually
+  #language > div:nth-child(2) {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .flaglist {
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0 $sp-3;
+    font-size: var(--font-size-small);
+    line-height: calc(2rem - 2px);
+    border: $border $border-color;
+    border-radius: 1rem;
+    background-color: $body-background-color;
+    background-repeat: no-repeat;
+    background-position: right $sp-3 center !important; // the arrow image (inline style)
+
+    img.flag {
+      height: 12px;
+      margin-inline-end: $sp-1;
+      vertical-align: middle;
+    }
+  }
+
+  #flaglist {
+    background-image: none !important; // base2's "up" arrow (inline style)
+    top: calc(100% + 2px);
+    left: 0;
+    right: 0;
+    z-index: 100;
+    line-height: 1.8;
+    border-radius: $border-radius;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// Search sits towards the end of the top bar: open its results towards the content
+.search-results {
+  @include mq(md) {
+    left: auto;
+    right: 0;
+  }
+}
+
+// First search: a spinner in the field while the index loads and builds
+// (just-the-docs.js sets .search-loading). A transform animation, so it keeps
+// turning while the build blocks the page
+.search-loading .search-input-wrap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  inset-inline-end: $sp-3;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.5rem;
+  border: 2px solid $border-color;
+  border-top-color: var(--link-color);
+  border-radius: 50%;
+  animation: search-loading-spin 0.8s linear infinite;
+  will-change: transform;
+}
+
+@keyframes search-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Search colours from the palette in project.css
+.search-result:hover,
+.search-result.active {
+  background-color: var(--search-highlight-bg-color);
+}
+
+.search-input:focus + .search-label .search-icon,
+.search-result-icon {
+  color: var(--link-color);
+}
+
+// Copy buttons: message set by assets/js/copy-btn.js
+.btn-copy {
+  position: relative;
+
+  &[data-copy-msg]::after {
+    content: attr(data-copy-msg);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    font-size: 12px;
+    color: #fff;
+    background-color: $grey-dk-200;
+    border-radius: $border-radius;
+    z-index: 10;
+  }
+}
+
+// IG title takes the space left by search and the language selector
+.main-header #ig-status {
+  flex: 1 1 auto;
+  min-width: 0;
+}

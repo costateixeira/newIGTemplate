@@ -205,26 +205,12 @@ table td {
   overflow-wrap: break-word;
 }
 @media print {
+  /* Print layout is in _sass/print.scss. Bootstrap's blanket colour and
+     background reset (which also removed the FHIR tree-table lines) and the
+     URLs printed after every link are left out. */
   * {
     text-shadow: none !important;
-    color: #000 !important;
-    background: transparent !important;
     box-shadow: none !important;
-  }
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-  .ir a:after,
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
   }
   pre,
   blockquote {
@@ -2543,7 +2529,7 @@ button.close {
   right: 0;
 }
 .navbar-inverse {
-  background-color: #ad1f2f;
+  background-color: var(--navbar-bg-color);
 }
 .navbar-inverse .navbar-brand {
   color: #e6e6e6;

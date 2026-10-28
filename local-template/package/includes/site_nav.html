@@ -11,6 +11,10 @@
 {%- endcomment -%}
 
 <nav aria-label="Main" id="site-nav" class="site-nav">
+  {% comment %}Include FHIR menu with just-the-docs styling - the IG Publisher copies input/includes/menu.xml to _includes during build{% endcomment %}
+  {% include fhir-menu.html %}
+
+  {% comment %}Disable default just-the-docs page navigation - using FHIR menu.xml instead
   {% assign pages_top_size = site.html_pages
         | where_exp:"item", "item.title != nil"
         | where_exp:"item", "item.parent == nil"
@@ -19,6 +23,7 @@
   {% if pages_top_size > 0 %}
     {% include pages.html pages=site.html_pages all=include.all %}
   {% endif %}
+  {% endcomment %}
   {%- if site.nav_external_links -%}
     <ul class="nav-list">
       {%- for node in site.nav_external_links -%}

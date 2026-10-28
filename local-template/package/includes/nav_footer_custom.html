@@ -1,1 +1,34 @@
-aa
+{%- comment -%}
+  Bottom of the menu: colour theme switch (logic in theme-switch.html).
+{%- endcomment -%}
+<footer class="site-footer theme-footer">
+  <div class="theme-switch" role="group" aria-label="Colour theme">
+    <button type="button" class="theme-switch-option" data-theme-mode="light" title="Light" aria-label="Light">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+    </button>
+    <button type="button" class="theme-switch-option" data-theme-mode="auto" title="Follow system setting" aria-label="Follow system setting">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18z" class="fill"></path></svg>
+    </button>
+    <button type="button" class="theme-switch-option" data-theme-mode="dark" title="Dark" aria-label="Dark">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path></svg>
+    </button>
+  </div>
+  <script>
+  (function() {
+    var options = document.querySelectorAll('.theme-switch-option');
+    function mark() {
+      var mode = window.igTheme ? window.igTheme.get() : 'auto';
+      Array.prototype.forEach.call(options, function(option) {
+        option.setAttribute('aria-pressed', option.getAttribute('data-theme-mode') === mode ? 'true' : 'false');
+      });
+    }
+    Array.prototype.forEach.call(options, function(option) {
+      option.addEventListener('click', function() {
+        if (window.igTheme) window.igTheme.set(option.getAttribute('data-theme-mode'));
+        mark();
+      });
+    });
+    mark();
+  })();
+  </script>
+</footer>

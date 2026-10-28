@@ -1,16 +1,10 @@
 ---
 ---
-{%- if site.color_scheme and site.color_scheme != "nil" -%}
-  {%- assign color_scheme = site.color_scheme -%}
-{%- else -%}
-  {%- assign color_scheme = "light" -%}
-{%- endif -%}
-
 {%- capture newline %}
 {% endcapture -%}
 
 {%- capture scss -%}
-{% include just-the-docs.scss.liquid color_scheme=color_scheme %}
+{% include just-the-docs.scss.liquid color_scheme="light" %}
 .site-nav ul li a {
   background-image: linear-gradient(
     -90deg,

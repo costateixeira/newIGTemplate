@@ -1,0 +1,36 @@
+{%- assign lang = include.lang | default: "en" -%}
+{%- assign localPage = page.name -%}
+{%- assign shownav = site.data.info.shownav | downcase | slice: 0 -%}
+{%- assign position = include.position | default: "top" -%}
+
+{%- if shownav == 'y' -%}
+<div class="page-nav page-nav-{{ position }}">
+  <table style="width:100%">
+    <tbody>
+      <tr>
+        <td style="text-align:var(--ig-left, left);">&#xA0;
+{%- if site.data.pages[localPage].previous -%}
+          <a href="{{site.data.pages[localPage].previous}}">{{site.data.stringsBase[lang]['PrevPage'] | default: '< prev' | escape_once}}</a>
+{%- else -%}
+          <span style="visibility:hidden">{{site.data.stringsBase[lang]['PrevPage'] | default: '< prev' | escape_once}}</span>
+{%- endif -%}
+        </td>
+        <td style="text-align:center">
+{%- if position == 'top' -%}
+          <a href="#bottom">{{site.data.stringsBase[lang]['PageBottom'] | default: 'bottom'}}</a>
+{%- else -%}
+          <a href="#top">{{site.data.stringsBase[lang]['PageTop'] | default: 'top'}}</a>
+{%- endif -%}
+        </td>
+        <td style="text-align:var(--ig-right, right);">&#xA0;
+{%- if site.data.pages[localPage].next -%}
+          <a href="{{site.data.pages[localPage].next}}">{{site.data.stringsBase[lang]['NextPage'] | default: 'next >' | escape_once}}</a>
+{%- else -%}
+          <span style="visibility:hidden">{{site.data.stringsBase[lang]['NextPage'] | default: 'next >' | escape_once}}</span>
+{%- endif -%}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{%- endif -%}

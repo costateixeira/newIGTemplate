@@ -1,0 +1,158 @@
+// Right-to-left layout, active when fragment-pagebegin.html sets <html dir="rtl">.
+// base2 only swaps --ig-left / --ig-right (direction-management.js); the
+// just-the-docs layout uses fixed positions and margins, so mirror those here.
+
+:root {
+  --ig-left: left;
+  --ig-right: right;
+}
+
+// Same swap as direction-management.js, without waiting for the script
+:root[dir="rtl"] {
+  --ig-left: right;
+  --ig-right: left;
+}
+
+[dir="rtl"] {
+  // jtd parks the skip link at left: -999px, which makes RTL pages scroll sideways
+  a.skip-to-main {
+    left: auto;
+    right: -999px;
+  }
+
+  a.skip-to-main:focus,
+  a.skip-to-main:active {
+    right: auto;
+  }
+
+  // Sidebar on the right
+  .side-bar {
+    @include mq(md) {
+      right: 0;
+      border-right: 0;
+      border-left: $border $border-color;
+      align-items: flex-start;
+    }
+  }
+
+  // Mirrors project.css
+  .side-bar ~ .content-wrapper {
+    @include mq(md) {
+      margin-left: 0;
+      margin-right: var(--nav-width, 16.5rem);
+    }
+  }
+
+  // Content against the sidebar, spare width on the outer (left) side
+  .content-wrapper .main {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  // Menu: expanders on the left, children indented from the right
+  .nav-list .nav-list-item {
+    .nav-list-link {
+      padding-right: $gutter-spacing-sm;
+      padding-left: $nav-list-item-height-sm;
+
+      @include mq(md) {
+        padding-right: $gutter-spacing;
+        padding-left: $nav-list-item-height;
+      }
+    }
+
+    .nav-list-expander {
+      right: auto;
+      left: 0;
+    }
+
+    > .nav-list {
+      padding-left: 0;
+      padding-right: $sp-3;
+    }
+  }
+
+  .side-bar .nav-list .nav-list,
+  #site-nav .nav-list .nav-list {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+  }
+
+  .search-results {
+    @include mq(md) {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  // Side rail on the left (see custom.scss)
+  .main-header {
+    @include mq(md) {
+      @include rail-background(to right);
+    }
+  }
+
+  @media (min-width: $toc-column-min-width) {
+    .main:has(div.markdown-toc) {
+      @include rail-background(to right);
+    }
+
+    .main:has(div.markdown-toc) .main-header {
+      background-image: none;
+    }
+
+    .main:has(div.markdown-toc) #segment-footer {
+      margin-right: -$gutter-spacing;
+      margin-left: calc(var(--toc-width) + #{$toc-column-gap} / 2);
+    }
+  }
+
+  // Top bar tools (see custom.scss): search icon and dropdown arrow on the other side
+  .header-tools {
+    .search-input {
+      @include mq(md) {
+        padding: 0 2.25rem 0 $sp-3;
+      }
+    }
+
+    .search-label {
+      @include mq(md) {
+        right: 0;
+        padding-left: 0;
+        padding-right: $sp-3;
+      }
+    }
+
+    .flaglist {
+      background-position: left $sp-3 center !important;
+    }
+  }
+
+  // "Contents" box: accent on the right, column on the left (see custom.scss)
+  div.markdown-toc {
+    border-left: var(--toc-box-border) !important;
+    border-right: var(--toc-box-border-left) !important;
+  }
+
+  @media (min-width: $toc-column-min-width) {
+    main:has(div.markdown-toc) {
+      padding-right: 0;
+      padding-left: calc(var(--toc-width) + #{$toc-column-gap});
+    }
+
+    div.markdown-toc {
+      float: left;
+      margin-right: 0;
+      margin-left: calc(-1 * (var(--toc-width) + #{$toc-column-gap}));
+    }
+  }
+
+  // Code, FHIR paths and the tree tables stay left-to-right
+  pre,
+  code,
+  .highlight,
+  table[fhir="generated-heirarchy"] {
+    direction: ltr;
+    text-align: left;
+  }
+}

@@ -11,12 +11,16 @@
 {%- endcomment -%}
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 
-  <link rel="stylesheet" href="{{ 'assets/css/just-the-docs-default.css'  }}">
+  <title>{{site.data.pages[localPage].titlelang[include.lang] | escape_once}} - {{site.data.fhir.ig.title | escape_once}} v{{site.data.fhir.ig.version | escape_once}}</title>
 
-  <link rel="stylesheet" href="{{ 'assets/css/just-the-docs-head-nav.css' }}" id="jtd-head-nav-stylesheet">
+  <link rel="stylesheet" href="{{ 'assets/css/just-the-docs-default.css'  }}"/>
+  <link rel="stylesheet" href="assets/css/just-the-docs-dark.css" id="jtd-dark-stylesheet" media="screen and (prefers-color-scheme: dark)"/>
+  {% include theme-switch.html %}
+
+  <link rel="stylesheet" href="{{ 'assets/css/just-the-docs-head-nav.css' }}" id="jtd-head-nav-stylesheet"/>
 
   <style id="jtd-nav-activation">
   {% include activation.scss.liquid %}
@@ -42,7 +46,9 @@
 
   <script src="{{ 'assets/js/just-the-docs.js'  }}"></script>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="{{site.data.info.assets}}assets/js/direction-management.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
   {% include favicon.html %}
 

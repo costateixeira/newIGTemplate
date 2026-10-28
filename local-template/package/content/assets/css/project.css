@@ -37,6 +37,11 @@ widget in sidebar vs in column = uiterlijk op basis van locale class via functio
 /* SCAFFOLDING STYLING
 ----------------------------------------------------------------------------------------*/
 
+/* Heading numbers - copy-pasteable section numbers */
+.heading-number {
+  color: silver;
+  margin-right: 0.3em;
+}
 
 /* Colors
 
@@ -45,15 +50,18 @@ var(--publish-box-border); */
 
 :root {
 
-  --ig-status-text-color: maroon; /* 1. IG Title and status text color */
-  --navbar-bg-color: #7b1fad; /* 2. Header container color */
-  --footer-bg-color: #707070; /* 3. Footer background color*/
-  --footer-container-bg-color: #7b1fad; /* 4. Footer container color */
-  --stripe-bg-color: #999999; /* 5. Header strip color */
+  --ig-status-text-color: #27415a; /* 1. IG Title and status text color */
+  --navbar-bg-color: #27415a; /* 2. Header container color */
+  --footer-bg-color: #27415a; /* 3. Footer background color*/
+  --footer-container-bg-color: #27415a; /* 4. Footer container color */
+  --stripe-bg-color: #27415a; /* 5. Header strip color */
 
-  --btn-hover-color: #9b2fdd;  /* 6. Menu button hover color */
-  --btn-active-color: #da0c23; /* 7. Menu button active color */
+  --btn-hover-color: #3c5677;  /* 6. Menu button hover color */
+  --btn-active-color: #40679a; /* 7. Menu button active color */
   --btn-text-color: #e6e6e6; /* 8. Menu button text color */
+  --btn-expander-color: #e6e6e6; /* 8b. Menu expander arrow color */
+  --btn-expander-bg-color: #3c5677; /* 8c. Menu expander background color */
+  --btn-expander-hover-bg-color: #357ebd; /* 8d. Menu expander hover background color */
   --btn-gradient-start-color: #428bca; /* 9. Menu item gradient start color */
   --btn-gradient-end-color: #357ebd; /* 10. Menu item gradient end  color */
   --btn-gradient-start-color-alpha: #ff428bca; /* 11. Menu item gradient start color (with alpha) */
@@ -61,28 +69,103 @@ var(--publish-box-border); */
   --link-color: #428bca; /* 13. Hyperlink text color */
   --link-hover-color: #2a6496; /* 14. Hyperlink text hover color */
 
-  --publish-box-bg-color: yellow; /* 15. Publish box background color */
-  --publish-box-border: 1px solid #0A0008; /* 16.  Publish box border definition */
+  --publish-box-bg-color: #fff2a8; /* 15. Publish box background color */
+  --publish-box-border: 1px solid #800000; /* 16.  Publish box border definition */
 
-  --toc-box-bg-color: #ffeb7e; /* 17.  TOC box background color */
-  --toc-box-border: 1px solid navy; /* 18. TOC box border definition */
+  --toc-box-bg-color: #f8fafc; /* 17.  TOC box background color */
+  --toc-box-border: 1px solid #d5dde7; /* 18. TOC box border definition */
+  --toc-box-border-left: 3px solid #428bca; /* 18b. TOC box left border accent */
+  --toc-box-title-color: #4a5a6a; /* 18c. TOC box title color */
+  --toc-width: 16rem; /* 18d. TOC column width (wide screens) */
 
-  --stu-note-background-color: #fff2ff; /* 19. (STU) Note box background color */
-  --stu-note-border-left-color: #ffa0ff; /* 20. (STU) Note box border color */
+  --stu-note-background-color: #fff8e5; /* 19. (STU) Note box background color */
+  --stu-note-border-left-color: #e8a33d; /* 20. (STU) Note box border color */
 
-  --ig-header-color: #f5f5f5; /* 21. Header color (sides) */
+  --ig-header-color: #f4f6f9; /* 21. Header color (sides) */
   --ig-header-container-color: #ffffff; /* 22. Header container color (center) */
-  --footer-nav-bg-color: #f5f5f5; /* 23. Footer navigation background color*/
+  --footer-nav-bg-color: #f4f6f9; /* 23. Footer navigation background color*/
 
   --footer-text-color: #ffffff; /* 24. Footer highlight font color */
-  --footer-hyperlink-text-color: #81BEF7; /* 25. Footer hyperlinks font color */
-  --footer-highlight-text-color: #ffff77; /* 26. Footer highlight font color */
+  --footer-hyperlink-text-color: #a9cdf0; /* 25. Footer hyperlinks font color */
+  --footer-highlight-text-color: #c9d6e3; /* 26. Footer highlight font color */
 
-  --breadcrumb-bg-color: #f5f5f5; /* 27. Breadcrumb font color */
-  --breadcrumb-text-color: ##555555; /* 28. Breadcrumb font color */
+  --breadcrumb-bg-color: #f4f6f9; /* 27. Breadcrumb background color */
+  --breadcrumb-text-color: #4a5a6a; /* 28. Breadcrumb text color */
+  --breadcrumb-separator-color: #8a97a6; /* 28b. Breadcrumb separator color */
 
   --dragon-background-color: #fffbf7; /* 29. Dragon background color */
   --dragon-text-color: #101020; /* 30. Dragon font color */
+
+  /* Layout widths */
+  --nav-width: 15.5rem; /* 31. Sidebar navigation width */
+  --content-width: 100rem; /* 32. Main content max width */
+  --site-title-hover-bg: rgba(255, 255, 255, 0.1); /* 33. Site title hover background */
+  --search-highlight-bg-color: #e8f0f8; /* 42. Search result highlight background */
+
+  /* Typography */
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 43. Text font */
+  --font-family-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; /* 44. Code font */
+  --font-size-base: 15px; /* 45. Body text size */
+  --font-size-small: 13px; /* 46. Table, breadcrumb and footer text size */
+  --muted-text-color: #5c6b7a; /* 47. Secondary text (labels) */
+  --rail-bg-color: #fafbfc; /* 48. Side rail beside the text (search, language, Contents, outer margin) */
+  --rail-border-color: #edf0f3; /* 48b. Side rail edge */
+  --page-bg-color: #ffffff; /* 49. Page (text) background */
+
+  /* ============================================
+     DARK THEME COLORS
+     Used when the reader picks Dark (switch at the bottom of the menu) or
+     Auto with a dark system setting; default in includes/theme-config.html
+     ============================================ */
+  --navbar-bg-color-dark: #1a1a2e; /* D2. Sidebar background color (dark) */
+  --btn-hover-color-dark: #16213e;  /* D6. Menu button hover color (dark) */
+  --btn-active-color-dark: #0f3460; /* D7. Menu button active color (dark) */
+  --btn-text-color-dark: #e6e6e6; /* D8. Menu button text color (dark) */
+  --btn-expander-color-dark: #e6e6e6; /* D8b. Menu expander arrow color (dark) */
+  --btn-expander-hover-bg-color-dark: #16213e; /* D8d. Menu expander hover bg (dark) */
+  --btn-gradient-start-color-dark: #0f3460; /* D9. Menu gradient start (dark) */
+  --btn-gradient-end-color-dark: #16213e; /* D10. Menu gradient end (dark) */
+  --site-title-hover-bg-dark: rgba(255, 255, 255, 0.15); /* D33. Site title hover bg (dark) */
+
+  --toc-box-bg-color-dark: #1a1a2e; /* D17. TOC box background (dark) */
+  --toc-box-border-dark: 1px solid #0f3460; /* D18. TOC box border (dark) */
+  --toc-box-border-left-dark: 3px solid #89b4fa; /* D18b. TOC box left border (dark) */
+  --toc-box-title-color-dark: #aaa; /* D18c. TOC box title color (dark) */
+
+  /* Dark theme page colors */
+  --body-bg-color-dark: #1e1e2e; /* D34. Page background (dark) */
+  --body-text-color-dark: #cdd6f4; /* D35. Page text color (dark) */
+  --link-color-dark: #89b4fa; /* D36. Link color (dark) */
+  --link-hover-color-dark: #b4befe; /* D37. Link hover color (dark) */
+  --table-bg-color-dark: #1e1e2e; /* D38. Table background (dark) */
+  --table-header-bg-dark: #313244; /* D39. Table header background (dark) */
+  --table-border-color-dark: #45475a; /* D40. Table border color (dark) */
+  --code-bg-color-dark: #313244; /* D41. Code background (dark) */
+  --search-highlight-bg-color-dark: #313244; /* D42. Search result highlight background (dark) */
+
+  /* Dark versions of the light palette entries above (the dark stylesheet,
+     _sass/color_schemes/dark.scss, maps each light entry to its D entry) */
+  --ig-status-text-color-dark: #c9d6e3; /* D1. IG Title and status text color (dark) */
+  --footer-bg-color-dark: #181825; /* D3. Footer background color (dark) */
+  --footer-container-bg-color-dark: #181825; /* D4. Footer container color (dark) */
+  --publish-box-bg-color-dark: #3a3420; /* D15. Publish box background color (dark) */
+  --publish-box-border-dark: 1px solid #b05050; /* D16. Publish box border (dark) */
+  --stu-note-background-color-dark: #3a3222; /* D19. (STU) Note box background color (dark) */
+  --stu-note-border-left-color-dark: #e8a33d; /* D20. (STU) Note box border color (dark) */
+  --ig-header-color-dark: #1e1e2e; /* D21. Header color (sides) (dark) */
+  --ig-header-container-color-dark: #1e1e2e; /* D22. Header container color (dark) */
+  --footer-nav-bg-color-dark: #262637; /* D23. Footer navigation background color (dark) */
+  --footer-text-color-dark: #cdd6f4; /* D24. Footer font color (dark) */
+  --footer-hyperlink-text-color-dark: #89b4fa; /* D25. Footer hyperlinks font color (dark) */
+  --footer-highlight-text-color-dark: #bac2de; /* D26. Footer highlight font color (dark) */
+  --breadcrumb-bg-color-dark: #262637; /* D27. Breadcrumb background color (dark) */
+  --breadcrumb-text-color-dark: #bac2de; /* D28. Breadcrumb text color (dark) */
+  --breadcrumb-separator-color-dark: #7f849c; /* D28b. Breadcrumb separator color (dark) */
+  --dragon-background-color-dark: #2e2a24; /* D29. Dragon background color (dark) */
+  --dragon-text-color-dark: #e6dccf; /* D30. Dragon font color (dark) */
+  --muted-text-color-dark: #9399b2; /* D47. Secondary text (labels) (dark) */
+  --rail-bg-color-dark: #181825; /* D48. Side rail beside the text (dark) */
+  --rail-border-color-dark: #313244; /* D48b. Side rail edge (dark) */
 
 }
 
@@ -103,33 +186,102 @@ body {
   background-color: #ffffff;
   position: relative;
 }
+/* Content wrapper - sits beside sidebar once it is pinned (jtd md breakpoint, see _sass/custom/setup.scss);
+   below that the sidebar collapses into the top bar and needs no space */
+@media (min-width: 55.5rem) {
+  .side-bar ~ .content-wrapper {
+    margin-left: var(--nav-width, 16.5rem);
+  }
+}
+
+.content-wrapper .main {
+  margin-left: 0;
+}
+
 #segment-header {
   background-color: var(--ig-header-color);
 }
 #segment-header > .container {
   background-color: var(--ig-header-container-color);
 }
+/* Footer styling - positioned inside main-content-wrap */
 #segment-footer {
   background-color: var(--footer-bg-color);
+  /* Extend to edges of main-content-wrap padding */
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: -1rem;
+  margin-top: 2rem;
+  padding: 0;
+  /* Ensure footer spans full width */
+  width: calc(100% + 2rem);
+  /* Ensure it's a block element */
+  display: block;
+  clear: both;
+}
+
+@media (min-width: 55.5rem) {
+  #segment-footer {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-bottom: -2rem;
+    width: calc(100% + 4rem);
+  }
 }
 
 #segment-footer > .container {
   background-color: var(--footer-container-bg-color);
   color: var(--footer-text-color);
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
+
+#segment-footer .page-nav {
+  background-color: var(--breadcrumb-bg-color);
+  padding: 8px 1rem;
+}
+
+#segment-footer .page-nav table {
+  margin-bottom: 0;
+  background-color: transparent;
+}
+
+#segment-footer .page-nav table td {
+  background-color: transparent;
+}
+
+#segment-footer .page-nav tbody tr:last-of-type td {
+  padding-bottom: 0;
+}
+
+@media (min-width: 55.5rem) {
+  #segment-footer .page-nav {
+    padding: 8px 2rem;
+  }
+}
+
+#segment-footer > .container .inner-wrapper {
+  padding: 10px 1rem;
+}
+
+@media (min-width: 55.5rem) {
+  #segment-footer > .container .inner-wrapper {
+    padding: 10px 2rem;
+  }
+}
+
+#segment-footer > .container .inner-wrapper > p {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  color: var(--footer-text-color);
+}
+
 .navbar-inverse {
   background-color: var(--navbar-bg-color);
 }
 .navbar-inverse .navbar-nav > li > a:hover {
   background-color: var(--btn-hover-color);
-}
-#segment-footer > .container .inner-wrapper {
-  padding: 4px 20px;
-}
-#segment-footer > .container .inner-wrapper > p {
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-  color:var(--footer-text-color);
 }
 #segment-post-footer {
   background-color: #f5f5f5;
@@ -473,11 +625,54 @@ a:focus {
 .nav-list > li > a {
   padding: 3px 15px;
 }
-.breadcrumb {
-  margin-bottom: 0;
-  background-color: var(--breadcrumb-bg-color);;
+#segment-breadcrumb {
+  margin-bottom: 10px;
 }
-.breadcrumb a {
+/* Span the content width (Bootstrap's .container has a fixed width) */
+#segment-breadcrumb > .container {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+#segment-breadcrumb .breadcrumb-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--breadcrumb-bg-color);
+  padding: 8px 15px;
+}
+#segment-breadcrumb .breadcrumb {
+  margin: 0;
+  padding: 0;
+  background-color: transparent; /* Bootstrap gives it its own grey box */
+  list-style: none !important;
+  display: inline;
+}
+#segment-breadcrumb .breadcrumb a {
+  color: var(--breadcrumb-text-color);
+}
+#segment-breadcrumb .breadcrumb > li {
+  display: inline;
+  list-style: none !important;
+  margin: 0 15px 0 0;
+}
+#segment-breadcrumb .breadcrumb > li::before {
+  content: none !important;
+}
+#segment-breadcrumb .breadcrumb > li + li::before {
+  content: ">" !important;
+  color: var(--breadcrumb-separator-color, #999);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+#segment-breadcrumb .breadcrumb > li b {
+  font-weight: normal;
+}
+#segment-breadcrumb .breadcrumb-nav {
+  white-space: nowrap;
+}
+#segment-breadcrumb .breadcrumb-nav a {
   color: var(--breadcrumb-text-color);
 }
 .nav-listing {
@@ -539,6 +734,52 @@ p > img {
 .table th.inverted h6 {
   color: inherit;
 }
+
+/* Artifact summary table (colsi) styling */
+table.colsi {
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #dee2e6;
+  width: 100%;
+  overflow: hidden;
+}
+
+table.colsi td,
+table.colsi th {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+table.colsi tr:last-child td,
+table.colsi tr:last-child th {
+  border-bottom: none !important;
+}
+
+/* Round corners for first and last cells */
+table.colsi tr:first-child td:first-child,
+table.colsi tr:first-child th:first-child {
+  border-top-left-radius: 7px;
+}
+
+table.colsi tr:first-child td:last-child,
+table.colsi tr:first-child th:last-child {
+  border-top-right-radius: 7px;
+}
+
+table.colsi tr:last-child td:first-child,
+table.colsi tr:last-child th:first-child {
+  border-bottom-left-radius: 7px;
+}
+
+table.colsi tr:last-child td:last-child,
+table.colsi tr:last-child th:last-child {
+  border-bottom-right-radius: 7px;
+}
+
 pre {
   font-size: 12px;
 }
@@ -589,14 +830,11 @@ ul.markdown-toc p.link
   padding-left: 8px;
   margin: 0px;
 }
-
+ 
+/* Box look only; placement (column beside the text) is in _sass/custom/custom.scss */
 div.markdown-toc
 {
-  margin: 4px;
   padding: 4px;
-  float: right;
-  z-index: 10;
-  width: 30%;
   background-color:  var(--toc-box-bg-color);
   border: var(--toc-box-border);
 }
@@ -769,4 +1007,110 @@ li a[href^="http://"]:not([no-external^="true"]):after,li a[href^="https://"]:no
 code[class*="language-"],
 pre[class*="language-"] {
     text-shadow: none;
+}
+
+/* Search results should not affect sidebar or main content layout */
+.search {
+  position: relative;
+}
+
+.search-results {
+  z-index: 1000;
+  max-width: 100%;
+}
+
+@media (min-width: 55.5rem) {
+  .search-results {
+    max-width: 23.5rem;
+  }
+}
+
+/* Prevent search active state from affecting sidebar */
+.search-active .side-bar {
+  z-index: 1;
+}
+
+.search-active .main {
+  position: relative;
+}
+
+/* jQuery UI tabs (resource pages): jQuery UI 1.14's flat base theme with the
+   colours of base2's earlier jQuery UI 1.11 theme, and normal link colours
+   inside widgets (the 1.14 theme greys them out) */
+.ui-widget-content a {
+  color: var(--link-color);
+}
+.ui-widget-header {
+  border: 1px solid #efefef;
+  background: #eeeeee;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: 1px solid #cccccc;
+  background: #f6f6f6;
+  font-weight: bold;
+  color: #1c94c4;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: #1c94c4;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  border: 1px solid #fbcb09;
+  background: #fdf5ce;
+  color: #c77405;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-focus a,
+.ui-state-focus a:hover {
+  color: #c77405;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  border: 1px solid #fbd850;
+  background: #ffffff;
+  font-weight: bold;
+  color: #eb8f00;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: #eb8f00;
+}
+
+/* Typography: one font family (palette 43-46) instead of fhir.css's Verdana
+   on p/li/td/tr and Helvetica/Arial elsewhere */
+body,
+h1, h2, h3, h4, h5, h6,
+p, li, td, tr, th,
+input, button, select, textarea,
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+  font-family: var(--font-family);
+}
+body,
+p, li {
+  font-size: var(--font-size-base);
+}
+#main-content p,
+#main-content li {
+  line-height: 1.6;
+}
+td, tr, th,
+#segment-breadcrumb, #segment-breadcrumb li, .page-nav,
+#ig-status p,
+#segment-footer p, #segment-footer li,
+div.markdown-toc li {
+  font-size: var(--font-size-small);
+}
+code, pre, kbd, samp, tt {
+  font-family: var(--font-family-mono);
 }

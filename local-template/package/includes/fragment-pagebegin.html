@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-
-<html lang="{{ site.lang | default: 'en-US' }}">
+{% assign baselang = include.lang | default: '' | slice: 0,2 | downcase %}
+{% assign rtl_langs = "ar,dv,fa,ha,he,iw,ji,ps,sd,ug,ur,yi" | split: "," %}
+{% if baselang != "" and rtl_langs contains baselang %}
+{% assign dir = 'rtl' %}
+{% else %}
+{% assign dir = 'ltr' %}
+{% endif %}
+<html lang="{{ include.lang | default: site.lang | default: 'en-US' }}" dir="{{dir}}">
 {% include head.html %}
 <body>
 
@@ -13,29 +19,10 @@
   {% elsif site.nav_enabled != false and layout.nav_enabled == nil and page.nav_enabled == nil %}
     {% include sidebar.html %}
   {% endif %}
+  <div class="content-wrapper">
   <div class="main" id="top">
-    {% include header.html %}
+    {% include header.html lang=include.lang %}
     <div class="main-content-wrap">
-      {% include breadcrumbs.html %}
       <div id="main-content" class="main-content">
         <main>
-          {% if site.heading_anchors != false %}
-            {% include anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" anchorAttrs="aria-labelledby=\"%html_id%\"" %}
-          {% else %}
-            {{ content }}
-          {% endif %}
-
-          {% if page.has_toc != false %}
-            {% include children_nav.html %}
-          {% endif %}
-        </main>
-        {% include footer.html %}
-      </div>
-    </div>
-    {% if site.search_enabled != false %}
-      {% include search_footer.html %}
-    {% endif %}
-
-  {% if site.mermaid %}
-    {% include mermaid.html %}
-  {% endif %}
+{% include breadcrumbs.html lang=include.lang %}

@@ -1,12 +1,58 @@
-</div>
+{%- assign lang = include.lang | default: "en" -%}
 
+        </main>
+      </div>  <!-- /main-content -->
 
-<script type="text/javascript" src="{{site.data.info.assets}}assets/js/jquery.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
-<script type="text/javascript" src="{{site.data.info.assets}}assets/js/jquery-ui.min.js"> </script>
+<a name="bottom"> </a>
+<div id="segment-footer" igtool="footer" class="segment">  <!-- segment-footer -->
+  <div class="container" data-fhir="generated">  <!-- container -->
+    {% include page-nav.html lang=lang position='bottom' %}
+    <div class="inner-wrapper">
+      <p>
+{%- capture pkg -%}{{site.data.fhir.packageId}}#{{site.data.fhir.igVer}}{%- endcapture -%}
+{%- capture fhirver -%}<a style="color: var(--footer-hyperlink-text-color)" href="{{site.data.fhir.path}}">FHIR {{site.data.fhir.version}}</a>{%- endcapture -%}
+{%- capture gendate -%}
+  <span title="{{ site.data.fhir.genDate | date: "%Y-%m-%d %H:%M:%S %z" }}">
+    {{ site.data.fhir.genDate | date: "%Y-%m-%d" }}
+  </span>
+{%- endcapture -%}
+        {{site.data.stringsBase[lang]['IGCopyright'] | replace: "%YEAR%", site.data.info.copyrightyear}} <a style="color:var(--footer-hyperlink-text-color)" href="{{site.data.fhir.ig.contact[0].telecom[0].value}}">{{site.data.fhir.ig.publisher | escape}}</a>.
+        {{site.data.stringsBase[lang]['IGPackage'] | replace: "%PKG%", pkg | replace: "%FHIRVER%", fhirver}}
+        {{site.data.stringsBase[lang]['GeneratedDate'] | replace: "%DATE%", gendate}}
+        <br/>
+        <span style="color: var(--footer-highlight-text-color)">
+          {% include fragment-footer.html lang=lang %}
+        </span>
+      </p>
+    </div>  <!-- /inner-wrapper -->
+  </div>  <!-- /container -->
+</div>  <!-- /segment-footer -->
+
+    </div>  <!-- /main-content-wrap -->
+
+</div>  <!-- /main -->
+  </div>  <!-- /content-wrapper -->
+
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/jquery-3.7.1.min.js"> </script>     <!-- note keep space here, otherwise it will be transformed to empty tag -> fails -->
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/jquery-ui-1.14.2.min.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/flags.js"> </script>
 {% if includetabscripts %}
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/tabs.js"> </script>
 {% endif %}
 <script type="text/javascript" src="{{site.data.info.assets}}assets/js/window-hash.js"> </script>
+{% if site.data.info.togglechanges == 'y' %}
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/togglechanges.js"> </script>
+{% endif %}
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/requirements-table.js"> </script>
 
+<!-- JS and analytics only. -->
+<!-- No Bootstrap JS: the menu is the jtd sidebar (fhir-menu.html), copy buttons use copy-btn.js -->
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/anchor-5.0.0.min.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/clipboard-2.0.11.min.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/copy-btn.js"> </script>
+<script type="text/javascript" src="{{site.data.info.assets}}assets/js/anchor-hover.js"> </script>
+{% include mermaid.html %}
+<!-- Analytics Below
+================================================== -->
 </body>
 </html>
