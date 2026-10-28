@@ -174,8 +174,8 @@ pages:
     title: Detailed Specification
     fragments.xml:
       title: Fragments
-    spec2.md:
-      title: Spec sub-page
+      spec2.md:
+        title: Spec sub-page
   downloads.xml:
     title: Useful Downloads
   changes.xml:

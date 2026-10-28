@@ -21,9 +21,9 @@
       </li>
       <li>
         <a href="fragments.html">Instance Fragments</a>
-      </li>
-      <li>
-        <a href="spec2.html">Spec sub-page</a>
+        <ul>
+          <li><a href="spec2.html">Spec sub-page</a></li>
+        </ul>
       </li>
     </ul>
   </li>
